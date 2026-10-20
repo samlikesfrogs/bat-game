@@ -27,11 +27,6 @@ func _ready():
 	pass
 
 func _physics_process(_delta: float) -> void:
-#	if not detected:
-#		z_index = 0
-#	else:
-#		await get_tree().create_timer(0.9).timeout
-#		z_index = 1
 	move_and_slide()
 	
 func setDirection(_new_direction: Vector2) -> bool:
@@ -54,7 +49,7 @@ func setDirection(_new_direction: Vector2) -> bool:
 	return true
 		
 func updateAnim(state:String) -> void:
-	$AnimatedSprite2D.animation = (state + "_" + AnimDirection())
+	$AnimatedSprite2D.play (state + "_" + AnimDirection())
 	print(state)
 	print(AnimDirection())
 
@@ -70,8 +65,5 @@ func _on_detection_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"): 
 		enemy_entered.emit()
 
-
 func _on_detection_body_exited(body: Node2D) -> void:
-#	if body.is_in_group("player"): 
-#		detected = false
 	pass # Replace with function body.
