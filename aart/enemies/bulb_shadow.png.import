@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctse1tot4cx5h"
-path="res://.godot/imported/Bullets animation-sheet.png-f07c304b6ba16fa121c291e73035b098.ctex"
+uid="uid://2di6bbdshoa5"
+path="res://.godot/imported/bulb_shadow.png-3c5ee0608d4e71c07943c723de24d7a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aart/Bullets animation-sheet.png"
-dest_files=["res://.godot/imported/Bullets animation-sheet.png-f07c304b6ba16fa121c291e73035b098.ctex"]
+source_file="res://aart/enemies/bulb_shadow.png"
+dest_files=["res://.godot/imported/bulb_shadow.png-3c5ee0608d4e71c07943c723de24d7a0.ctex"]
 
 [params]
 

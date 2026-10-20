@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+#cut legs off shootwalk animations
+
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var view
@@ -14,6 +16,7 @@ func _ready():
 	PlayerManager.player = self
 	state_machine.Initialize(self)
 	$PlayerSprite.animation = "idle_down"
+	$PlayerSprite.flip_h = false
 	can_shoot = true
 	
 func _process(_delta):

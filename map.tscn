@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://obyba16p18ol" path="res://aart/tiles/tileset_Grass cliff to grass.png" id="8_bssq0"]
 [ext_resource type="Texture2D" uid="uid://d1ttvx0ibe1s5" path="res://aart/tiles/tileset_Dirt cliff to dirt.png" id="9_jk4ss"]
 [ext_resource type="Texture2D" uid="uid://wx4yol2f6een" path="res://aart/tiles/tileset_Dirt cliff to grass.png" id="10_r5om4"]
-[ext_resource type="Script" uid="uid://dygy17k5dgraw" path="res://bullet_manager.gd" id="13_ooc2g"]
-[ext_resource type="PackedScene" uid="uid://bxw0ffdsrbsmo" path="res://bullet.tscn" id="14_2wwcf"]
+[ext_resource type="Script" uid="uid://dygy17k5dgraw" path="res://bullet/bullet_manager.gd" id="13_ooc2g"]
+[ext_resource type="PackedScene" uid="uid://bxw0ffdsrbsmo" path="res://bullet/bullet.tscn" id="14_2wwcf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jky6x"]
 texture = ExtResource("1_0t07s")

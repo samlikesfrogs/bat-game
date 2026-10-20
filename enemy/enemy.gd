@@ -4,6 +4,7 @@ class_name Enemy
 signal direction_changed(new_direction:Vector2)
 signal enemy_damaged()
 signal enemy_entered()
+signal enemy_destroyed()
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
@@ -13,17 +14,16 @@ var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var player:Player
 var invulnerable:bool=false
-#var detected:bool=false
 
 @onready var sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var hit_box: HitBox = $HitBox
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
-
-var is_out:bool=false
 
 func _ready():
 	$EnemyStateMachine.Initialize(self)
+	$HitBox/hitcollision.set_deferred("disabled", true)
+	hit_box.Damaged.connect(_take_damage)
 	player = PlayerManager.player
-#	$collision.disabled=true
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -50,8 +50,6 @@ func setDirection(_new_direction: Vector2) -> bool:
 		
 func updateAnim(state:String) -> void:
 	$AnimatedSprite2D.play (state + "_" + AnimDirection())
-	print(state)
-	print(AnimDirection())
 
 func AnimDirection() -> String:
 	if cardinal_dir == Vector2.DOWN:
@@ -67,3 +65,15 @@ func _on_detection_body_entered(body: Node2D) -> void:
 
 func _on_detection_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
+	
+func _take_damage(damage:int) -> void:
+	if invulnerable == true:
+		return
+	hp -= damage
+	if hp>0:
+		enemy_damaged.emit()
+	else:
+		enemy_destroyed.emit()
+
+func _on_comeout_disable() -> void:
+	$HitBox/hitcollision.set_deferred("disabled", false)
