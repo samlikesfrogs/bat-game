@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+#cut legs off shootwalk animations
+
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var view

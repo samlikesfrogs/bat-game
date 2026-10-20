@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bxw0ffdsrbsmo"]
 
 [ext_resource type="Texture2D" uid="uid://brab1v6rutm0k" path="res://aart/Bullets animation.png" id="1_v7oki"]
-[ext_resource type="Script" uid="uid://dmsg54crgnbc2" path="res://bullet.gd" id="1_v8qja"]
+[ext_resource type="Script" uid="uid://dmsg54crgnbc2" path="res://bullet/bullet.gd" id="1_v8qja"]
+[ext_resource type="Script" uid="uid://vwupm0u0be0o" path="res://bullet/bullet_hurt_box.gd" id="3_0qjqd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4vbm"]
 atlas = ExtResource("1_v7oki")
@@ -142,6 +143,10 @@ animations = [{
 radius = 1.5
 height = 10.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ykpt6"]
+radius = 4.0
+height = 10.0
+
 [node name="Bullet" type="Area2D" unique_id=110781394]
 z_index = 1
 collision_layer = 8
@@ -157,3 +162,13 @@ z_index = 1
 position = Vector2(0.5, 3.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_wqxq1")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1241603093]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("3_0qjqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1207831776]
+position = Vector2(3.5, -2)
+shape = SubResource("CapsuleShape2D_ykpt6")

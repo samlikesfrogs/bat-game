@@ -12,7 +12,6 @@ func init() -> void:
 	pass
 
 func enter()-> void:
-	print("idle 2 entered")
 	enemy.velocity=Vector2.ZERO
 	_timer = randf_range(state_duration_min, state_duration_max)
 	enemy.updateAnim(anim_name)
@@ -24,7 +23,6 @@ func exit()->void:
 func process(_delta:float)->EnemyState:
 	_timer -= _delta
 	if _timer <=0:
-		print("over")
 		return next_state
 	return null
 	
