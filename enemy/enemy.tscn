@@ -628,6 +628,7 @@ script = ExtResource("11_xoplw")
 [node name="hitcollision" type="CollisionShape2D" parent="HitBox" unique_id=588998582]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_ykpt6")
+disabled = true
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=932517080]
 position = Vector2(0, 11)
@@ -681,6 +682,7 @@ script = ExtResource("14_gf88j")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
 polygon = PackedVector2Array(-16, 0, 16, 0, 200, 130, -200, 130)
+disabled = true
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]

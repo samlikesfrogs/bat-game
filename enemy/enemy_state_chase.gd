@@ -14,6 +14,7 @@ func init() -> void:
 	pass
 
 func enter()-> void:
+	
 	_timer = aggroed
 	enemy.updateAnim(anim_name)
 	pass

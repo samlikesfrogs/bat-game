@@ -11,6 +11,8 @@ func init() -> void:
 	pass
 
 func enter()-> void:
+	$"../../FOV/CollisionPolygon2D".set_deferred("disabled", false)
+	$"../../HitBox/hitcollision".set_deferred("disabled", false)
 	enemy.velocity=Vector2.ZERO
 	enemy.updateAnim(anim_name)
 	pass
