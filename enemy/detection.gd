@@ -9,7 +9,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_comeout_disable() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	pass # Replace with function body.

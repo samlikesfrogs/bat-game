@@ -44,5 +44,4 @@ func _on_enemy_destroyed():
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	_animation_finished = true
-
 	
