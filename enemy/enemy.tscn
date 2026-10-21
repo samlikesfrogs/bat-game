@@ -338,6 +338,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+<<<<<<< HEAD
 "texture": SubResource("AtlasTexture_xoplw")
 }, {
 "duration": 1.0,
@@ -372,6 +373,8 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+=======
+>>>>>>> f7b0af177f89db76d0c8c7b4d0f7f444a27af64e
 "texture": SubResource("AtlasTexture_1bxjs")
 }, {
 "duration": 1.0,
@@ -487,10 +490,17 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
+<<<<<<< HEAD
 animation = &"idletwo_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
+=======
+animation = &"die_up"
+autoplay = "idle_down"
+
+[node name="shadow" type="Sprite2D" parent="AnimatedSprite2D" unique_id=401911381]
+>>>>>>> f7b0af177f89db76d0c8c7b4d0f7f444a27af64e
 modulate = Color(0, 0, 0, 0.5137255)
 self_modulate = Color(0.40392157, 0.007843138, 0.14117648, 0.78039217)
 show_behind_parent = true
@@ -548,9 +558,14 @@ position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_v7niv")
 
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
+<<<<<<< HEAD
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/destroy" method="_on_animated_sprite_2d_animation_finished"]
+=======
+[connection signal="animation_finished" from="AnimatedSprite2D" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
+>>>>>>> f7b0af177f89db76d0c8c7b4d0f7f444a27af64e
 [connection signal="disable" from="EnemyStateMachine/comeout" to="." method="_on_comeout_disable"]
 [connection signal="disable" from="EnemyStateMachine/comeout" to="Detection" method="_on_comeout_disable"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]

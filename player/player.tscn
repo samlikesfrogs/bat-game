@@ -67,8 +67,13 @@ region = Rect2(46, 0, 22, 24)
 atlas = ExtResource("5_c35mf")
 region = Rect2(69, 0, 22, 24)
 
+<<<<<<< HEAD
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnw6m"]
 atlas = ExtResource("5_c35mf")
+=======
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2xo5"]
+atlas = ExtResource("6_e7oew")
+>>>>>>> f7b0af177f89db76d0c8c7b4d0f7f444a27af64e
 region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_art4l"]
@@ -198,7 +203,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2uvqg")
 }, {
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1s1yo")
 }],
 "loop": 0,
@@ -368,7 +373,11 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
+<<<<<<< HEAD
 animation = &"attackwalk_up"
+=======
+animation = &"attackstand_down"
+>>>>>>> f7b0af177f89db76d0c8c7b4d0f7f444a27af64e
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
