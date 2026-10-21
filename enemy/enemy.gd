@@ -5,6 +5,7 @@ signal direction_changed(new_direction:Vector2)
 signal enemy_damaged()
 signal enemy_entered()
 signal enemy_destroyed()
+signal go_get_him()
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
@@ -15,6 +16,7 @@ var direction: Vector2 = Vector2.ZERO
 var player:Player
 var invulnerable:bool=false
 
+@export var aggrorange: = 128
 @onready var sprite:AnimatedSprite2D = $EnemySprite
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
@@ -77,3 +79,13 @@ func _take_damage(damage:int) -> void:
 
 func _on_comeout_disable() -> void:
 	$HitBox/hitcollision.set_deferred("disabled", false)
+	
+func is_player_in_range():
+	var player = player
+	if player is Player:
+		var distance_to_player = global_position.distance_squared_to(player.global_position)
+		if distance_to_player < aggrorange: go_get_him.emit()
+
+
+func _on_direction_changed(new_direction: Vector2) -> void:
+	pass # Replace with function body.

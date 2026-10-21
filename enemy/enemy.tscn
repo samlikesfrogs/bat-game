@@ -9,10 +9,11 @@
 [ext_resource type="Script" uid="uid://ejxr0s08f4wc" path="res://enemy/enemy_state_idle.gd" id="6_1wwld"]
 [ext_resource type="Script" uid="uid://btr673xfm7itb" path="res://enemy/enemy_state_idle2.gd" id="6_5ffra"]
 [ext_resource type="Script" uid="uid://bwn8hnchb07nt" path="res://enemy/detection.gd" id="6_y5vj3"]
-[ext_resource type="Script" uid="uid://b31cbaci0mcyl" path="res://enemy/wander.gd" id="7_5ffra"]
+[ext_resource type="Script" uid="uid://b31cbaci0mcyl" path="res://enemy/enemy_state_chase.gd" id="7_5ffra"]
 [ext_resource type="Script" uid="uid://c1va6rsqcvo22" path="res://enemy/enemy_state_stun.gd" id="8_o3pv7"]
 [ext_resource type="Script" uid="uid://dyfg88dp8ytmg" path="res://enemy/enemy_state_destroy.gd" id="11_6yflr"]
 [ext_resource type="Script" uid="uid://bgf3034ct0xrg" path="res://enemy/enemy_hit_box.gd" id="11_xoplw"]
+[ext_resource type="Script" uid="uid://bue8wlgec11vj" path="res://enemy/fov.gd" id="14_gf88j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
 atlas = ExtResource("2_xoplw")
@@ -487,7 +488,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"idletwo_side"
+animation = &"walk_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -525,17 +526,18 @@ next_state = NodePath("../idle2")
 
 [node name="idle2" type="Node" parent="EnemyStateMachine" unique_id=1690054435 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_5ffra")
-next_state = NodePath("../wander")
+next_state = NodePath("../chase")
 
 [node name="stun" type="Node" parent="EnemyStateMachine" unique_id=1739365865 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_o3pv7")
-next_state = NodePath("../idle2")
+next_state = NodePath("../chase")
 
 [node name="destroy" type="Node" parent="EnemyStateMachine" unique_id=454031519]
 script = ExtResource("11_6yflr")
 
-[node name="wander" type="Node" parent="EnemyStateMachine" unique_id=410512597]
+[node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_5ffra")
+next_state = NodePath("../idle2")
 
 [node name="Detection" type="Area2D" parent="." unique_id=1799829297]
 collision_layer = 0
@@ -547,6 +549,15 @@ script = ExtResource("6_y5vj3")
 position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_v7niv")
 
+[node name="FOV" type="Area2D" parent="." unique_id=225993243]
+collision_layer = 0
+script = ExtResource("14_gf88j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
+position = Vector2(0, 8)
+polygon = PackedVector2Array(-16, 0, 16, 0, 128, 128, -128, 128)
+
+[connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
@@ -555,3 +566,7 @@ shape = SubResource("CapsuleShape2D_v7niv")
 [connection signal="disable" from="EnemyStateMachine/comeout" to="Detection" method="_on_comeout_disable"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
+[connection signal="body_entered" from="FOV" to="FOV" method="_on_body_entered"]
+[connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]
+[connection signal="player_entered" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_entered"]
+[connection signal="player_exited" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_exited"]
