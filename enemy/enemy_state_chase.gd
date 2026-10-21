@@ -1,8 +1,8 @@
 class_name EnemyStateChase extends EnemyState
 
 @export var anim_name:String="walk"
-@export var speed = 100
-@export var aggroed: float = 0.5
+@export var speed = 92
+@export var aggroed: float = 3.0
 @export var next_state:EnemyState
 #make go back into ground state
 var _timer: float = 0

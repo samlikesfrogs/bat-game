@@ -27,6 +27,7 @@ func _on_enemy_enemy_entered() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	_animation_finished=true
 	disable.emit()
+	print("has been emitted")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -23,7 +23,6 @@ var invulnerable:bool=false
 
 func _ready():
 	$EnemyStateMachine.Initialize(self)
-	$HitBox/hitcollision.set_deferred("disabled", true)
 	hit_box.Damaged.connect(_take_damage)
 	player = PlayerManager.player
 	pass
@@ -64,9 +63,6 @@ func AnimDirection() -> String:
 func _on_detection_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"): 
 		enemy_entered.emit()
-
-func _on_detection_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
 	
 func _take_damage(damage:int) -> void:
 	if invulnerable == true:
@@ -76,16 +72,3 @@ func _take_damage(damage:int) -> void:
 		enemy_damaged.emit()
 	else:
 		enemy_destroyed.emit()
-
-func _on_comeout_disable() -> void:
-	$HitBox/hitcollision.set_deferred("disabled", false)
-	
-func is_player_in_range():
-	var player = player
-	if player is Player:
-		var distance_to_player = global_position.distance_squared_to(player.global_position)
-		if distance_to_player < aggrorange: go_get_him.emit()
-
-
-func _on_direction_changed(new_direction: Vector2) -> void:
-	pass # Replace with function body.

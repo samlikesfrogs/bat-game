@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c1va6rsqcvo22" path="res://enemy/enemy_state_stun.gd" id="8_o3pv7"]
 [ext_resource type="Script" uid="uid://dyfg88dp8ytmg" path="res://enemy/enemy_state_destroy.gd" id="11_6yflr"]
 [ext_resource type="Script" uid="uid://bgf3034ct0xrg" path="res://enemy/enemy_hit_box.gd" id="11_xoplw"]
+[ext_resource type="Script" uid="uid://cby6rsqtssddr" path="res://enemy/enemy_state_goin.gd" id="13_tbw0t"]
 [ext_resource type="Script" uid="uid://bue8wlgec11vj" path="res://enemy/fov.gd" id="14_gf88j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
@@ -89,6 +90,26 @@ region = Rect2(128, 192, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_khu3m"]
 atlas = ExtResource("4_pmsee")
 region = Rect2(160, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70x6l"]
+atlas = ExtResource("4_pmsee")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k585h"]
+atlas = ExtResource("4_pmsee")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyqw8"]
+atlas = ExtResource("4_pmsee")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ont7t"]
+atlas = ExtResource("4_pmsee")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3n84"]
+atlas = ExtResource("4_pmsee")
+region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5vj3"]
 atlas = SubResource("CompressedTexture2D_y5vj3")
@@ -224,6 +245,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5ffra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e355f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78jik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3pv7")
+}],
+"loop": 0,
+"name": &"comeout_up",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1bxjs")
 }, {
 "duration": 1.0,
@@ -311,6 +349,66 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_70x6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k585h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyqw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ont7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3n84")
+}],
+"loop": 0,
+"name": &"goin_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70x6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k585h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyqw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ont7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3n84")
+}],
+"loop": 0,
+"name": &"goin_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70x6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k585h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyqw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ont7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3n84")
+}],
+"loop": 0,
+"name": &"goin_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y5vj3")
 }, {
 "duration": 1.0,
@@ -318,6 +416,28 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_down",
+"speed": 3.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5vj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsee")
+}],
+"loop": 1,
+"name": &"idle_side",
+"speed": 3.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5vj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsee")
+}],
+"loop": 1,
+"name": &"idle_up",
 "speed": 3.5
 }, {
 "frames": [{
@@ -488,7 +608,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"walk_side"
+animation = &"comeout_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -537,7 +657,11 @@ script = ExtResource("11_6yflr")
 
 [node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_5ffra")
-next_state = NodePath("../idle2")
+next_state = NodePath("../goin")
+
+[node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]
+script = ExtResource("13_tbw0t")
+next_state = NodePath("../idle")
 
 [node name="Detection" type="Area2D" parent="." unique_id=1799829297]
 collision_layer = 0
@@ -545,27 +669,30 @@ collision_mask = 2
 monitorable = false
 script = ExtResource("6_y5vj3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection" unique_id=1151591777]
+[node name="detection" type="CollisionShape2D" parent="Detection" unique_id=1151591777]
 position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_v7niv")
 
 [node name="FOV" type="Area2D" parent="." unique_id=225993243]
 collision_layer = 0
+collision_mask = 2
 script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-16, 0, 16, 0, 128, 128, -128, 128)
+polygon = PackedVector2Array(-16, 0, 16, 0, 200, 130, -200, 130)
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/destroy" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="disable" from="EnemyStateMachine/comeout" to="." method="_on_comeout_disable"]
+[connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/goin" method="_on_enemy_sprite_animation_finished"]
+[connection signal="disable" from="EnemyStateMachine/comeout" to="HitBox" method="_on_comeout_disable"]
 [connection signal="disable" from="EnemyStateMachine/comeout" to="Detection" method="_on_comeout_disable"]
+[connection signal="disable2" from="EnemyStateMachine/goin" to="HitBox" method="_on_goin_disable_2"]
+[connection signal="disable2" from="EnemyStateMachine/goin" to="Detection" method="_on_goin_disable_2"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
-[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="FOV" to="FOV" method="_on_body_entered"]
 [connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]
 [connection signal="player_entered" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_entered"]

@@ -6,6 +6,7 @@ func init() -> void:
 	pass
 
 func enter()-> void:
+	await get_tree().create_timer(0.5).timeout
 	enemy.velocity=Vector2.ZERO
 	enemy.updateAnim(anim_name)
 	pass
