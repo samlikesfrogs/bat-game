@@ -16,6 +16,7 @@ func _ready():
 	PlayerManager.player = self
 	state_machine.Initialize(self)
 	$PlayerSprite.animation = "idle_down"
+	$PlayerSprite.flip_h = false
 	can_shoot = true
 	
 func _process(_delta):

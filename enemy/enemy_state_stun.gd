@@ -1,7 +1,5 @@
 class_name EnemyStateStun extends EnemyState
 
-#make enemy flash white
-
 @export var anim_name:String="stun"
 @export_category("AI")
 @export var knockback_speed:float = 100.0

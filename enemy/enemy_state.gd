@@ -2,7 +2,6 @@ class_name EnemyState extends Node
 var enemy:Enemy
 var state_machine:EnemyStateMachine
 
-
 func init() -> void:
 	pass
 

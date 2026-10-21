@@ -139,10 +139,6 @@ animations = [{
 "speed": 8.5
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqxq1"]
-radius = 1.5
-height = 10.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ykpt6"]
 radius = 4.0
 height = 10.0
@@ -155,13 +151,7 @@ script = ExtResource("1_v8qja")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2056286863]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"up"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=311576379]
-z_index = 1
-position = Vector2(0.5, 3.5)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_wqxq1")
+animation = &"down"
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1241603093]
 collision_layer = 0
@@ -169,6 +159,5 @@ collision_mask = 256
 monitorable = false
 script = ExtResource("3_0qjqd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1207831776]
-position = Vector2(3.5, -2)
+[node name="HurtBox2" type="CollisionShape2D" parent="HurtBox" unique_id=2112991129]
 shape = SubResource("CapsuleShape2D_ykpt6")
