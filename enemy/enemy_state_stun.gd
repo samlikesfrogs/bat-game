@@ -5,7 +5,7 @@ class_name EnemyStateStun extends EnemyState
 @export var next_state:EnemyState
 @export var decelerate_speed:float=10.0
 
-
+var _damage_position:Vector2
 var _timer:float=0.0
 var _animation_finished:bool=false
 var _direction : Vector2
@@ -17,7 +17,7 @@ func init() -> void:
 func enter()-> void:
 	enemy.invulnerable = true
 	_animation_finished = false
-	_direction = enemy.global_position.direction_to(PlayerManager.player.global_position)
+	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.setDirection(_direction)
 	enemy.velocity=_direction * -knockback_speed
 	enemy.updateAnim(anim_name)
@@ -40,7 +40,8 @@ func physics(_delta:float)->EnemyState:
 func _process(_delta: float) -> void:
 	pass
 	
-func _on_enemy_damaged():
+func _on_enemy_damaged(hurt_box:HurtBox):
+	_damage_position = hurt_box.global_position
 	state_machine.ChangeState(self)
 
 func _on_animated_sprite_2d_animation_finished() -> void:

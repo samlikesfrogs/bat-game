@@ -16,8 +16,8 @@ var invulnerable:bool=false
 
 signal shoot
 var can_shoot:bool
-signal player_damaged()
-signal player_destroyed()
+signal player_damaged(hurt_box:HurtBox)
+signal player_destroyed(hurt_box:HurtBox)
 
 
 func _ready():
@@ -72,14 +72,15 @@ func _on_player_sprite_animation_finished() -> void:
 	can_shoot = true
 	pass # Replace with function body.
 
-func _take_damage(damage:int) -> void:
+func _take_damage(hurt_box:HurtBox) -> void:
 	if invulnerable == true:
 		return
-	update_hp(-damage)
+	update_hp(-hurt_box.damage)
 	if hp>0:
-		player_damaged.emit()
+		player_damaged.emit(hurt_box)
 	else:
-		player_destroyed.emit()
+#		player_destroyed.emit(hurt_box)	
+		player_damaged.emit(hurt_box)
 		update_hp(99)
 		
 func update_hp(delta:int):

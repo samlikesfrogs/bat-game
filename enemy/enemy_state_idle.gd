@@ -9,7 +9,7 @@ func enter()-> void:
 	$"../../Detection/detection".set_deferred("disabled", false)
 	$"../../FOV/CollisionPolygon2D".set_deferred("disabled", true)
 	$"../../HitBox/hitcollision".set_deferred("disabled", true)
-	$"../../HurtBox".set_deferred("disabled", true)
+	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	await get_tree().create_timer(0.5).timeout
 	enemy.velocity=Vector2.ZERO
 	enemy.updateAnim(anim_name)

@@ -594,16 +594,16 @@ animations = [{
 radius = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7niv"]
-radius = 6.0
-height = 12.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
 radius = 4.0
 height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqxq1"]
-radius = 5.0
-height = 20.0
+radius = 11.0
+height = 24.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1672910458]
 z_index = 2
@@ -617,7 +617,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attack_down"
+animation = &"attack_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -661,15 +661,16 @@ script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-16, 0, 16, 0, 200, 130, -200, 130)
+polygon = PackedVector2Array(-16, 0, 15, 0, 200, 130, -200, 130)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
 script = ExtResource("8_wjonb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=10290253]
-position = Vector2(0, 5)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_wqxq1")
+disabled = true
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=2114198284]
 script = ExtResource("5_e355f")

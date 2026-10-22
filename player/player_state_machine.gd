@@ -27,18 +27,19 @@ func Initialize(_player : Player) -> void:
 	for c in get_children():
 		if c is State:
 			states.append(c)
-			
+	
+	for s in states:
+		s.player=_player
+		s.state_machine = self
+		s.init()
+		
+	if states.size() > 0:
+		states[0].player = _player
+		ChangeState(states[0])
+		process_mode = Node.PROCESS_MODE_INHERIT
+		
 	if states.size() ==0:
 		return
-			
-	states[0].player = _player		
-	states[0].state_machine = self
-	
-	for state in states:
-		state.init()
-		
-	ChangeState(states[0])
-	process_mode = Node.PROCESS_MODE_INHERIT
 
 func ChangeState(new_state : State) -> void: 
 	if new_state == null || new_state == current_state:
@@ -49,7 +50,3 @@ func ChangeState(new_state : State) -> void:
 	prev_state = current_state
 	current_state = new_state
 	current_state.Enter()
-
-
-func _on_stun_damaged() -> void:
-	pass # Replace with function body.

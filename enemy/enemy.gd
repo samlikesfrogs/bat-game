@@ -2,9 +2,9 @@ extends CharacterBody2D
 class_name Enemy
 
 signal direction_changed(new_direction:Vector2)
-signal enemy_damaged()
+signal enemy_damaged(hurt_box:HurtBox)
 signal enemy_entered()
-signal enemy_destroyed()
+signal enemy_destroyed(hurt_box:HurtBox)
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 @export var hp: int = 3
@@ -16,12 +16,12 @@ var invulnerable:bool=false
 
 @export var aggrorange: = 128
 @onready var sprite:AnimatedSprite2D = $EnemySprite
-@onready var hit_box: HitBox = $HitBox
+@onready var _hit_box: HitBox = $HitBox
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 
 func _ready():
-	$EnemyStateMachine.Initialize(self)
-	hit_box.Damaged.connect(_take_damage)
+	state_machine.Initialize(self)
+	_hit_box.Damaged.connect(_take_damage)
 	player = PlayerManager.player
 	pass
 
@@ -63,11 +63,11 @@ func _on_detection_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"): 
 		enemy_entered.emit()
 	
-func _take_damage(damage:int) -> void:
+func _take_damage(hurt_box:HurtBox) -> void:
 	if invulnerable == true:
 		return
-	hp -= damage
+	hp -= hurt_box.damage
 	if hp>0:
-		enemy_damaged.emit()
+		enemy_damaged.emit(hurt_box)
 	else:
-		enemy_destroyed.emit()
+		enemy_destroyed.emit(hurt_box)

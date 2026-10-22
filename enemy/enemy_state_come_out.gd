@@ -29,7 +29,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	_animation_finished=true
 	$"../../FOV/CollisionPolygon2D".set_deferred("disabled", false)
 	$"../../HitBox/hitcollision".set_deferred("disabled", false)
-	$"../../HurtBox".set_deferred("disabled", false)
+	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", false)
 	$"../../Detection/detection".set_deferred("disabled", true)
 	disable.emit()
 	

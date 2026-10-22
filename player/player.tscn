@@ -321,9 +321,31 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jd2rm")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"stun_down",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd2rm")
+}],
+"loop": 0,
+"name": &"stun_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd2rm")
+}],
+"loop": 0,
+"name": &"stun_up",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -393,7 +415,7 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"stun_down"
+animation = &"stun_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
@@ -437,10 +459,13 @@ script = ExtResource("7_1jxqw")
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
 script = ExtResource("17_tqiix")
 
-[node name="stun" type="Node" parent="PlayerStateMachine" unique_id=1845139879]
+[node name="stun" type="Node" parent="PlayerStateMachine" unique_id=1845139879 node_paths=PackedStringArray("next_state")]
 script = ExtResource("21_s7qer")
+next_state = NodePath("../idle")
 
+[connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]
 [connection signal="animation_finished" from="PlayerSprite" to="." method="_on_player_sprite_animation_finished"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/attack" method="EndAttack"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/stun" method="_on_player_sprite_animation_finished"]
+[connection signal="damaged" from="PlayerStateMachine/stun" to="PlayerStateMachine" method="_on_stun_damaged"]
