@@ -6,13 +6,23 @@ class_name Player
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var view
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+
+@export var hp: int = 6
+@export var max_hp: int = 6
+var invulnerable:bool=false
+@onready var hit_box: HitBox = $HitBox
+@onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 
 signal shoot
 var can_shoot:bool
+signal player_damaged()
+signal player_destroyed()
 
-@onready var state_machine : PlayerStateMachine = $StateMachine
 
 func _ready():
+	update_hp(99)
+	hit_box.Damaged.connect(_take_damage)
 	PlayerManager.player = self
 	state_machine.Initialize(self)
 	$PlayerSprite.animation = "idle_down"
@@ -20,7 +30,7 @@ func _ready():
 	can_shoot = true
 	
 func _process(_delta):
-	direction = Input.get_vector("left", "right", "up", "down")
+	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	if Input.is_action_just_pressed("attack") and can_shoot:
 		shoot.emit(position, cardinal_dir)
 		can_shoot = false
@@ -29,13 +39,14 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 func setDirection() -> bool:
-	var new_dir: Vector2 = cardinal_dir
 	if direction == Vector2.ZERO:
 		return false
-	if direction.y == 0:
-		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
-	elif direction.x == 0:
-		new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
+	
+	var direction_id:int=int(round(
+		(direction).angle()
+		/TAU*DIR_4.size()
+	))
+	var new_dir = DIR_4[direction_id]
 	
 	if new_dir == cardinal_dir:
 		return false
@@ -60,3 +71,27 @@ func updateAnim(state:String) -> void:
 func _on_player_sprite_animation_finished() -> void:
 	can_shoot = true
 	pass # Replace with function body.
+
+func _take_damage(damage:int) -> void:
+	if invulnerable == true:
+		return
+	update_hp(-damage)
+	if hp>0:
+		player_damaged.emit()
+	else:
+		player_destroyed.emit()
+		update_hp(99)
+		
+func update_hp(delta:int):
+	hp=clampi(hp+delta, 0, max_hp)
+	pass
+	
+func make_invulnerable( _duration) -> void:
+	invulnerable = true
+	$HitBox/CollisionShape2D.set_deferred("disabled", true)
+	
+	await get_tree().create_timer(_duration).timeout
+	
+	invulnerable = false
+	$HitBox/CollisionShape2D.set_deferred("disabled", false)
+	pass

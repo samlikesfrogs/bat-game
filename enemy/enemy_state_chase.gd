@@ -51,7 +51,10 @@ func _on_fov_player_entered() -> void:
 	state_machine.ChangeState(self)
 	pass
 
-
 func _on_fov_player_exited() -> void:
 	_player_visible = false
 	pass # Replace with function body.
+
+
+func _on_enemy_direction_changed(new_direction: Vector2) -> void:
+	enemy.updateAnim(anim_name)

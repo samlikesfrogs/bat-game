@@ -5,6 +5,7 @@ class_name EnemyStateStun extends EnemyState
 @export var next_state:EnemyState
 @export var decelerate_speed:float=10.0
 
+
 var _timer:float=0.0
 var _animation_finished:bool=false
 var _direction : Vector2

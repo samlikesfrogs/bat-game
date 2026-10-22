@@ -16,8 +16,11 @@
 [ext_resource type="Script" uid="uid://b8uoft4rd624e" path="res://player/state_walk.gd" id="7_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dcgvtmaibfn7c" path="res://aart/fox sprites/walk_up.png" id="7_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://0wqqjj6absrt" path="res://aart/fox sprites/shootwalk_up.png" id="7_tqiix"]
+[ext_resource type="Texture2D" uid="uid://4wy2v8gvxwb5" path="res://aart/fox sprites/hit.png" id="11_x7c3f"]
 [ext_resource type="Texture2D" uid="uid://dhwlyfc3abj40" path="res://aart/fox sprites/shadow.png" id="14_e7oew"]
+[ext_resource type="Script" uid="uid://bsdog43k2i4wp" path="res://player/player_hit_box.gd" id="16_bjvpn"]
 [ext_resource type="Script" uid="uid://ctv43d6618a8f" path="res://player/state_attack.gd" id="17_tqiix"]
+[ext_resource type="Script" uid="uid://c21wmm0cl0r1k" path="res://player/state_stun.gd" id="21_s7qer"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw77l"]
 atlas = ExtResource("2_32hag")
@@ -125,6 +128,14 @@ region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
 atlas = ExtResource("4_ebec5")
+region = Rect2(23, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
+atlas = ExtResource("11_x7c3f")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd2rm"]
+atlas = ExtResource("11_x7c3f")
 region = Rect2(23, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
@@ -305,6 +316,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd2rm")
+}],
+"loop": 1,
+"name": &"stun_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_s7qer")
 }, {
 "duration": 1.0,
@@ -359,6 +381,9 @@ animations = [{
 radius = 2.0
 height = 10.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jgn8"]
+radius = 5.3851647
+
 [node name="Player" type="CharacterBody2D" unique_id=1672910458 groups=["player"]]
 z_index = 2
 collision_layer = 2
@@ -368,7 +393,7 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attackwalk_up"
+animation = &"stun_down"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
@@ -384,23 +409,38 @@ position = Vector2(2, 7)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7jgn8")
 
+[node name="HitBox" type="Area2D" parent="." unique_id=93171895]
+position = Vector2(2, 7)
+rotation = 1.5707964
+collision_mask = 0
+script = ExtResource("16_bjvpn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=611628453]
+position = Vector2(-3, 0)
+shape = SubResource("CircleShape2D_7jgn8")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=288101188]
 limit_left = -1408
 limit_top = -640
 limit_right = 1664
 limit_bottom = 768
 
-[node name="StateMachine" type="Node" parent="." unique_id=2114198284]
+[node name="PlayerStateMachine" type="Node" parent="." unique_id=2114198284]
 script = ExtResource("5_sweqy")
 
-[node name="idle" type="Node" parent="StateMachine" unique_id=1988682350]
+[node name="idle" type="Node" parent="PlayerStateMachine" unique_id=1988682350]
 script = ExtResource("6_2hs0m")
 
-[node name="walk" type="Node" parent="StateMachine" unique_id=1587521595]
+[node name="walk" type="Node" parent="PlayerStateMachine" unique_id=1587521595]
 script = ExtResource("7_1jxqw")
 
-[node name="attack" type="Node" parent="StateMachine" unique_id=1018443526]
+[node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
 script = ExtResource("17_tqiix")
 
+[node name="stun" type="Node" parent="PlayerStateMachine" unique_id=1845139879]
+script = ExtResource("21_s7qer")
+
+[connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]
 [connection signal="animation_finished" from="PlayerSprite" to="." method="_on_player_sprite_animation_finished"]
-[connection signal="animation_finished" from="PlayerSprite" to="StateMachine/attack" method="EndAttack"]
+[connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/attack" method="EndAttack"]
+[connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/stun" method="_on_player_sprite_animation_finished"]

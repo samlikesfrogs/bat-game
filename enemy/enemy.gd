@@ -5,8 +5,6 @@ signal direction_changed(new_direction:Vector2)
 signal enemy_damaged()
 signal enemy_entered()
 signal enemy_destroyed()
-signal go_get_him()
-
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 @export var hp: int = 3
@@ -36,7 +34,7 @@ func setDirection(_new_direction: Vector2) -> bool:
 		return false
 		
 	var direction_id:int=int(round(
-		(direction*cardinal_dir*0.1).angle()
+		(direction).angle()
 		/TAU*DIR_4.size()
 	))
 	var new_dir = DIR_4[direction_id]
@@ -46,11 +44,12 @@ func setDirection(_new_direction: Vector2) -> bool:
 	
 	cardinal_dir = new_dir
 	direction_changed.emit(new_dir)
-	sprite.scale.x=-1 if cardinal_dir==Vector2.LEFT else 1
+	%EnemySprite.flip_h = true if cardinal_dir == Vector2.LEFT else false
 	return true
+	
 		
 func updateAnim(state:String) -> void:
-	$EnemySprite.play (state + "_" + AnimDirection())
+	%EnemySprite.play (state + "_" + AnimDirection())
 
 func AnimDirection() -> String:
 	if cardinal_dir == Vector2.DOWN:

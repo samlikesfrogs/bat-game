@@ -11,8 +11,7 @@ func init() -> void:
 	pass
 
 func enter()-> void:
-	$"../../FOV/CollisionPolygon2D".set_deferred("disabled", false)
-	$"../../HitBox/hitcollision".set_deferred("disabled", false)
+	_animation_finished = false
 	enemy.velocity=Vector2.ZERO
 	enemy.updateAnim(anim_name)
 	pass
@@ -28,8 +27,11 @@ func _on_enemy_enemy_entered() -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	_animation_finished=true
+	$"../../FOV/CollisionPolygon2D".set_deferred("disabled", false)
+	$"../../HitBox/hitcollision".set_deferred("disabled", false)
+	$"../../HurtBox".set_deferred("disabled", false)
+	$"../../Detection/detection".set_deferred("disabled", true)
 	disable.emit()
-	print("has been emitted")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
