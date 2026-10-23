@@ -3,7 +3,7 @@ class_name StateStun extends State
 @export var knockback_speed:float = 500.0
 @export var decelerate_speed:float=10.0
 @export var move_speed : float = 250.0
-@export var invulnerable_duration:float=1.0
+@export var invulnerable_duration:float=0.5
 
 signal damaged
 

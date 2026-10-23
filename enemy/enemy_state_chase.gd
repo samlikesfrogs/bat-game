@@ -46,7 +46,8 @@ func _process(_delta: float) -> void:
 	
 func _on_fov_player_entered() -> void:
 	_player_visible = true
-	if state_machine.current_state is EnemyStateStun:
+	if (state_machine.current_state is EnemyStateStun or 
+	state_machine.current_state is EnemyStateDestroy):
 		return
 	state_machine.ChangeState(self)
 	pass

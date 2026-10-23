@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c3hxsrvwjy7wi"]
 
 [ext_resource type="Script" uid="uid://dkan3x8t3vhwk" path="res://enemy/enemy.gd" id="1_pmsee"]
-[ext_resource type="Texture2D" uid="uid://cmjnju2yqfh5e" path="res://aart/fox sprites/bulb - Copy.png" id="2_xoplw"]
+[ext_resource type="Texture2D" uid="uid://cmjnju2yqfh5e" path="res://aart/enemies/bulb - Copy (2).png" id="2_xoplw"]
 [ext_resource type="Texture2D" uid="uid://2di6bbdshoa5" path="res://aart/enemies/bulb_shadow.png" id="4_6yflr"]
 [ext_resource type="Texture2D" uid="uid://dh1ki3pdhmecp" path="res://aart/enemies/bulb - Copy.png" id="4_pmsee"]
 [ext_resource type="Script" uid="uid://8k801tmvs5oc" path="res://enemy/enemy_state_machine.gd" id="5_e355f"]
@@ -661,7 +661,7 @@ script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-16, 0, 15, 0, 200, 130, -200, 130)
+polygon = PackedVector2Array(-15, -8, 15, -8, 200, 130, -200, 130)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]

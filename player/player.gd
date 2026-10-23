@@ -67,7 +67,6 @@ func AnimDirection() -> String:
 func updateAnim(state:String) -> void:
 	$PlayerSprite.play (state + "_" + AnimDirection())
 	
-	#add health
 func _on_player_sprite_animation_finished() -> void:
 	can_shoot = true
 	pass # Replace with function body.

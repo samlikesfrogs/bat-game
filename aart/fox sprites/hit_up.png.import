@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmjnju2yqfh5e"
-path="res://.godot/imported/bulb - Copy.png-a1bc1e74bae82aa42867a04cce594bd1.ctex"
+uid="uid://brcmy5ic6qk5b"
+path="res://.godot/imported/hit_up.png-75d25451b65dd74c13720b4e108e99d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aart/fox sprites/bulb - Copy.png"
-dest_files=["res://.godot/imported/bulb - Copy.png-a1bc1e74bae82aa42867a04cce594bd1.ctex"]
+source_file="res://aart/fox sprites/hit_up.png"
+dest_files=["res://.godot/imported/hit_up.png-75d25451b65dd74c13720b4e108e99d3.ctex"]
 
 [params]
 
