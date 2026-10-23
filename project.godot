@@ -84,6 +84,7 @@ attack={
 2d_physics/layer_2="player"
 2d_physics/layer_4="bullet"
 2d_physics/layer_5="walls"
+2d_physics/layer_6="wallsforenemyonly"
 2d_physics/layer_9="enemy"
 
 [physics]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://6aky6lpdac6e"]
+
+[ext_resource type="Script" uid="uid://bgeopjt7j13m3" path="res://pathfinding.gd" id="1_13jh8"]
+
+[node name="pathfinding" type="Node2D" unique_id=2026159867]
+script = ExtResource("1_13jh8")
+
+[node name="down" type="RayCast2D" parent="." unique_id=1666170299]
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="downleft" type="RayCast2D" parent="." unique_id=765073587]
+rotation = 0.7853982
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="left" type="RayCast2D" parent="." unique_id=1299253972]
+rotation = 1.5707964
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="upleft" type="RayCast2D" parent="." unique_id=645519960]
+rotation = 2.3561945
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="up" type="RayCast2D" parent="." unique_id=1459943141]
+rotation = 3.1415927
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="upright" type="RayCast2D" parent="." unique_id=634890337]
+rotation = 3.9269907
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="right" type="RayCast2D" parent="." unique_id=1646442390]
+rotation = 4.712389
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="downright" type="RayCast2D" parent="." unique_id=845440298]
+rotation = 5.497787
+target_position = Vector2(0, 32)
+collision_mask = 304
+
+[node name="timer" type="Timer" parent="." unique_id=229927398]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

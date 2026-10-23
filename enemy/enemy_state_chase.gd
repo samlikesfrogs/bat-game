@@ -9,23 +9,26 @@ var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 
+const PATHFINDING:PackedScene=preload("res://pathfinding.tscn")
+var pathfinding:PathFinding
 
 func init() -> void:
 	pass
 
 func enter()-> void:
-	
+	pathfinding = PATHFINDING.instantiate() as PathFinding
+	enemy.add_child(pathfinding)
 	_timer = aggroed
 	enemy.updateAnim(anim_name)
 	pass
 	
 func exit()->void:
+	pathfinding.queue_free()
 	_player_visible = false
 	pass
 	
 func process(_delta:float)->EnemyState:
-	var player_dir = enemy.global_position.direction_to(PlayerManager.player.global_position)
-	_direction = lerp(_direction, player_dir, 0.5)
+	_direction =pathfinding.movement_dir
 	enemy.velocity = _direction * speed
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
