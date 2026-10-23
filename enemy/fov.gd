@@ -1,5 +1,4 @@
-extends Area2D
-class_name FieldOfVision
+class_name FieldOfVision extends Area2D
 
 signal player_entered
 signal player_exited
