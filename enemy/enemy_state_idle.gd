@@ -25,6 +25,5 @@ func process(_delta:float)->EnemyState:
 func physics(_delta:float)->EnemyState:
 	return null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

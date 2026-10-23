@@ -1,26 +1,12 @@
 class_name PlayerHitBox extends HitBox
 
-signal player_damaged(hurt_box:HurtBox)
-# Called when the node enters the scene tree for the first time.
+#signal player_damaged(hurt_box:HurtBox)
+
 func _ready() -> void:
-	#$hitcollision.set_deferred("disabled", true)
-	pass # Replace with function body.
+	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 func TakeDamage(hurt_box:HurtBox)-> void:
-	print("TakeDamage: ", hurt_box.damage)
 	Damaged.emit(hurt_box)
-
-
-func _on_comeout_disable() -> void:
-	#$hitcollision.set_deferred("disabled", false)
-	pass # Replace with function body.
-
-
-func _on_goin_disable_2() -> void:
-	#$hitcollision.set_deferred("disabled", true)
-	pass # Replace with function body.

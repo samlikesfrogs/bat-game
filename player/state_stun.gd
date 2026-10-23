@@ -5,8 +5,6 @@ class_name StateStun extends State
 @export var move_speed : float = 250.0
 @export var invulnerable_duration:float=0.7
 
-signal damaged
-
 var _animation_finished:bool=false
 var hurt_box:HurtBox
 var direction: Vector2
@@ -24,10 +22,8 @@ func Enter() -> void:
 	player.setDirection()
 	player.make_invulnerable(invulnerable_duration)
 	player.updateAnim("stun")
-	pass
 	
 func Exit() -> void:
-	
 	pass
 	
 func Process(_delta:float)  -> State:
@@ -46,12 +42,10 @@ func _on_player_player_damaged(_hurt_box:HurtBox) -> void:
 	hurt_box = _hurt_box
 	_damage_position = hurt_box.global_position
 	state_machine.ChangeState(self)
-#	pass # Replace with function body.
 
 
 func _on_player_sprite_animation_finished() -> void:
 	_animation_finished=true
-	pass # Replace with function body.
 	
 	
 

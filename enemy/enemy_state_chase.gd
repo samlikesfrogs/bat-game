@@ -4,7 +4,7 @@ class_name EnemyStateChase extends EnemyState
 @export var speed = 60
 @export var aggroed: float = 3.0
 @export var next_state:EnemyState
-#make go back into ground state
+
 var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
@@ -43,7 +43,6 @@ func process(_delta:float)->EnemyState:
 func physics(_delta:float)->EnemyState:
 	return null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 	
@@ -53,12 +52,9 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateDestroy):
 		return
 	state_machine.ChangeState(self)
-	pass
 
 func _on_fov_player_exited() -> void:
 	_player_visible = false
-	pass # Replace with function body.
 
-
-func _on_enemy_direction_changed(new_direction: Vector2) -> void:
+func _on_enemy_direction_changed(_new_direction: Vector2) -> void:
 	enemy.updateAnim(anim_name)

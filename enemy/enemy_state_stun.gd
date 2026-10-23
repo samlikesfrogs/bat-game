@@ -6,12 +6,10 @@ class_name EnemyStateStun extends EnemyState
 @export var decelerate_speed:float=10.0
 
 var _damage_position:Vector2
-var _timer:float=0.0
 var _animation_finished:bool=false
 var _direction : Vector2
 
 func init() -> void:
-	enemy.enemy_damaged.connect(_on_enemy_damaged)
 	pass
 
 func enter()-> void:
@@ -36,7 +34,6 @@ func process(_delta:float)->EnemyState:
 func physics(_delta:float)->EnemyState:
 	return null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 	

@@ -3,8 +3,6 @@ class_name EnemyStateComeOut extends EnemyState
 @export var anim_name:String="comeout"
 @export var next_state:EnemyState
 
-signal disable
-
 var _animation_finished: bool = false
 
 func init() -> void:
@@ -31,10 +29,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	$"../../HitBox/hitcollision".set_deferred("disabled", false)
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", false)
 	$"../../Detection/detection".set_deferred("disabled", true)
-	disable.emit()
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(_delta:float)->EnemyState:
 	if _animation_finished==true:
 		return next_state

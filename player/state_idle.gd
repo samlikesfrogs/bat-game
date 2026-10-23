@@ -25,7 +25,5 @@ func HandleInput(_event:InputEvent)  -> State:
 		return attack
 	return null
 
-
-func _on_player_player_damaged(hurt_box:HurtBox) -> void:
+func _on_player_player_damaged(_hurt_box:HurtBox) -> void:
 	state_machine.ChangeState(stun)
-	pass # Replace with function body.

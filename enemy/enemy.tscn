@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cvotx7kijmv1j" path="res://enemy/enemy_state_come_out.gd" id="5_pmsee"]
 [ext_resource type="Script" uid="uid://ejxr0s08f4wc" path="res://enemy/enemy_state_idle.gd" id="6_1wwld"]
 [ext_resource type="Script" uid="uid://btr673xfm7itb" path="res://enemy/enemy_state_idle2.gd" id="6_5ffra"]
-[ext_resource type="Script" uid="uid://bwn8hnchb07nt" path="res://enemy/detection.gd" id="6_y5vj3"]
 [ext_resource type="Script" uid="uid://b31cbaci0mcyl" path="res://enemy/enemy_state_chase.gd" id="7_5ffra"]
 [ext_resource type="Script" uid="uid://c1va6rsqcvo22" path="res://enemy/enemy_state_stun.gd" id="8_o3pv7"]
 [ext_resource type="Script" uid="uid://cx6tkun2nv6wi" path="res://enemy/enemy_hurt_box.gd" id="8_wjonb"]
@@ -747,7 +746,6 @@ disabled = true
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("6_y5vj3")
 
 [node name="detection" type="CollisionShape2D" parent="Detection" unique_id=1151591777]
 position = Vector2(0, 10)
@@ -807,6 +805,7 @@ next_state = NodePath("../idle")
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
+[connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
@@ -817,7 +816,3 @@ next_state = NodePath("../idle")
 [connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]
 [connection signal="player_entered" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_entered"]
 [connection signal="player_exited" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_exited"]
-[connection signal="disable" from="EnemyStateMachine/comeout" to="HitBox" method="_on_comeout_disable"]
-[connection signal="disable" from="EnemyStateMachine/comeout" to="Detection" method="_on_comeout_disable"]
-[connection signal="disable2" from="EnemyStateMachine/goin" to="HitBox" method="_on_goin_disable_2"]
-[connection signal="disable2" from="EnemyStateMachine/goin" to="Detection" method="_on_goin_disable_2"]

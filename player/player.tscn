@@ -480,4 +480,4 @@ next_state = NodePath("../idle")
 [connection signal="animation_finished" from="PlayerSprite" to="." method="_on_player_sprite_animation_finished"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/attack" method="EndAttack"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/stun" method="_on_player_sprite_animation_finished"]
-[connection signal="damaged" from="PlayerStateMachine/stun" to="PlayerStateMachine" method="_on_stun_damaged"]
+

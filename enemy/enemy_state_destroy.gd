@@ -1,10 +1,9 @@
 class_name EnemyStateDestroy extends EnemyState
-#turn off hurt box
+
 @export var anim_name:String="die"
 @export var knockback_speed:float = 100.0
 @export var decelerate_speed:float=10.0
 
-var _timer:float=0.0
 var _animation_finished:bool=false
 var _direction : Vector2
 var _damage_position
@@ -32,7 +31,6 @@ func process(_delta:float)->EnemyState:
 func physics(_delta:float)->EnemyState:
 	return null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 	

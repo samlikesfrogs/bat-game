@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-#cut legs off shootwalk animations
-
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var view
@@ -18,7 +16,6 @@ signal shoot
 var can_shoot:bool
 signal player_damaged(hurt_box:HurtBox)
 signal player_destroyed(hurt_box:HurtBox)
-
 
 func _ready():
 	update_hp(99)
@@ -69,7 +66,7 @@ func updateAnim(state:String) -> void:
 	
 func _on_player_sprite_animation_finished() -> void:
 	can_shoot = true
-	pass # Replace with function body.
+	pass 
 
 func _take_damage(hurt_box:HurtBox) -> void:
 	if invulnerable == true:
