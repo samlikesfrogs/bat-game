@@ -1,5 +1,5 @@
 class_name EnemyStateDestroy extends EnemyState
-
+#turn off hurt box
 @export var anim_name:String="die"
 @export var knockback_speed:float = 100.0
 @export var decelerate_speed:float=10.0
@@ -14,6 +14,7 @@ func init() -> void:
 	pass
 
 func enter()-> void:
+	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	enemy.invulnerable = true
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.setDirection(_direction)

@@ -460,9 +460,9 @@ position = Vector2(-3, 0)
 shape = SubResource("CircleShape2D_7jgn8")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=288101188]
-limit_left = 0
-limit_top = 250
-limit_right = 600
+limit_left = -25
+limit_top = 240
+limit_right = 625
 limit_bottom = 790
 
 [node name="PlayerStateMachine" type="Node" parent="." unique_id=2114198284]
