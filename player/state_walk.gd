@@ -10,7 +10,7 @@ var anim_name = "walk"
 var i:int
 
 func Enter() -> void:
-	var i = 0
+	i = 0
 	player.updateAnim("walk")
 	pass
 	

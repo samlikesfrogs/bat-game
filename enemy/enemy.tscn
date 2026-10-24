@@ -810,7 +810,7 @@ next_state = NodePath("../goin")
 
 [node name="sfx_enemy_walk" type="AudioStreamPlayer2D" parent="EnemyStateMachine/chase" unique_id=1908937263]
 stream = ExtResource("19_pg32h")
-volume_db = -3.0
+volume_db = -2.0
 pitch_scale = 1.8
 
 [node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]

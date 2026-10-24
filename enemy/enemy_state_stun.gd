@@ -21,6 +21,9 @@ func enter()-> void:
 	enemy.setDirection(_direction)
 	enemy.velocity=_direction * -knockback_speed
 	enemy.updateAnim(anim_name)
+	Engine.time_scale=0
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	Engine.time_scale=1
 	pass
 	
 func exit()->void:

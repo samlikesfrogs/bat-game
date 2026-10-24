@@ -436,7 +436,7 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"walk_down"
+animation = &"attackwalk_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
@@ -472,7 +472,7 @@ script = ExtResource("7_1jxqw")
 
 [node name="sfx_walk" type="AudioStreamPlayer2D" parent="PlayerStateMachine/walk" unique_id=1607859195]
 stream = ExtResource("22_7pqkx")
-volume_db = -3.888
+volume_db = -2.5
 pitch_scale = 0.75
 
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
@@ -491,7 +491,7 @@ next_state = NodePath("../idle")
 
 [node name="sfx_hurt" type="AudioStreamPlayer2D" parent="PlayerStateMachine/stun" unique_id=1984127702]
 stream = ExtResource("25_knn7v")
-volume_db = -6.825
+volume_db = -7.0
 pitch_scale = 2.0
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
