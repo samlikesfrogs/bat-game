@@ -1,11 +1,17 @@
 class_name EnemyStateChase extends EnemyState
 
+#separate wall and plant collision so bro stops tweaking whenever he's next to a wall
+#also if the player is in an object that this mf has collision with he tweaks obviously but the 
+#walking through grass feature should fix this (let enemy do it also)
+
 @export var anim_name:String="walk"
 @export var speed = 60
-@export var aggroed: float = 3.0
+@export var aggroed: float = 6.0
 @export var next_state:EnemyState
+@onready var sfx_enemy_walk: AudioStreamPlayer2D = $sfx_enemy_walk
 
 var _timer: float = 0
+var i:int
 var _direction : Vector2
 var _player_visible: bool = false
 
@@ -20,12 +26,11 @@ func enter()-> void:
 	enemy.add_child(pathfinding)
 	_timer = aggroed
 	enemy.updateAnim(anim_name)
-	pass
 	
 func exit()->void:
+	i=0
 	pathfinding.queue_free()
 	_player_visible = false
-	pass
 	
 func process(_delta:float)->EnemyState:
 	_direction =pathfinding.movement_dir
@@ -58,3 +63,15 @@ func _on_fov_player_exited() -> void:
 
 func _on_enemy_direction_changed(_new_direction: Vector2) -> void:
 	enemy.updateAnim(anim_name)
+
+func _on_enemy_sprite_frame_changed() -> void:
+	if %EnemySprite.animation == anim_name + "_" + enemy.AnimDirection():
+		if i%3==0 or i ==0:
+			sfx_enemy_walk.play()
+		i +=1
+
+func _on_enemy_sprite_animation_changed() -> void:
+	if %EnemySprite.animation == anim_name + "_" + enemy.AnimDirection():
+		if i%3==0 or i ==0:
+			sfx_enemy_walk.play()
+		i +=1

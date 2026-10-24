@@ -1,12 +1,16 @@
 class_name State_Walk extends State
 
-@export var move_speed : float = 250.0
+@export var move_speed : float = 200.0
 @onready var idle : State_Idle = $"../idle"
 @onready var attack:State = $"../attack"
+@onready var sfx_walk: AudioStreamPlayer2D = $sfx_walk
+var anim_name = "walk"
+#var this_anim = ()
 
-#add aniamtion finished to play sound 
+var i:int
 
 func Enter() -> void:
+	var i = 0
 	player.updateAnim("walk")
 	pass
 	
@@ -29,3 +33,17 @@ func HandleInput(_event:InputEvent)  -> State:
 	if _event.is_action_pressed("attack"):
 		return attack
 	return null
+
+#this right here is absolute bullshit
+
+func _on_player_sprite_frame_changed() -> void:
+	if $"../../PlayerSprite".animation == anim_name + "_" + player.AnimDirection():
+		if i%3==0 or i == 0:
+			sfx_walk.play()
+		i+=1
+
+func _on_player_sprite_animation_changed() -> void:
+	if $"../../PlayerSprite".animation == anim_name + "_" + get_tree().get_first_node_in_group("player").AnimDirection():
+		if i%3==0 or i == 0:
+			sfx_walk.play()
+		i+=1

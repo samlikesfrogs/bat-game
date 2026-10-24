@@ -10,6 +10,8 @@ var _damage_position
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 
+#this doesn't flip
+
 func init() -> void:
 	enemy.enemy_destroyed.connect(_on_enemy_destroyed)
 	pass

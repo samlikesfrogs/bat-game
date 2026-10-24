@@ -1,7 +1,7 @@
 class_name EnemyStateMachine extends Node
 var states:Array[EnemyState]
 var prev_state: EnemyState
-var current_state: EnemyState
+@export var current_state: EnemyState
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED

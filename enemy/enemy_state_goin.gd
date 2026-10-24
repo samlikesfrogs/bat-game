@@ -2,7 +2,7 @@ class_name EnemyStateGoIn extends EnemyState
 
 @export var anim_name:String="goin"
 @export var next_state:EnemyState
-
+@onready var sfx_goin: AudioStreamPlayer2D = $sfx_goin
 var _animation_finished: bool = false
 
 func init() -> void:
@@ -21,6 +21,7 @@ func physics(_delta:float)->EnemyState:
 	
 func process(_delta:float)->EnemyState:
 	if _animation_finished==true:
+		sfx_goin.play()
 		return next_state
 	else:
 		return null

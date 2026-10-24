@@ -2,6 +2,7 @@ class_name EnemyStateComeOut extends EnemyState
 
 @export var anim_name:String="comeout"
 @export var next_state:EnemyState
+@onready var sfx_comeout_land: AudioStreamPlayer2D = $sfx_comeout_land
 
 var _animation_finished: bool = false
 
@@ -32,6 +33,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func process(_delta:float)->EnemyState:
 	if _animation_finished==true:
+		sfx_comeout_land.play()
 		return next_state
 	else:
 		return null

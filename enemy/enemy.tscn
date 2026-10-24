@@ -14,10 +14,13 @@
 [ext_resource type="Script" uid="uid://cx6tkun2nv6wi" path="res://enemy/enemy_hurt_box.gd" id="8_wjonb"]
 [ext_resource type="Script" uid="uid://dyfg88dp8ytmg" path="res://enemy/enemy_state_destroy.gd" id="11_6yflr"]
 [ext_resource type="Script" uid="uid://bgf3034ct0xrg" path="res://enemy/enemy_hit_box.gd" id="11_xoplw"]
+[ext_resource type="AudioStream" uid="uid://bx0ko3dqtd055" path="res://sound/13_human_jump_land_1.wav" id="13_34gv7"]
 [ext_resource type="Script" uid="uid://cby6rsqtssddr" path="res://enemy/enemy_state_goin.gd" id="13_tbw0t"]
 [ext_resource type="Script" uid="uid://bue8wlgec11vj" path="res://enemy/fov.gd" id="14_gf88j"]
 [ext_resource type="AudioStream" uid="uid://cr6ise6m0k0x" path="res://sound/21_orc_damage_2.wav" id="14_rovcg"]
 [ext_resource type="AudioStream" uid="uid://tl6kfyqcf2ko" path="res://sound/14_human_death_spin.wav" id="16_n2hyd"]
+[ext_resource type="AudioStream" uid="uid://b4fq07l0dcdg1" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_2.wav" id="19_pg32h"]
+[ext_resource type="AudioStream" uid="uid://dltcdc8dgmvtg" path="res://sound/05_step_dirt_3.wav" id="20_34gv7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
 atlas = ExtResource("4_pmsee")
@@ -526,7 +529,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_down",
-"speed": 3.5
+"speed": 1.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -537,7 +540,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_side",
-"speed": 3.5
+"speed": 1.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -548,7 +551,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_up",
-"speed": 3.5
+"speed": 1.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -718,10 +721,8 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attack_down"
+animation = &"idle_down"
 autoplay = "idle_down"
-frame = 5
-frame_progress = 1.0
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
 show_behind_parent = true
@@ -773,11 +774,14 @@ script = ExtResource("5_e355f")
 [node name="idle" type="Node" parent="EnemyStateMachine" unique_id=697267857]
 script = ExtResource("6_1wwld")
 
-[node name="sfx_idle_leaves" type="AudioStreamPlayer2D" parent="EnemyStateMachine/idle" unique_id=11493132]
-
 [node name="comeout" type="Node" parent="EnemyStateMachine" unique_id=922985731 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_pmsee")
 next_state = NodePath("../idle2")
+
+[node name="sfx_comeout_land" type="AudioStreamPlayer2D" parent="EnemyStateMachine/comeout" unique_id=262331936]
+stream = ExtResource("13_34gv7")
+volume_db = -11.86
+pitch_scale = 0.79
 
 [node name="idle2" type="Node" parent="EnemyStateMachine" unique_id=1690054435 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_5ffra")
@@ -804,19 +808,33 @@ pitch_scale = 2.0
 script = ExtResource("7_5ffra")
 next_state = NodePath("../goin")
 
+[node name="sfx_enemy_walk" type="AudioStreamPlayer2D" parent="EnemyStateMachine/chase" unique_id=1908937263]
+stream = ExtResource("19_pg32h")
+volume_db = -3.0
+pitch_scale = 1.8
+
 [node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]
 script = ExtResource("13_tbw0t")
 next_state = NodePath("../idle")
+
+[node name="sfx_goin" type="AudioStreamPlayer2D" parent="EnemyStateMachine/goin" unique_id=36104920]
+stream = ExtResource("20_34gv7")
+volume_db = -2.737
+pitch_scale = 0.65
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
+[connection signal="animation_changed" from="EnemySprite" to="EnemyStateMachine/chase" method="_on_enemy_sprite_animation_changed"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/destroy" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/goin" method="_on_enemy_sprite_animation_finished"]
+[connection signal="animation_looped" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_animation_looped"]
+[connection signal="frame_changed" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_frame_changed"]
+[connection signal="frame_changed" from="EnemySprite" to="EnemyStateMachine/chase" method="_on_enemy_sprite_frame_changed"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_entered" from="FOV" to="FOV" method="_on_body_entered"]
 [connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]

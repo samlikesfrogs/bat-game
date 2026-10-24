@@ -1,9 +1,6 @@
 class_name EnemyStateIdle extends EnemyState
 
 @export var anim_name:String="idle"
-@onready var sfx_idle_leaves: AudioStreamPlayer2D = $sfx_idle_leaves
-
-#add aniamtion finished to play sound 
 
 func init() -> void:
 	pass
@@ -28,7 +25,4 @@ func physics(_delta:float)->EnemyState:
 	return null
 
 func _process(_delta: float) -> void:
-	pass
-
-func _on_enemy_sprite_animation_finished() -> void:
 	pass

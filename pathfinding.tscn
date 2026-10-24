@@ -7,41 +7,41 @@ script = ExtResource("1_13jh8")
 
 [node name="up" type="RayCast2D" parent="." unique_id=1459943141]
 rotation = -3.1415925
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="upright" type="RayCast2D" parent="." unique_id=634890337]
 rotation = -2.3561945
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="right" type="RayCast2D" parent="." unique_id=1646442390]
 rotation = -1.5707964
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="downright" type="RayCast2D" parent="." unique_id=845440298]
 rotation = -0.7853983
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="down" type="RayCast2D" parent="." unique_id=1666170299]
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="downleft" type="RayCast2D" parent="." unique_id=765073587]
 rotation = 0.7853982
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="left" type="RayCast2D" parent="." unique_id=1299253972]
 rotation = 1.5707964
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="upleft" type="RayCast2D" parent="." unique_id=645519960]
 rotation = 2.3561945
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 29)
 collision_mask = 304
 
 [node name="timer" type="Timer" parent="." unique_id=229927398]

@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://ctv43d6618a8f" path="res://player/state_attack.gd" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://hd87hs5p4w1s" path="res://sound/10_human_special_atk_2.wav" id="18_g4c7l"]
 [ext_resource type="Script" uid="uid://c21wmm0cl0r1k" path="res://player/state_stun.gd" id="21_s7qer"]
+[ext_resource type="AudioStream" uid="uid://cbxo7tcxlo6xs" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_1.wav" id="22_7pqkx"]
 [ext_resource type="AudioStream" uid="uid://cynjbdas47ruv" path="res://sound/11_human_damage_3.wav" id="25_knn7v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw77l"]
@@ -158,53 +159,53 @@ region = Rect2(0, 0, 22, 24)
 atlas = ExtResource("13_g4c7l")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
-atlas = ExtResource("4_boad6")
-region = Rect2(0, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
 atlas = ExtResource("4_boad6")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
 atlas = ExtResource("4_boad6")
-region = Rect2(46, 0, 22, 24)
+region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pxes"]
 atlas = ExtResource("4_boad6")
 region = Rect2(69, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fmu53"]
-atlas = ExtResource("6_8t03j")
-region = Rect2(0, 0, 22, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
+atlas = ExtResource("4_boad6")
+region = Rect2(46, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7j2h"]
 atlas = ExtResource("6_8t03j")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n0b8q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmu53"]
 atlas = ExtResource("6_8t03j")
-region = Rect2(46, 0, 22, 24)
+region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfgyi"]
 atlas = ExtResource("6_8t03j")
 region = Rect2(69, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_237xx"]
-atlas = ExtResource("7_2ieo8")
-region = Rect2(0, 0, 22, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0b8q"]
+atlas = ExtResource("6_8t03j")
+region = Rect2(46, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpyo2"]
 atlas = ExtResource("7_2ieo8")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7crtr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_237xx"]
 atlas = ExtResource("7_2ieo8")
-region = Rect2(46, 0, 22, 24)
+region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgvch"]
 atlas = ExtResource("7_2ieo8")
 region = Rect2(69, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7crtr"]
+atlas = ExtResource("7_2ieo8")
+region = Rect2(46, 0, 22, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jgn8"]
 animations = [{
@@ -369,16 +370,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7qer")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_g4c7l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_knn7v")
+"texture": SubResource("AtlasTexture_s7qer")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8pxes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knn7v")
 }],
 "loop": 1,
 "name": &"walk_down",
@@ -386,16 +387,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fmu53")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_w7j2h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n0b8q")
+"texture": SubResource("AtlasTexture_fmu53")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jfgyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0b8q")
 }],
 "loop": 1,
 "name": &"walk_side",
@@ -403,16 +404,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_237xx")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_wpyo2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7crtr")
+"texture": SubResource("AtlasTexture_237xx")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vgvch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7crtr")
 }],
 "loop": 1,
 "name": &"walk_up",
@@ -435,7 +436,7 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"idle_up"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
@@ -469,6 +470,11 @@ script = ExtResource("6_2hs0m")
 [node name="walk" type="Node" parent="PlayerStateMachine" unique_id=1587521595]
 script = ExtResource("7_1jxqw")
 
+[node name="sfx_walk" type="AudioStreamPlayer2D" parent="PlayerStateMachine/walk" unique_id=1607859195]
+stream = ExtResource("22_7pqkx")
+volume_db = -3.888
+pitch_scale = 0.75
+
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
 script = ExtResource("17_tqiix")
 
@@ -485,11 +491,14 @@ next_state = NodePath("../idle")
 
 [node name="sfx_hurt" type="AudioStreamPlayer2D" parent="PlayerStateMachine/stun" unique_id=1984127702]
 stream = ExtResource("25_knn7v")
-volume_db = -5.0
+volume_db = -6.825
 pitch_scale = 2.0
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]
+[connection signal="animation_changed" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_animation_changed"]
 [connection signal="animation_finished" from="PlayerSprite" to="." method="_on_player_sprite_animation_finished"]
+[connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_animation_finished"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/attack" method="EndAttack"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/stun" method="_on_player_sprite_animation_finished"]
+[connection signal="frame_changed" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_frame_changed"]
