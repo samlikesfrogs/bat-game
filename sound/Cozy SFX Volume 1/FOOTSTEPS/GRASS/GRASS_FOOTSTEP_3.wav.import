@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://db1bkxch7hcpn"
+path="res://.godot/imported/GRASS_FOOTSTEP_3.wav-c5ea365d6589b56920c94b17d4e9bd65.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRASS/GRASS_FOOTSTEP_3.wav"
+dest_files=["res://.godot/imported/GRASS_FOOTSTEP_3.wav-c5ea365d6589b56920c94b17d4e9bd65.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

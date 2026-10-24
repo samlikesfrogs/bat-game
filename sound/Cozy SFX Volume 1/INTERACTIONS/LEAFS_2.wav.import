@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3rhseiykwov1"
+path="res://.godot/imported/LEAFS_2.wav-898bd3d600583dcda755fd54dc411ff1.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/INTERACTIONS/LEAFS_2.wav"
+dest_files=["res://.godot/imported/LEAFS_2.wav-898bd3d600583dcda755fd54dc411ff1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

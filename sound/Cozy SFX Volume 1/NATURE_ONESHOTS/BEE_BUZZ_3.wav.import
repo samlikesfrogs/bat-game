@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cre1wo0tra2qe"
+path="res://.godot/imported/BEE_BUZZ_3.wav-f36e622f7c31a87bf5c1e80f55dcde52.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/NATURE_ONESHOTS/BEE_BUZZ_3.wav"
+dest_files=["res://.godot/imported/BEE_BUZZ_3.wav-f36e622f7c31a87bf5c1e80f55dcde52.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6mrc5e6bcmh7"
+path="res://.godot/imported/ROOM_TONE.wav-a4409a8793bb7d7394b4b0c8048b3f42.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/BACKGROUND_AMBIENCE/ROOM_TONE.wav"
+dest_files=["res://.godot/imported/ROOM_TONE.wav-a4409a8793bb7d7394b4b0c8048b3f42.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

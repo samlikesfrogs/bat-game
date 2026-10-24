@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1o87lkvldjlf"
+path="res://.godot/imported/MENU_HOVER_1.wav-a7a64977666188a788b2ddd260344100.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/UI/MENU_HOVER_1.wav"
+dest_files=["res://.godot/imported/MENU_HOVER_1.wav-a7a64977666188a788b2ddd260344100.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

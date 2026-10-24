@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ciuuwu8vmuis1"
+path="res://.godot/imported/BIRD_CHIRP_1.wav-7295f8c8b1f22d8b6acec7186b69a8ef.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/NATURE_ONESHOTS/BIRD_CHIRP_1.wav"
+dest_files=["res://.godot/imported/BIRD_CHIRP_1.wav-7295f8c8b1f22d8b6acec7186b69a8ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

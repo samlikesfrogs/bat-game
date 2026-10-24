@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://2t6b5f7tisim"
+path="res://.godot/imported/WOOD_FOOTSTEP_5.wav-751a1a92d22c92f04d611bde8d1d723f.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/FOOTSTEPS/WOOD/WOOD_FOOTSTEP_5.wav"
+dest_files=["res://.godot/imported/WOOD_FOOTSTEP_5.wav-751a1a92d22c92f04d611bde8d1d723f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

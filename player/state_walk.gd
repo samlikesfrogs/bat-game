@@ -4,6 +4,8 @@ class_name State_Walk extends State
 @onready var idle : State_Idle = $"../idle"
 @onready var attack:State = $"../attack"
 
+#add aniamtion finished to play sound 
+
 func Enter() -> void:
 	player.updateAnim("walk")
 	pass

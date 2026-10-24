@@ -8,11 +8,13 @@ class_name EnemyStateStun extends EnemyState
 var _damage_position:Vector2
 var _animation_finished:bool=false
 var _direction : Vector2
+@onready var sfx_enemy_hurt: AudioStreamPlayer2D = $sfx_enemy_hurt
 
 func init() -> void:
 	pass
 
 func enter()-> void:
+	sfx_enemy_hurt.play()
 	enemy.invulnerable = true
 	_animation_finished = false
 	_direction = enemy.global_position.direction_to(_damage_position)

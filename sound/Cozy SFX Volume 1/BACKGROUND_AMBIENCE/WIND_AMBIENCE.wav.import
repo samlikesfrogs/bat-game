@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://o2qp4yhq745k"
+path="res://.godot/imported/WIND_AMBIENCE.wav-39cb24be7b2a0a1de20f46c009c20d72.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/BACKGROUND_AMBIENCE/WIND_AMBIENCE.wav"
+dest_files=["res://.godot/imported/WIND_AMBIENCE.wav-39cb24be7b2a0a1de20f46c009c20d72.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

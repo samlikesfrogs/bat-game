@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cb0u3g41bcont"
+path="res://.godot/imported/STONE_FOOTSTEP_1.wav-7845f05915c151f8a3f574c7aa6e77dc.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/FOOTSTEPS/STONE/STONE_FOOTSTEP_1.wav"
+dest_files=["res://.godot/imported/STONE_FOOTSTEP_1.wav-7845f05915c151f8a3f574c7aa6e77dc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

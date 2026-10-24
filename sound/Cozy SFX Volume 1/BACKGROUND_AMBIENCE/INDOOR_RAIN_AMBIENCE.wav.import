@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bgklj43tl3vvq"
+path="res://.godot/imported/INDOOR_RAIN_AMBIENCE.wav-cafaea2e2693f7f239984b6eb33bd4a8.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/BACKGROUND_AMBIENCE/INDOOR_RAIN_AMBIENCE.wav"
+dest_files=["res://.godot/imported/INDOOR_RAIN_AMBIENCE.wav-cafaea2e2693f7f239984b6eb33bd4a8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

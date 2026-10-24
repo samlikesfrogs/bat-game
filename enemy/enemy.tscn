@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://bgf3034ct0xrg" path="res://enemy/enemy_hit_box.gd" id="11_xoplw"]
 [ext_resource type="Script" uid="uid://cby6rsqtssddr" path="res://enemy/enemy_state_goin.gd" id="13_tbw0t"]
 [ext_resource type="Script" uid="uid://bue8wlgec11vj" path="res://enemy/fov.gd" id="14_gf88j"]
+[ext_resource type="AudioStream" uid="uid://cr6ise6m0k0x" path="res://sound/21_orc_damage_2.wav" id="14_rovcg"]
+[ext_resource type="AudioStream" uid="uid://tl6kfyqcf2ko" path="res://sound/14_human_death_spin.wav" id="16_n2hyd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
 atlas = ExtResource("4_pmsee")
@@ -700,10 +702,6 @@ radius = 12.0
 radius = 8.0
 height = 16.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
-radius = 4.0
-height = 12.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqxq1"]
 radius = 9.0
 height = 24.0
@@ -720,8 +718,10 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"walk_up"
+animation = &"attack_down"
 autoplay = "idle_down"
+frame = 5
+frame_progress = 1.0
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
 show_behind_parent = true
@@ -749,11 +749,6 @@ monitorable = false
 position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_v7niv")
 
-[node name="collision" type="CollisionShape2D" parent="." unique_id=932517080]
-position = Vector2(0, 11)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_7jgn8")
-
 [node name="FOV" type="Area2D" parent="." unique_id=225993243]
 collision_layer = 0
 collision_mask = 2
@@ -761,7 +756,7 @@ script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-15, -8, 15, -8, 234, 100, -243, 100)
+polygon = PackedVector2Array(-70, -8, 70, -9, 234, 200, -243, 200)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
@@ -778,6 +773,8 @@ script = ExtResource("5_e355f")
 [node name="idle" type="Node" parent="EnemyStateMachine" unique_id=697267857]
 script = ExtResource("6_1wwld")
 
+[node name="sfx_idle_leaves" type="AudioStreamPlayer2D" parent="EnemyStateMachine/idle" unique_id=11493132]
+
 [node name="comeout" type="Node" parent="EnemyStateMachine" unique_id=922985731 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_pmsee")
 next_state = NodePath("../idle2")
@@ -790,8 +787,18 @@ next_state = NodePath("../chase")
 script = ExtResource("8_o3pv7")
 next_state = NodePath("../chase")
 
+[node name="sfx_enemy_hurt" type="AudioStreamPlayer2D" parent="EnemyStateMachine/stun" unique_id=1769448985]
+stream = ExtResource("14_rovcg")
+volume_db = -6.0
+pitch_scale = 2.0
+
 [node name="destroy" type="Node" parent="EnemyStateMachine" unique_id=454031519]
 script = ExtResource("11_6yflr")
+
+[node name="sfx_enemy_die" type="AudioStreamPlayer2D" parent="EnemyStateMachine/destroy" unique_id=125053998]
+stream = ExtResource("16_n2hyd")
+volume_db = -5.0
+pitch_scale = 2.0
 
 [node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_5ffra")
@@ -805,6 +812,7 @@ next_state = NodePath("../idle")
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
+[connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/destroy" method="_on_animated_sprite_2d_animation_finished"]

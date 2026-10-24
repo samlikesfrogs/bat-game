@@ -5,8 +5,10 @@ var attacking: bool = false
 @export var move_speed : float = 250.0
 @onready var idle : State_Idle = $"../idle"
 @onready var walk: State_Walk = $"../walk"
+@onready var sfx_attack: AudioStreamPlayer2D = $sfx_attack
 
 func Enter() -> void:
+	sfx_attack.play()
 	if player.direction == Vector2.ZERO:
 		player.updateAnim("attackstand")
 	else:

@@ -1,16 +1,17 @@
 class_name EnemyStateAttack extends EnemyState
 
-@export var anim_name:String="walk"
+@export var anim_name:String="attack"
 @export var speed = 60
 @export var aggroed: float = 3.0
 @export var next_state:EnemyState
 
-var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 
 const PATHFINDING:PackedScene=preload("res://pathfinding.tscn")
 var pathfinding:PathFinding
+
+#if player is in attack range and the best direction is player global position, switch to attack anim and jump to player
 
 func init() -> void:
 	pass
@@ -18,7 +19,6 @@ func init() -> void:
 func enter()-> void:
 	pathfinding = PATHFINDING.instantiate() as PathFinding
 	enemy.add_child(pathfinding)
-	_timer = aggroed
 	enemy.updateAnim(anim_name)
 	pass
 	
@@ -32,12 +32,6 @@ func process(_delta:float)->EnemyState:
 	enemy.velocity = _direction * speed
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
-	if _player_visible == false:
-		_timer -= _delta
-		if _timer < 0:
-			return next_state
-	else:
-		_timer = aggroed
 	return null
 	
 func physics(_delta:float)->EnemyState:
@@ -45,16 +39,17 @@ func physics(_delta:float)->EnemyState:
 
 func _process(_delta: float) -> void:
 	pass
-	
-func _on_fov_player_entered() -> void:
+
+func _on_enemy_direction_changed(_new_direction: Vector2) -> void:
+	enemy.updateAnim(anim_name)
+
+func _on_attack_range_player_entered_attack() -> void:
 	_player_visible = true
 	if (state_machine.current_state is EnemyStateStun or 
 	state_machine.current_state is EnemyStateDestroy):
 		return
 	state_machine.ChangeState(self)
+	print("huh")
 
-func _on_fov_player_exited() -> void:
+func _on_attack_range_player_exited_attack() -> void:
 	_player_visible = false
-
-func _on_enemy_direction_changed(_new_direction: Vector2) -> void:
-	enemy.updateAnim(anim_name)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5850nffu5c7d"
+path="res://.godot/imported/ITEM_PICKUP_3.wav-2e41345cf1fb94fc6f9c14f02a737f86.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/UI/ITEM_PICKUP_3.wav"
+dest_files=["res://.godot/imported/ITEM_PICKUP_3.wav-2e41345cf1fb94fc6f9c14f02a737f86.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

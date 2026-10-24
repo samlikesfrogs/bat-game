@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0nuwgiklbkoc"
+path="res://.godot/imported/PLAYER_LEVELUP.wav-f8302a3ae415bd4b1071928dcb52d045.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/UI/PLAYER_LEVELUP.wav"
+dest_files=["res://.godot/imported/PLAYER_LEVELUP.wav-f8302a3ae415bd4b1071928dcb52d045.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

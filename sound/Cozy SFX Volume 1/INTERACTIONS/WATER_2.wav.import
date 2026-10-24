@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dr1sdlah0rgc7"
+path="res://.godot/imported/WATER_2.wav-e2deb8a7d64b0c40ef247c6d5f64b557.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/INTERACTIONS/WATER_2.wav"
+dest_files=["res://.godot/imported/WATER_2.wav-e2deb8a7d64b0c40ef247c6d5f64b557.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

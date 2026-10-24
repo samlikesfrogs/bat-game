@@ -9,13 +9,14 @@ var _animation_finished:bool=false
 var hurt_box:HurtBox
 var direction: Vector2
 var _damage_position: Vector2
-
+@onready var sfx_hurt: AudioStreamPlayer2D = $sfx_hurt
 @export var next_state:State 
 
 func init():
 	pass
 
 func Enter() -> void:
+	sfx_hurt.play()
 	_animation_finished = false
 	direction = player.global_position.direction_to(_damage_position)
 	player.velocity = direction * -knockback_speed

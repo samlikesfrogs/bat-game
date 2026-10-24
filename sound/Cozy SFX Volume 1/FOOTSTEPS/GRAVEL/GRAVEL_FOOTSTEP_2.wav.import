@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b4fq07l0dcdg1"
+path="res://.godot/imported/GRAVEL_FOOTSTEP_2.wav-944498621309e0e816b90a39436c7f13.sample"
+
+[deps]
+
+source_file="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_2.wav"
+dest_files=["res://.godot/imported/GRAVEL_FOOTSTEP_2.wav-944498621309e0e816b90a39436c7f13.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

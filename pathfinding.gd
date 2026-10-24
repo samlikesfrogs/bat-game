@@ -41,7 +41,7 @@ func _on_timer_timeout() -> void:
 	for i in 8:
 		worstdirection[i]=0
 	for i in 8:
-		if raycast[0].is_colliding():
+		if raycast[i].is_colliding():
 			worstdirection[i]+=4
 			if i != 0:
 				worstdirection[i-1]+=1
@@ -61,6 +61,4 @@ func _on_timer_timeout() -> void:
 	for i in 8:
 		bestdirection[i] -= worstdirection[i]
 		
-		#can get rid of recommended array to clean up code
 	best_dir = vectors[bestdirection.find(bestdirection.max())]	
-	pass # Replace with function body.
