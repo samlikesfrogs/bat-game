@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ygw5al0mwo2e"]
 
 [ext_resource type="Texture2D" uid="uid://jo85n1ng082y" path="res://aart/tiles/tileset_Dirt to grass - dirt path.png" id="1_0t07s"]
+[ext_resource type="AudioStream" uid="uid://s1811dmml3nd" path="res://cowboying.wav" id="1_4on3e"]
 [ext_resource type="Texture2D" uid="uid://ci0rm8546pcjm" path="res://aart/tiles/tileset_Dirt to water.png" id="2_6qsgm"]
 [ext_resource type="PackedScene" uid="uid://c3hxsrvwjy7wi" path="res://enemy/enemy.tscn" id="3_e0an3"]
 [ext_resource type="Texture2D" uid="uid://b3hvu0cr8ngk2" path="res://aart/tiles/tileset_Lake to dit.png" id="3_ooc2g"]
@@ -1586,6 +1587,12 @@ limit_left = -25
 limit_top = 230
 limit_right = 629
 limit_bottom = 790
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=768260860]
+position = Vector2(98, 572)
+stream = ExtResource("1_4on3e")
+volume_db = -17.0
+autoplay = true
 
 [node name="base" type="TileMapLayer" parent="." unique_id=1843683906]
 position = Vector2(230, 515)

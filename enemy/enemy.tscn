@@ -780,7 +780,7 @@ next_state = NodePath("../idle2")
 
 [node name="sfx_comeout_land" type="AudioStreamPlayer2D" parent="EnemyStateMachine/comeout" unique_id=262331936]
 stream = ExtResource("13_34gv7")
-volume_db = -11.86
+volume_db = -7.0
 pitch_scale = 0.79
 
 [node name="idle2" type="Node" parent="EnemyStateMachine" unique_id=1690054435 node_paths=PackedStringArray("next_state")]
@@ -810,7 +810,7 @@ next_state = NodePath("../goin")
 
 [node name="sfx_enemy_walk" type="AudioStreamPlayer2D" parent="EnemyStateMachine/chase" unique_id=1908937263]
 stream = ExtResource("19_pg32h")
-volume_db = -2.0
+volume_db = -1.5
 pitch_scale = 1.8
 
 [node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]
