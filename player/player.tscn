@@ -472,7 +472,7 @@ script = ExtResource("7_1jxqw")
 
 [node name="sfx_walk" type="AudioStreamPlayer2D" parent="PlayerStateMachine/walk" unique_id=1607859195]
 stream = ExtResource("22_7pqkx")
-volume_db = -2.0
+volume_db = -1.0
 pitch_scale = 0.75
 
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]

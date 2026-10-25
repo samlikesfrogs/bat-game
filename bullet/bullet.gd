@@ -1,9 +1,9 @@
 extends Area2D
 
+@onready var hurtbox = $HurtBox
+
 var speed: int = 320
 var direction:Vector2
-
-@onready var hurtbox = $HurtBox
 
 func _process(delta: float) -> void:
 	position += speed *direction*delta

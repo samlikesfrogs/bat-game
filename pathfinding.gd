@@ -1,5 +1,7 @@
 class_name PathFinding extends Node2D
+
 @onready var timer:Timer=$timer
+
 var bestdirection:Array[float]
 var worstdirection:Array[float] = [0,0,0,0,0,0,0,0]
 var raycast:Array[RayCast2D]

@@ -1,19 +1,20 @@
 extends CharacterBody2D
 class_name Player
 
-var cardinal_dir: Vector2 = Vector2.DOWN
-var direction: Vector2 = Vector2.ZERO
-var view
-const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
-
 @export var hp: int = 6
 @export var max_hp: int = 6
-var invulnerable:bool=false
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 
-signal shoot
+var cardinal_dir: Vector2 = Vector2.DOWN
+var direction: Vector2 = Vector2.ZERO
+var view
+var invulnerable:bool=false
 var can_shoot:bool
+
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+
+signal shoot
 signal player_damaged(hurt_box:HurtBox)
 signal player_destroyed(hurt_box:HurtBox)
 

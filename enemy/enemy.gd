@@ -1,23 +1,24 @@
 extends CharacterBody2D
 class_name Enemy
 
-signal direction_changed(new_direction:Vector2)
-signal enemy_damaged(hurt_box:HurtBox)
-signal enemy_entered()
-signal enemy_destroyed(hurt_box:HurtBox)
-const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
-
 @export var hp: int = 3
+@export var aggrorange: = 128
+
+@onready var sprite:AnimatedSprite2D = $EnemySprite
+@onready var _hit_box: HitBox = $HitBox
+@onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var player:Player
 var invulnerable:bool=false
 
-@export var aggrorange: = 128
-@onready var sprite:AnimatedSprite2D = $EnemySprite
-@onready var _hit_box: HitBox = $HitBox
-@onready var state_machine : EnemyStateMachine = $EnemyStateMachine
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+
+signal direction_changed(new_direction:Vector2)
+signal enemy_damaged(hurt_box:HurtBox)
+signal enemy_entered()
+signal enemy_destroyed(hurt_box:HurtBox)
 
 func _ready():
 	state_machine.Initialize(self)
