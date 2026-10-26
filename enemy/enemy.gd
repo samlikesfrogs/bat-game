@@ -47,7 +47,6 @@ func setDirection(_new_direction: Vector2) -> bool:
 	direction_changed.emit(new_dir)
 	%EnemySprite.flip_h = true if cardinal_dir == Vector2.LEFT else false
 	return true
-	
 		
 func updateAnim(state:String) -> void:
 	%EnemySprite.play (state + "_" + AnimDirection())

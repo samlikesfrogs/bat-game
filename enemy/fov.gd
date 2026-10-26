@@ -14,12 +14,12 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_entered.emit()
 
-
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_exited.emit()
 	
 func _on_enemy_direction_changed(new_direction: Vector2) -> void:
+	print("hello hello")
 	match new_direction:
 		Vector2.DOWN:
 			rotation_degrees = 0

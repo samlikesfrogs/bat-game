@@ -22,6 +22,10 @@
 [ext_resource type="AudioStream" uid="uid://b4fq07l0dcdg1" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_2.wav" id="19_pg32h"]
 [ext_resource type="AudioStream" uid="uid://dltcdc8dgmvtg" path="res://sound/05_step_dirt_3.wav" id="20_34gv7"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
+radius = 4.0
+height = 10.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
 atlas = ExtResource("4_pmsee")
 region = Rect2(0, 128, 32, 32)
@@ -712,10 +716,15 @@ height = 24.0
 [node name="Enemy" type="CharacterBody2D" unique_id=1672910458]
 z_index = 2
 collision_layer = 256
-collision_mask = 16
+collision_mask = 48
 motion_mode = 1
 script = ExtResource("1_pmsee")
 metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676548839]
+position = Vector2(-1, 10)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7jgn8")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 unique_name_in_owner = true
@@ -753,14 +762,16 @@ shape = SubResource("CapsuleShape2D_v7niv")
 [node name="FOV" type="Area2D" parent="." unique_id=225993243]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-70, -8, 70, -9, 234, 200, -243, 200)
+polygon = PackedVector2Array(-35, -8, 35, -9, 100, 100, -100, 100)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
+monitorable = false
 script = ExtResource("8_wjonb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=10290253]
@@ -804,8 +815,9 @@ stream = ExtResource("16_n2hyd")
 volume_db = -5.0
 pitch_scale = 2.0
 
-[node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597]
+[node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_5ffra")
+next_state = NodePath("../goin")
 
 [node name="sfx_enemy_walk" type="AudioStreamPlayer2D" parent="EnemyStateMachine/chase" unique_id=1908937263]
 stream = ExtResource("19_pg32h")
@@ -822,6 +834,7 @@ volume_db = -2.737
 pitch_scale = 0.65
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1809083458]
+debug_enabled = true
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
@@ -841,5 +854,3 @@ pitch_scale = 0.65
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_entered" from="FOV" to="FOV" method="_on_body_entered"]
 [connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]
-[connection signal="player_entered" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_entered"]
-[connection signal="player_exited" from="FOV" to="EnemyStateMachine/chase" method="_on_fov_player_exited"]
