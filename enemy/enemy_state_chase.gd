@@ -2,7 +2,7 @@ class_name EnemyStateChase extends EnemyState
 
 @onready var navigation_agent_2d: NavigationAgent2D = $"../../NavigationAgent2D"
 @onready var player = get_tree().get_first_node_in_group("player")
-@export var speed = 200
+@export var speed = 20
 var direction: Vector2
 @export var anim_name:String="walk"
 @export var aggroed: float = 4.5
@@ -37,9 +37,8 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
-	
 	navigation_agent_2d.target_position = player.global_position
-	_direction = lerp(direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 5*_delta)
+	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 0.025)
 	if navigation_agent_2d.is_target_reached() == false:
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
