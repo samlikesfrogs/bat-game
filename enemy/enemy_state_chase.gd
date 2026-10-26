@@ -5,7 +5,7 @@ class_name EnemyStateChase extends EnemyState
 @export var speed = 200
 var direction: Vector2
 @export var anim_name:String="walk"
-@export var aggroed: float = 4.0
+@export var aggroed: float = 4.5
 @export var next_state:EnemyState
 @onready var sfx_enemy_walk: AudioStreamPlayer2D = $sfx_enemy_walk
 @onready var fov: FieldOfVision = $"../../FOV"

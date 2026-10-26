@@ -19,7 +19,6 @@ func _on_body_exited(body: Node2D) -> void:
 		player_exited.emit()
 	
 func _on_enemy_direction_changed(new_direction: Vector2) -> void:
-	print("hello hello")
 	match new_direction:
 		Vector2.DOWN:
 			rotation_degrees = 0
