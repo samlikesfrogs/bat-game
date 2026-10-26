@@ -8,7 +8,7 @@ A game where you, as a fox cowboy, kill a bunch of plants. Eventually these plan
 
 Why I made it:
 
-I like video games?? Also as a born and bred Texan (this is not true), I am very invested in cowboy culture (I have been to maybe two rodeos) and so this project is very meaningful or something. I also think Stardew Valley is lacking in furries and guns. 
+I like video games? Also as a born and bred Texan (this is not true), I am very invested in cowboy culture (I have been to maybe two rodeos) so this project is very meaningful frfr. I also think Stardew Valley is lacking in furries and guns. 
 
 How to run:
 
