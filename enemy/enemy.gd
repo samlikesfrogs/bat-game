@@ -51,6 +51,7 @@ func setDirection(_new_direction: Vector2) -> bool:
 		
 func updateAnim(state:String) -> void:
 	%EnemySprite.play (state + "_" + AnimDirection())
+	print((state + "_" + AnimDirection()))
 
 func AnimDirection() -> String:
 	if cardinal_dir == Vector2.DOWN:

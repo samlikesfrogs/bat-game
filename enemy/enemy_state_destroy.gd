@@ -13,12 +13,11 @@ var _damage_position
 #this doesn't flip
 
 func init() -> void:
-	enemy.enemy_destroyed.connect(_on_enemy_destroyed)
 	pass
 
 func enter()-> void:
 	sfx_enemy_hurt.play()
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	enemy.invulnerable = true
 	_direction = enemy.global_position.direction_to(_damage_position)
@@ -41,8 +40,11 @@ func physics(_delta:float)->EnemyState:
 
 func _process(_delta: float) -> void:
 	pass
-	
-func _on_enemy_destroyed(hurt_box:HurtBox):
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	_animation_finished = true
+
+func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
 	_damage_position = hurt_box.global_position
 	state_machine.ChangeState(self)
 	await get_tree().create_timer(2).timeout
@@ -50,7 +52,3 @@ func _on_enemy_destroyed(hurt_box:HurtBox):
 		var tween := create_tween()
 		tween.tween_property(enemy, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
 		tween.finished.connect(enemy.queue_free)
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	_animation_finished = true
-	

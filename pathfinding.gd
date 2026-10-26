@@ -4,7 +4,7 @@ class_name PathFinding extends Node2D
 
 var bestdirection:Array[float]
 var worstdirection:Array[float] = [0,0,0,0,0,0,0,0]
-var raycast:Array[RayCast2D]
+var raycast:Array[RayCast2D] 
 
 var vectors:Array[Vector2]=[
 	Vector2(0,-1),
@@ -21,11 +21,12 @@ var movement_dir:Vector2=Vector2.ZERO
 var best_dir:Vector2=Vector2.ZERO
 
 func _ready() -> void:
+	
 	for c in get_children():
 		if c is RayCast2D:
 			raycast.append(c)
 	
-	for i in vectors.size():
+	for i in 8:
 		vectors[i] = vectors[i].normalized()
 		
 	_on_timer_timeout()
@@ -34,9 +35,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	movement_dir = lerp(movement_dir,best_dir,10*delta)
+	movement_dir = lerp(movement_dir,best_dir,2*delta)
 	pass
-
 
 func _on_timer_timeout() -> void:
 	var player_direction:Vector2=global_position.direction_to(get_tree().get_first_node_in_group("player").global_position)
@@ -62,5 +62,5 @@ func _on_timer_timeout() -> void:
 		bestdirection.append(v.dot(player_direction))
 	for i in 8:
 		bestdirection[i] -= worstdirection[i]
-		
+		print(bestdirection)
 	best_dir = vectors[bestdirection.find(bestdirection.max())]	
