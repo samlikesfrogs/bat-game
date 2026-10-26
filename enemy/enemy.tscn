@@ -834,8 +834,7 @@ volume_db = -2.737
 pitch_scale = 0.65
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1809083458]
-path_desired_distance = 25.0
-target_desired_distance = 20.0
+path_desired_distance = 10.0
 simplify_path = true
 avoidance_enabled = true
 

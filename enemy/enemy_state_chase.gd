@@ -40,7 +40,7 @@ func process(_delta:float)->EnemyState:
 	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 0.025)
 	if navigation_agent_2d.is_target_reached() == false:
 		enemy.velocity = _direction * speed
-#		enemy.move_and_slide()
+		enemy.move_and_slide()
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
 	if _player_visible == false:
