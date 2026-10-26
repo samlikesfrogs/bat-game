@@ -35,7 +35,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	movement_dir = lerp(movement_dir,best_dir,2*delta)
+	movement_dir = lerp(movement_dir,best_dir,5*delta)
 	pass
 
 func _on_timer_timeout() -> void:

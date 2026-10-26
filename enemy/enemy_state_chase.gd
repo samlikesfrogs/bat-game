@@ -1,37 +1,38 @@
 class_name EnemyStateChase extends EnemyState
 
+@onready var navigation_agent_2d: NavigationAgent2D = $"../../NavigationAgent2D"
+@onready var player = get_tree().get_first_node_in_group("player")
+@export var speed = 20
+var direction: Vector2
 @export var anim_name:String="walk"
-@export var speed = 60
 @export var aggroed: float = 6.0
 @export var next_state:EnemyState
 @onready var sfx_enemy_walk: AudioStreamPlayer2D = $sfx_enemy_walk
 
+var i: int = 0
 var destroyed:bool
 var _timer: float = 0
-var i:int
 var _direction : Vector2
 var _player_visible: bool = false
-
-const PATHFINDING:PackedScene=preload("res://pathfinding.tscn")
-var pathfinding:PathFinding
 
 func init() -> void:
 	pass
 
 func enter()-> void:
-	pathfinding = PATHFINDING.instantiate() as PathFinding
-	enemy.add_child(pathfinding)
 	_timer = aggroed
 	enemy.updateAnim(anim_name)
 	
 func exit()->void:
-	i=0
-	pathfinding.queue_free()
+	i = 0
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
-	_direction =pathfinding.movement_dir
-	enemy.velocity = _direction * speed
+	navigation_agent_2d.target_position = player.global_position
+	direction = lerp(direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 5*_delta)
+	
+	if navigation_agent_2d.is_target_reached() == false:
+		enemy.velocity = direction * speed
+		enemy.move_and_slide()
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
 	if _player_visible == false:
@@ -41,12 +42,6 @@ func process(_delta:float)->EnemyState:
 	else:
 		_timer = aggroed
 	return null
-	
-func physics(_delta:float)->EnemyState:
-	return null
-
-func _process(_delta: float) -> void:
-	pass
 	
 func _on_fov_player_entered() -> void:
 	_player_visible = true

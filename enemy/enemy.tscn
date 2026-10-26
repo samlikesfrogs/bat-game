@@ -804,9 +804,8 @@ stream = ExtResource("16_n2hyd")
 volume_db = -5.0
 pitch_scale = 2.0
 
-[node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597 node_paths=PackedStringArray("next_state")]
+[node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597]
 script = ExtResource("7_5ffra")
-next_state = NodePath("../goin")
 
 [node name="sfx_enemy_walk" type="AudioStreamPlayer2D" parent="EnemyStateMachine/chase" unique_id=1908937263]
 stream = ExtResource("19_pg32h")
@@ -821,6 +820,8 @@ next_state = NodePath("../idle")
 stream = ExtResource("20_34gv7")
 volume_db = -2.737
 pitch_scale = 0.65
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1809083458]
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
