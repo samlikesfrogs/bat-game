@@ -699,8 +699,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
-radius = 1.0
-height = 4.0
+radius = 4.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ykpt6"]
 radius = 12.0
@@ -735,7 +735,7 @@ scale = Vector2(1.0333333, 1)
 texture = ExtResource("4_6yflr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676548839]
-position = Vector2(0, 9)
+position = Vector2(-1, 10)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7jgn8")
 
@@ -767,7 +767,7 @@ script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-70, -8, 70, -8, 125, 190, -125, 190)
+polygon = PackedVector2Array(-60, -8, 60, -8, 125, 160, -125, 160)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
@@ -838,7 +838,6 @@ path_desired_distance = 25.0
 target_desired_distance = 20.0
 simplify_path = true
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=2092477405]
 visible = false
