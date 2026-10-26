@@ -6,6 +6,8 @@ var attacking: bool = false
 @onready var idle : State_Idle = $"../idle"
 @onready var walk: State_Walk = $"../walk"
 @onready var sfx_attack: AudioStreamPlayer2D = $sfx_attack
+var shoot_buffer:bool = false
+@export var shoot_buffer_timer:float=0.41
 
 func Enter() -> void:
 	sfx_attack.play()
@@ -26,6 +28,12 @@ func Process(_delta:float)  -> State:
 			return idle
 		else:
 			return walk
+	elif attacking == true and Input.is_action_just_pressed("attack"):
+		shoot_buffer=true
+		get_tree().create_timer(shoot_buffer_timer).timeout.connect(on_shoot_buffer_timeout)
+	if shoot_buffer:
+		Enter()
+		shoot_buffer=false
 	return null
 	
 func Physics(_delta:float)  -> State:
@@ -36,3 +44,7 @@ func HandleInput(_event:InputEvent)  -> State:
 
 func EndAttack()->void:
 	attacking = false
+	
+func on_shoot_buffer_timeout()->void:
+	shoot_buffer = false
+	pass
