@@ -1,8 +1,8 @@
 class_name EnemyStateDestroy extends EnemyState
 
 @export var anim_name:String="die"
-@export var knockback_speed:float = 100.0
-@export var decelerate_speed:float=10.0
+#@export var knockback_speed:float = 100.0
+#@export var decelerate_speed:float=10.0
 
 var _animation_finished:bool=false
 var _direction : Vector2
@@ -18,11 +18,12 @@ func init() -> void:
 func enter()-> void:
 	sfx_enemy_hurt.play()
 	await get_tree().create_timer(0.1).timeout
+	enemy.velocity = Vector2.ZERO
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	enemy.invulnerable = true
-	_direction = enemy.global_position.direction_to(_damage_position)
+	#_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.setDirection(_direction)
-	enemy.velocity=_direction * -knockback_speed
+	#enemy.velocity=_direction * -knockback_speed
 	enemy.updateAnim(anim_name)
 	await get_tree().create_timer(0.5).timeout
 	sfx_enemy_die.play()
@@ -31,7 +32,7 @@ func exit()->void:
 	pass
 	
 func process(_delta:float)->EnemyState:
-	enemy.velocity -= enemy.velocity * decelerate_speed * _delta
+	#enemy.velocity -= enemy.velocity * decelerate_speed * _delta
 	return null
 	
 func physics(_delta:float)->EnemyState:

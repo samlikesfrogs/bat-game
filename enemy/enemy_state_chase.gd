@@ -72,7 +72,7 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateAttack):
 		return
 	state_machine.ChangeState(self)
-	if enemy.global_position.distance_to(player.global_position) > 65 and enemy.global_position.distance_to(player.global_position) <150:
+	if enemy.global_position.distance_to(player.global_position) > 65 and enemy.global_position.distance_to(player.global_position) <180:
 		player_in = true
 	else: 
 		player_in = false
