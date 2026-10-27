@@ -7,6 +7,7 @@ class_name EnemyStateAttack extends EnemyState
 
 var _direction : Vector2
 var _player_visible: bool = false
+var animation_finished:bool
 
 #if player is in attack range and the best direction is player global position, switch to attack anim and jump to player
 
@@ -16,6 +17,7 @@ func init() -> void:
 func enter()-> void:
 	print("attack entered")
 	enemy.updateAnim(anim_name)
+	animation_finished = false
 	pass
 	
 func exit()->void:
@@ -26,13 +28,12 @@ func process(_delta:float)->EnemyState:
 	enemy.velocity = _direction * speed
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
+	if animation_finished:
+		return next_state
 	return null
 	
 func physics(_delta:float)->EnemyState:
 	return null
-
-func _process(_delta: float) -> void:
-	pass
 
 func _on_enemy_direction_changed(_new_direction: Vector2) -> void:
 	enemy.updateAnim(anim_name)
@@ -46,3 +47,7 @@ func _on_attack_range_player_entered_attack() -> void:
 
 func _on_attack_range_player_exited_attack() -> void:
 	_player_visible = false
+
+func _on_enemy_sprite_animation_finished() -> void:
+	animation_finished = true
+	pass # Replace with function body.

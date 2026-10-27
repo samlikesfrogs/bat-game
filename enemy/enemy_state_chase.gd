@@ -16,7 +16,7 @@ var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 var can_attack:bool
-var attack_cooldown: float = 1.0
+var attack_cooldown: float = 3.0
 
 func init() -> void:
 	if fov:
@@ -28,6 +28,7 @@ func enter()-> void:
 	_timer = aggroed
 	enemy.updateAnim(anim_name)
 	_player_visible=true
+	can_attack = false
 	if hurt_box:
 		hurt_box.monitoring = true
 	
@@ -48,12 +49,16 @@ func process(_delta:float)->EnemyState:
 	if _player_visible == false:
 		_timer -= _delta
 		if _timer < 0:
-			
 			return next_state
 	else:
 		_timer = aggroed
+	if can_attack:
+		can_attack = false
+		attack_cooldown = 3.0
+		state_machine.ChangeState($"../attack")
 	if not can_attack:
 		attack_cooldown -=_delta
+		print(attack_cooldown)
 		if attack_cooldown < 0:
 			can_attack = true
 	return null
@@ -63,9 +68,6 @@ func _on_fov_player_entered() -> void:
 	if (state_machine.current_state is EnemyStateStun or 
 	state_machine.current_state is EnemyStateDestroy):
 		return
-	if can_attack:
-		state_machine.ChangeState($"../attack")
-		can_attack = false
 	state_machine.ChangeState(self)
 
 func _on_fov_player_exited() -> void:
