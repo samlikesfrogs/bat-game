@@ -23,9 +23,6 @@ func Enter() -> void:
 	player.setDirection()
 	player.make_invulnerable(invulnerable_duration)
 	player.updateAnim("stun")
-	Engine.time_scale=0
-	await get_tree().create_timer(0.05, true, false, true).timeout
-	Engine.time_scale=1
 	
 func Exit() -> void:
 	pass
@@ -46,7 +43,6 @@ func _on_player_player_damaged(_hurt_box:HurtBox) -> void:
 	hurt_box = _hurt_box
 	_damage_position = hurt_box.global_position
 	state_machine.ChangeState(self)
-
 
 func _on_player_sprite_animation_finished() -> void:
 	_animation_finished=true

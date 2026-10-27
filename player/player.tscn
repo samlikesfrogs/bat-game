@@ -35,13 +35,13 @@ region = Rect2(69, 0, 22, 24)
 atlas = ExtResource("2_32hag")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1s1yo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rptt4"]
 atlas = ExtResource("3_tqiix")
-region = Rect2(42, 0, 20, 21)
+region = Rect2(46, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8hi5"]
 atlas = ExtResource("3_tqiix")
-region = Rect2(0, 0, 20, 21)
+region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ge24q"]
 atlas = ExtResource("4_e7oew")
@@ -210,7 +210,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.5,
-"texture": SubResource("AtlasTexture_1s1yo")
+"texture": SubResource("AtlasTexture_rptt4")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b8hi5")
@@ -415,7 +415,7 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attackwalk_side"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]

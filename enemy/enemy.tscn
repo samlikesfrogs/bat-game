@@ -230,7 +230,7 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jgn8"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -247,7 +247,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -264,7 +264,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -651,7 +651,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
-radius = 3.0
+radius = 2.0
 height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ykpt6"]
@@ -677,7 +677,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attack_up"
+animation = &"goin_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -687,7 +687,7 @@ scale = Vector2(1.0333333, 1)
 texture = ExtResource("4_6yflr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676548839]
-position = Vector2(-1, 12)
+position = Vector2(-1, 13)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7jgn8")
 
@@ -776,6 +776,10 @@ stream = ExtResource("19_pg32h")
 volume_db = -1.5
 pitch_scale = 1.8
 
+[node name="attack" type="Node" parent="EnemyStateMachine" unique_id=721569554 node_paths=PackedStringArray("next_state")]
+script = ExtResource("22_nfy00")
+next_state = NodePath("../chase")
+
 [node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]
 script = ExtResource("13_tbw0t")
 next_state = NodePath("../idle")
@@ -784,10 +788,6 @@ next_state = NodePath("../idle")
 stream = ExtResource("20_34gv7")
 volume_db = -2.737
 pitch_scale = 0.65
-
-[node name="attack" type="Node" parent="EnemyStateMachine" unique_id=721569554 node_paths=PackedStringArray("next_state")]
-script = ExtResource("22_nfy00")
-next_state = NodePath("../chase")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1809083458]
 path_desired_distance = 10.0

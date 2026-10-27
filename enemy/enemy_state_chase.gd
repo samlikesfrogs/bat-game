@@ -30,6 +30,7 @@ func enter()-> void:
 	enemy.updateAnim(anim_name)
 	_player_visible=true
 	can_attack = false
+	player_in = false
 	if hurt_box:
 		hurt_box.monitoring = true
 	
@@ -41,15 +42,16 @@ func exit()->void:
 	
 func process(_delta:float)->EnemyState:
 	if can_attack and player_in:
+		player_in = false
 		can_attack = false
 		state_machine.ChangeState($"../attack")
-		attack_cooldown = 3.0
+		attack_cooldown = 3.5
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown < 0:
 			can_attack = true
 	navigation_agent_2d.target_position = player.global_position
-	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 0.025)
+	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 2*_delta)
 	if navigation_agent_2d.is_target_reached() == false:
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
@@ -66,10 +68,11 @@ func process(_delta:float)->EnemyState:
 func _on_fov_player_entered() -> void:
 	_player_visible = true
 	if (state_machine.current_state is EnemyStateStun or 
-	state_machine.current_state is EnemyStateDestroy):
+	state_machine.current_state is EnemyStateDestroy or 
+	state_machine.current_state is EnemyStateAttack):
 		return
 	state_machine.ChangeState(self)
-	if enemy.global_position.distance_to(player.global_position) > 55 and enemy.global_position.distance_to(player.global_position) <200:
+	if enemy.global_position.distance_to(player.global_position) > 45 and enemy.global_position.distance_to(player.global_position) <150:
 		player_in = true
 	else: 
 		player_in = false
