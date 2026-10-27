@@ -16,7 +16,8 @@ var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 var can_attack:bool
-var attack_cooldown: float = 3.0
+var attack_cooldown: float 
+var player_in:bool
 
 func init() -> void:
 	if fov:
@@ -39,6 +40,14 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
+	if can_attack and player_in:
+		can_attack = false
+		state_machine.ChangeState($"../attack")
+		attack_cooldown = 3.0
+	if not can_attack:
+		attack_cooldown -=_delta
+		if attack_cooldown < 0:
+			can_attack = true
 	navigation_agent_2d.target_position = player.global_position
 	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 0.025)
 	if navigation_agent_2d.is_target_reached() == false:
@@ -52,15 +61,6 @@ func process(_delta:float)->EnemyState:
 			return next_state
 	else:
 		_timer = aggroed
-	if can_attack:
-		can_attack = false
-		attack_cooldown = 3.0
-		state_machine.ChangeState($"../attack")
-	if not can_attack:
-		attack_cooldown -=_delta
-		print(attack_cooldown)
-		if attack_cooldown < 0:
-			can_attack = true
 	return null
 	
 func _on_fov_player_entered() -> void:
@@ -69,6 +69,10 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateDestroy):
 		return
 	state_machine.ChangeState(self)
+	if enemy.global_position.distance_to(player.global_position) > 55 and enemy.global_position.distance_to(player.global_position) <200:
+		player_in = true
+	else: 
+		player_in = false
 
 func _on_fov_player_exited() -> void:
 	_player_visible = false
@@ -86,10 +90,5 @@ func _on_enemy_sprite_frame_changed() -> void:
 			sfx_enemy_walk.play()
 		i +=1
 
-func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
-	destroyed = true
-
-
-func _on_attack_range_body_entered(body: Node2D) -> void:
-	can_attack = true
-	pass # Replace with function body.
+#func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
+#	destroyed = true

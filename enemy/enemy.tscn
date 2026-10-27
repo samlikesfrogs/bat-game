@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3hxsrvwjy7wi"]
 
 [ext_resource type="Script" uid="uid://dkan3x8t3vhwk" path="res://enemy/enemy.gd" id="1_pmsee"]
+[ext_resource type="Texture2D" uid="uid://ict7dfy80k70" path="res://aart/enemies/bulb_attack-sheet.png" id="2_iocd2"]
 [ext_resource type="Texture2D" uid="uid://cmjnju2yqfh5e" path="res://aart/enemies/bulb - Copy (2).png" id="2_xoplw"]
 [ext_resource type="Texture2D" uid="uid://dbfwpnexl5xf1" path="res://aart/enemies/bulb_up.png" id="3_rovcg"]
 [ext_resource type="Texture2D" uid="uid://2di6bbdshoa5" path="res://aart/enemies/bulb_shadow.png" id="4_6yflr"]
@@ -10,7 +11,6 @@
 [ext_resource type="Script" uid="uid://ejxr0s08f4wc" path="res://enemy/enemy_state_idle.gd" id="6_1wwld"]
 [ext_resource type="Script" uid="uid://btr673xfm7itb" path="res://enemy/enemy_state_idle2.gd" id="6_5ffra"]
 [ext_resource type="Script" uid="uid://b31cbaci0mcyl" path="res://enemy/enemy_state_chase.gd" id="7_5ffra"]
-[ext_resource type="Script" uid="uid://boka24gdy0sti" path="res://enemy/attack_range.gd" id="8_iocd2"]
 [ext_resource type="Script" uid="uid://c1va6rsqcvo22" path="res://enemy/enemy_state_stun.gd" id="8_o3pv7"]
 [ext_resource type="Script" uid="uid://cx6tkun2nv6wi" path="res://enemy/enemy_hurt_box.gd" id="8_wjonb"]
 [ext_resource type="Script" uid="uid://dyfg88dp8ytmg" path="res://enemy/enemy_state_destroy.gd" id="11_6yflr"]
@@ -24,53 +24,21 @@
 [ext_resource type="AudioStream" uid="uid://dltcdc8dgmvtg" path="res://sound/05_step_dirt_3.wav" id="20_34gv7"]
 [ext_resource type="Script" uid="uid://dd12vxayixipg" path="res://enemy/attack.gd" id="22_nfy00"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
-atlas = ExtResource("4_pmsee")
-region = Rect2(0, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pg32h"]
-atlas = ExtResource("4_pmsee")
-region = Rect2(32, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfy00"]
-atlas = ExtResource("4_pmsee")
-region = Rect2(64, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iocd2"]
-atlas = ExtResource("4_pmsee")
-region = Rect2(96, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_05kf6"]
-atlas = ExtResource("4_pmsee")
-region = Rect2(128, 128, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_26s8d"]
-atlas = ExtResource("4_pmsee")
-region = Rect2(160, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q8oin"]
-atlas = ExtResource("3_rovcg")
-region = Rect2(160, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydqoe"]
-atlas = ExtResource("3_rovcg")
-region = Rect2(128, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3etd"]
-atlas = ExtResource("3_rovcg")
-region = Rect2(96, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_86ywj"]
-atlas = ExtResource("3_rovcg")
-region = Rect2(64, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfqie"]
-atlas = ExtResource("3_rovcg")
+atlas = ExtResource("2_xoplw")
 region = Rect2(32, 128, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2c6r"]
-atlas = ExtResource("3_rovcg")
-region = Rect2(0, 128, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_51aa2"]
+atlas = ExtResource("2_iocd2")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_homwo"]
+atlas = ExtResource("2_xoplw")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daaa5"]
+atlas = ExtResource("2_xoplw")
+region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipcql"]
 atlas = ExtResource("4_pmsee")
@@ -263,22 +231,16 @@ region = Rect2(64, 32, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_34gv7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pg32h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nfy00")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iocd2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_05kf6")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_26s8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51aa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_homwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daaa5")
 }],
 "loop": 0,
 "name": &"attack_down",
@@ -286,22 +248,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_34gv7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pg32h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nfy00")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iocd2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_05kf6")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_26s8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51aa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_homwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daaa5")
 }],
 "loop": 0,
 "name": &"attack_side",
@@ -309,22 +265,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q8oin")
+"texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ydqoe")
+"texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e3etd")
+"texture": SubResource("AtlasTexture_homwo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_86ywj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nfqie")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h2c6r")
+"texture": SubResource("AtlasTexture_daaa5")
 }],
 "loop": 0,
 "name": &"attack_up",
@@ -701,7 +651,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
-radius = 4.0
+radius = 3.0
 height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ykpt6"]
@@ -727,7 +677,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attack_side"
+animation = &"attack_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -737,7 +687,7 @@ scale = Vector2(1.0333333, 1)
 texture = ExtResource("4_6yflr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676548839]
-position = Vector2(-1, 10)
+position = Vector2(-1, 12)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7jgn8")
 
@@ -770,15 +720,6 @@ script = ExtResource("14_gf88j")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
 polygon = PackedVector2Array(-60, -8, 60, -8, 125, 160, -125, 160)
-disabled = true
-
-[node name="AttackRange" type="Area2D" parent="." unique_id=2092477405]
-position = Vector2(-1, 10)
-script = ExtResource("8_iocd2")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackRange" unique_id=318480942]
-position = Vector2(-2, -1.0000019)
-polygon = PackedVector2Array(-15, -8, 15, -8, 50, 120, -50, 120)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
@@ -859,7 +800,6 @@ debug_enabled = true
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
-[connection signal="direction_changed" from="." to="AttackRange" method="_on_enemy_direction_changed"]
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/destroy" method="_on_enemy_enemy_destroyed"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/chase" method="_on_enemy_enemy_destroyed"]
@@ -874,9 +814,7 @@ debug_enabled = true
 [connection signal="animation_looped" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_animation_looped"]
 [connection signal="frame_changed" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_frame_changed"]
 [connection signal="frame_changed" from="EnemySprite" to="EnemyStateMachine/chase" method="_on_enemy_sprite_frame_changed"]
+[connection signal="frame_changed" from="EnemySprite" to="EnemyStateMachine/attack" method="_on_enemy_sprite_frame_changed"]
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_entered" from="FOV" to="FOV" method="_on_body_entered"]
 [connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]
-[connection signal="body_entered" from="AttackRange" to="EnemyStateMachine/chase" method="_on_attack_range_body_entered"]
-[connection signal="body_entered" from="AttackRange" to="AttackRange" method="_on_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="AttackRange" method="_on_body_exited"]

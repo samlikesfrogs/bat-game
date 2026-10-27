@@ -1,6 +1,6 @@
 class_name PlayerHitBox extends HitBox
 
-#signal player_damaged(hurt_box:HurtBox)
+signal player_damaged(hurt_box:HurtBox)
 
 func _ready() -> void:
 	pass 
