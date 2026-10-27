@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ejxr0s08f4wc" path="res://enemy/enemy_state_idle.gd" id="6_1wwld"]
 [ext_resource type="Script" uid="uid://btr673xfm7itb" path="res://enemy/enemy_state_idle2.gd" id="6_5ffra"]
 [ext_resource type="Script" uid="uid://b31cbaci0mcyl" path="res://enemy/enemy_state_chase.gd" id="7_5ffra"]
+[ext_resource type="Script" uid="uid://boka24gdy0sti" path="res://enemy/attack_range.gd" id="8_iocd2"]
 [ext_resource type="Script" uid="uid://c1va6rsqcvo22" path="res://enemy/enemy_state_stun.gd" id="8_o3pv7"]
 [ext_resource type="Script" uid="uid://cx6tkun2nv6wi" path="res://enemy/enemy_hurt_box.gd" id="8_wjonb"]
 [ext_resource type="Script" uid="uid://dyfg88dp8ytmg" path="res://enemy/enemy_state_destroy.gd" id="11_6yflr"]
@@ -21,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://tl6kfyqcf2ko" path="res://sound/14_human_death_spin.wav" id="16_n2hyd"]
 [ext_resource type="AudioStream" uid="uid://b4fq07l0dcdg1" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_2.wav" id="19_pg32h"]
 [ext_resource type="AudioStream" uid="uid://dltcdc8dgmvtg" path="res://sound/05_step_dirt_3.wav" id="20_34gv7"]
+[ext_resource type="Script" uid="uid://dd12vxayixipg" path="res://enemy/attack.gd" id="22_nfy00"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34gv7"]
 atlas = ExtResource("4_pmsee")
@@ -725,7 +727,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"idletwo_down"
+animation = &"attack_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -768,6 +770,17 @@ script = ExtResource("14_gf88j")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
 polygon = PackedVector2Array(-60, -8, 60, -8, 125, 160, -125, 160)
+disabled = true
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=2092477405]
+position = Vector2(-1, 10)
+rotation = 1.5707964
+script = ExtResource("8_iocd2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackRange" unique_id=318480942]
+position = Vector2(-2, -1.0000019)
+rotation = 4.712389
+polygon = PackedVector2Array(-15, -8, 15, -8, 50, 70, -50, 70)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
@@ -833,24 +846,21 @@ stream = ExtResource("20_34gv7")
 volume_db = -2.737
 pitch_scale = 0.65
 
+[node name="attack" type="Node" parent="EnemyStateMachine" unique_id=721569554]
+script = ExtResource("22_nfy00")
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1809083458]
 path_desired_distance = 10.0
 simplify_path = true
 avoidance_enabled = true
-
-[node name="AttackRange" type="Area2D" parent="." unique_id=2092477405]
-visible = false
-position = Vector2(-1, 10)
-rotation = 1.5707964
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackRange" unique_id=318480942]
-position = Vector2(-2, -1.0000019)
-rotation = 4.712389
-polygon = PackedVector2Array(-15, -8, 15, -8, 50, 70, -50, 70)
-disabled = true
+radius = 6.0
+time_horizon_agents = 0.5
+time_horizon_obstacles = 5.0
+debug_enabled = true
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
+[connection signal="direction_changed" from="." to="AttackRange" method="_on_enemy_direction_changed"]
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/destroy" method="_on_enemy_enemy_destroyed"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/chase" method="_on_enemy_enemy_destroyed"]
@@ -867,3 +877,6 @@ disabled = true
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_entered" from="FOV" to="FOV" method="_on_body_entered"]
 [connection signal="body_exited" from="FOV" to="FOV" method="_on_body_exited"]
+[connection signal="body_entered" from="AttackRange" to="EnemyStateMachine/chase" method="_on_attack_range_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="AttackRange" method="_on_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="AttackRange" method="_on_body_exited"]

@@ -14,6 +14,7 @@ func init() -> void:
 	pass
 
 func enter()-> void:
+	print("attack entered")
 	enemy.updateAnim(anim_name)
 	pass
 	

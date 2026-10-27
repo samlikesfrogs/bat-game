@@ -14,7 +14,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_entered_attack.emit()
 
-
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_exited_attack.emit()

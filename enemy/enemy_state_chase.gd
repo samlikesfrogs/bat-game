@@ -15,6 +15,8 @@ var destroyed:bool
 var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
+var can_attack:bool
+var attack_cooldown: float = 1.0
 
 func init() -> void:
 	if fov:
@@ -50,6 +52,10 @@ func process(_delta:float)->EnemyState:
 			return next_state
 	else:
 		_timer = aggroed
+	if not can_attack:
+		attack_cooldown -=_delta
+		if attack_cooldown < 0:
+			can_attack = true
 	return null
 	
 func _on_fov_player_entered() -> void:
@@ -57,6 +63,9 @@ func _on_fov_player_entered() -> void:
 	if (state_machine.current_state is EnemyStateStun or 
 	state_machine.current_state is EnemyStateDestroy):
 		return
+	if can_attack:
+		state_machine.ChangeState($"../attack")
+		can_attack = false
 	state_machine.ChangeState(self)
 
 func _on_fov_player_exited() -> void:
@@ -77,3 +86,8 @@ func _on_enemy_sprite_frame_changed() -> void:
 
 func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
 	destroyed = true
+
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	can_attack = true
+	pass # Replace with function body.
