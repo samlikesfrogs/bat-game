@@ -1,8 +1,7 @@
 class_name EnemyStateDestroy extends EnemyState
 
 @export var anim_name:String="die"
-#@export var knockback_speed:float = 100.0
-#@export var decelerate_speed:float=10.0
+@onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
 
 var _animation_finished:bool=false
 var _direction : Vector2
@@ -10,20 +9,19 @@ var _damage_position
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 
-#this doesn't flip
-
 func init() -> void:
 	pass
 
 func enter()-> void:
 	sfx_enemy_hurt.play()
+	gpu_particles_2d.rotation = -_damage_position.angle()
+	gpu_particles_2d.restart()
+	gpu_particles_2d.emitting = true
 	await get_tree().create_timer(0.1).timeout
 	enemy.velocity = Vector2.ZERO
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	enemy.invulnerable = true
-	#_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.setDirection(_direction)
-	#enemy.velocity=_direction * -knockback_speed
 	enemy.updateAnim(anim_name)
 	await get_tree().create_timer(0.5).timeout
 	sfx_enemy_die.play()
@@ -32,7 +30,6 @@ func exit()->void:
 	pass
 	
 func process(_delta:float)->EnemyState:
-	#enemy.velocity -= enemy.velocity * decelerate_speed * _delta
 	return null
 	
 func physics(_delta:float)->EnemyState:

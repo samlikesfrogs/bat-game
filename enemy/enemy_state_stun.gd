@@ -4,6 +4,7 @@ class_name EnemyStateStun extends EnemyState
 @export var knockback_speed:float = 100.0
 @export var next_state:EnemyState
 @export var decelerate_speed:float=10.0
+@onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
 
 var _damage_position:Vector2
 var _animation_finished:bool=false
@@ -17,6 +18,9 @@ func enter()-> void:
 	sfx_enemy_hurt.play()
 	enemy.invulnerable = true
 	_animation_finished = false
+	gpu_particles_2d.rotation = -_damage_position.angle()
+	gpu_particles_2d.restart()
+	gpu_particles_2d.emitting = true
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.setDirection(_direction)
 	enemy.velocity=_direction * -knockback_speed

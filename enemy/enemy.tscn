@@ -665,6 +665,26 @@ height = 16.0
 radius = 6.0
 height = 18.0
 
+[sub_resource type="Gradient" id="Gradient_iocd2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wqxq1"]
+gradient = SubResource("Gradient_iocd2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7jgn8"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 25.0
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 30, 0)
+damping_min = 100.00001
+damping_max = 800.00006
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_wqxq1")
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1672910458]
 z_index = 2
 collision_layer = 256
@@ -796,6 +816,19 @@ avoidance_enabled = true
 radius = 6.0
 time_horizon_agents = 0.5
 time_horizon_obstacles = 5.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2029569116]
+z_index = 2
+position = Vector2(0, 10)
+scale = Vector2(0.7, 0.7)
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+preprocess = 0.03
+explosiveness = 1.0
+randomness = 0.59
+process_material = SubResource("ParticleProcessMaterial_7jgn8")
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
