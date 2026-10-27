@@ -5,15 +5,12 @@ var prev_state: EnemyState
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
-	pass 
 
 func _process(delta: float) -> void:
 	ChangeState(current_state.process(delta))
-	pass
 	
 func _physics_process(delta: float) -> void:
 	ChangeState(current_state.process(delta))
-	pass
 	
 func Initialize(_enemy : Enemy) -> void:
 	states = []

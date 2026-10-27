@@ -123,25 +123,13 @@ region = Rect2(0, 0, 22, 24)
 atlas = ExtResource("4_ebec5")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
-atlas = ExtResource("11_x7c3f")
-region = Rect2(0, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_jd2rm"]
 atlas = ExtResource("11_x7c3f")
 region = Rect2(23, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a1u5o"]
-atlas = ExtResource("12_s7qer")
-region = Rect2(0, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dxkp"]
 atlas = ExtResource("12_s7qer")
 region = Rect2(23, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6wior"]
-atlas = ExtResource("13_g4c7l")
-region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5tca"]
 atlas = ExtResource("13_g4c7l")
@@ -316,9 +304,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7pqkx")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_jd2rm")
 }],
 "loop": 0,
@@ -327,9 +312,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a1u5o")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_3dxkp")
 }],
 "loop": 0,
@@ -337,9 +319,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6wior")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p5tca")
 }],
@@ -415,7 +394,7 @@ script = ExtResource("1_hqtel")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"idle_down"
+animation = &"stun_down"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]

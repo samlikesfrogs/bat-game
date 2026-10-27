@@ -1,7 +1,7 @@
 class_name EnemyStateAttack extends EnemyState
 
 @export var anim_name:String="attack"
-@export var speed = 85
+@export var speed = 78
 @export var aggroed: float = 1.5
 @export var next_state:EnemyState
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -19,6 +19,7 @@ func init() -> void:
 
 func enter()-> void:
 	$"../../CollisionShape2D".set_deferred("disabled", true)
+	enemy.velocity = Vector2.ZERO	
 	i = 0
 	enemy.updateAnim(anim_name)
 	animation_finished = false
@@ -34,7 +35,7 @@ func exit()->void:
 func process(_delta:float)->EnemyState:
 	if animation_finished:
 		return next_state
-	if i == 0 or i == 1 or i == 2:
+	if i == 1 or i == 2:
 		_direction = enemy.global_position.direction_to(player.global_position)
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()

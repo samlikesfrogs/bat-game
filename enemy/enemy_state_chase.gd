@@ -45,7 +45,7 @@ func process(_delta:float)->EnemyState:
 		player_in = false
 		can_attack = false
 		state_machine.ChangeState($"../attack")
-		attack_cooldown = 3.5
+		attack_cooldown = 3.2
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown < 0:
@@ -72,7 +72,7 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateAttack):
 		return
 	state_machine.ChangeState(self)
-	if enemy.global_position.distance_to(player.global_position) > 45 and enemy.global_position.distance_to(player.global_position) <150:
+	if enemy.global_position.distance_to(player.global_position) > 65 and enemy.global_position.distance_to(player.global_position) <150:
 		player_in = true
 	else: 
 		player_in = false
@@ -92,6 +92,3 @@ func _on_enemy_sprite_frame_changed() -> void:
 		if i%3==0 or i ==0:
 			sfx_enemy_walk.play()
 		i +=1
-
-#func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
-#	destroyed = true

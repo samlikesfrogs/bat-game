@@ -26,7 +26,6 @@ func enter()-> void:
 	enemy.updateAnim(anim_name)
 	await get_tree().create_timer(0.5).timeout
 	sfx_enemy_die.play()
-	pass
 	
 func exit()->void:
 	pass

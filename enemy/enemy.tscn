@@ -230,7 +230,7 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jgn8"]
 animations = [{
 "frames": [{
-"duration": 1.2,
+"duration": 1.4,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -247,7 +247,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.2,
+"duration": 1.4,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -264,7 +264,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.2,
+"duration": 1.4,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -663,7 +663,7 @@ height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqxq1"]
 radius = 9.0
-height = 24.0
+height = 20.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1672910458]
 z_index = 2
@@ -677,7 +677,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"goin_side"
+animation = &"attack_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -727,7 +727,7 @@ monitorable = false
 script = ExtResource("8_wjonb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=10290253]
-position = Vector2(-1, 3)
+position = Vector2(1, 6)
 shape = SubResource("CapsuleShape2D_wqxq1")
 disabled = true
 
@@ -796,7 +796,6 @@ avoidance_enabled = true
 radius = 6.0
 time_horizon_agents = 0.5
 time_horizon_obstacles = 5.0
-debug_enabled = true
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]

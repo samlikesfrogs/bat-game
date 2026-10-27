@@ -13,7 +13,6 @@ func enter()-> void:
 	_animation_finished = false
 	enemy.velocity=Vector2.ZERO
 	enemy.updateAnim(anim_name)
-	pass
 	
 func exit()->void:
 	pass

@@ -67,7 +67,6 @@ func updateAnim(state:String) -> void:
 	
 func _on_player_sprite_animation_finished() -> void:
 	can_shoot = true
-	pass 
 
 func _take_damage(hurt_box:HurtBox) -> void:
 	if invulnerable == true:
@@ -92,4 +91,3 @@ func make_invulnerable( _duration) -> void:
 	
 	invulnerable = false
 	$HitBox/CollisionShape2D.set_deferred("disabled", false)
-	pass
