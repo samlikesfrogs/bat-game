@@ -391,6 +391,12 @@ collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_hqtel")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1229852486]
+limit_left = -25
+limit_top = 230
+limit_right = 625
+limit_bottom = 790
+
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
 animation = &"stun_down"
@@ -445,6 +451,9 @@ next_state = NodePath("../idle")
 stream = ExtResource("25_knn7v")
 volume_db = -7.0
 pitch_scale = 2.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1766816698]
+remote_path = NodePath("../Camera2D")
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]

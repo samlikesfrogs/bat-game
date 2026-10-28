@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://csmi717a3mp8p"]
+
+[ext_resource type="Script" uid="uid://5awbk2p7b8l4" path="res://player_spawner.gd" id="1_3ykq8"]
+[ext_resource type="Texture2D" uid="uid://4wy2v8gvxwb5" path="res://aart/fox sprites/hit.png" id="1_6jqeu"]
+
+[node name="PlayerSpawner" type="Node2D" unique_id=955133905]
+script = ExtResource("1_3ykq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=555151819]
+texture = ExtResource("1_6jqeu")
+hframes = 4
+frame = 1
