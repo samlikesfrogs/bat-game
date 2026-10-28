@@ -1613,17 +1613,6 @@ tile_set = SubResource("TileSet_v7niv")
 y_sort_enabled = true
 position = Vector2(215, 571)
 
-[node name="BulletManager" type="Node2D" parent="." unique_id=663002067]
-script = ExtResource("13_ooc2g")
-bullet_scene = ExtResource("14_2wwcf")
-
-[node name="sfx_attack" type="AudioStreamPlayer2D" parent="BulletManager" unique_id=639371025]
-position = Vector2(1.25, 9)
-scale = Vector2(1.0333333, 1)
-stream = ExtResource("12_bssq0")
-volume_db = -4.0
-pitch_scale = 3.0
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=296719435]
 position = Vector2(98, 572)
 collision_layer = 16
@@ -1676,3 +1665,14 @@ use_edge_connections = false
 
 [node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("19_bssq0")]
 position = Vector2(275, 741)
+
+[node name="BulletManager" type="Node2D" parent="." unique_id=41395942]
+script = ExtResource("13_ooc2g")
+bullet_scene = ExtResource("14_2wwcf")
+
+[node name="sfx_attack" type="AudioStreamPlayer2D" parent="BulletManager" unique_id=118536418]
+position = Vector2(1.25, 9)
+scale = Vector2(1.0333333, 1)
+stream = ExtResource("12_bssq0")
+volume_db = -4.0
+pitch_scale = 3.0

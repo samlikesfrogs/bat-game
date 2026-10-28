@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func add_player_instance()->void:
 	player = PLAYER.instantiate()
-	add_child(player)
+	get_tree().current_scene.add_child(player)
 	pass
 
 func player_spawn_point(_new_position:Vector2)->void:
