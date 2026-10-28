@@ -697,7 +697,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"goin_side"
+animation = &"attack_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -799,6 +799,11 @@ pitch_scale = 1.8
 [node name="attack" type="Node" parent="EnemyStateMachine" unique_id=721569554 node_paths=PackedStringArray("next_state")]
 script = ExtResource("22_nfy00")
 next_state = NodePath("../chase")
+
+[node name="sfx_enemy_attack" type="AudioStreamPlayer2D" parent="EnemyStateMachine/attack" unique_id=641449160]
+stream = ExtResource("13_34gv7")
+volume_db = -7.0
+pitch_scale = 0.79
 
 [node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]
 script = ExtResource("13_tbw0t")
