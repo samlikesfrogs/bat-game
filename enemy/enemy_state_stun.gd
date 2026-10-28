@@ -18,10 +18,10 @@ func enter()-> void:
 	sfx_enemy_hurt.play()
 	enemy.invulnerable = true
 	_animation_finished = false
-	gpu_particles_2d.rotation = -_damage_position.angle()
-	gpu_particles_2d.restart()
 	gpu_particles_2d.emitting = true
 	_direction = enemy.global_position.direction_to(_damage_position)
+	gpu_particles_2d.rotation = -_direction.angle()
+	gpu_particles_2d.restart()
 	enemy.setDirection(_direction)
 	enemy.velocity=_direction * -knockback_speed
 	enemy.updateAnim(anim_name)
