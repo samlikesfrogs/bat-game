@@ -14,7 +14,7 @@ func init() -> void:
 
 func enter()-> void:
 	sfx_enemy_hurt.play()
-	gpu_particles_2d.rotation = -enemy.global_position.direction_to(_damage_position).angle()
+	gpu_particles_2d.rotation = get_tree().get_first_node_in_group("player").cardinal_dir.angle()
 	gpu_particles_2d.restart()
 	gpu_particles_2d.emitting = true
 	await get_tree().create_timer(0.1).timeout
