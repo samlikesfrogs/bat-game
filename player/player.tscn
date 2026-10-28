@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://dhwlyfc3abj40" path="res://aart/fox sprites/shadow.png" id="14_e7oew"]
 [ext_resource type="Script" uid="uid://bsdog43k2i4wp" path="res://player/player_hit_box.gd" id="16_bjvpn"]
 [ext_resource type="Script" uid="uid://ctv43d6618a8f" path="res://player/state_attack.gd" id="17_tqiix"]
-[ext_resource type="AudioStream" uid="uid://hd87hs5p4w1s" path="res://sound/10_human_special_atk_2.wav" id="18_g4c7l"]
 [ext_resource type="Script" uid="uid://c21wmm0cl0r1k" path="res://player/state_stun.gd" id="21_s7qer"]
 [ext_resource type="AudioStream" uid="uid://cbxo7tcxlo6xs" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_1.wav" id="22_7pqkx"]
 [ext_resource type="AudioStream" uid="uid://cynjbdas47ruv" path="res://sound/11_human_damage_3.wav" id="25_knn7v"]
@@ -437,13 +436,6 @@ bus = &"SFX"
 
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
 script = ExtResource("17_tqiix")
-
-[node name="sfx_attack" type="AudioStreamPlayer2D" parent="PlayerStateMachine/attack" unique_id=946900786]
-position = Vector2(1.25, 9)
-scale = Vector2(1.0333333, 1)
-stream = ExtResource("18_g4c7l")
-volume_db = -4.0
-pitch_scale = 3.0
 
 [node name="stun" type="Node" parent="PlayerStateMachine" unique_id=1845139879 node_paths=PackedStringArray("next_state")]
 script = ExtResource("21_s7qer")

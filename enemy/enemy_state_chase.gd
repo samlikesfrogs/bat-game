@@ -45,7 +45,7 @@ func process(_delta:float)->EnemyState:
 		player_in = false
 		can_attack = false
 		state_machine.ChangeState($"../attack")
-		attack_cooldown = 3.2
+		attack_cooldown = 2.8
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown < 0:
@@ -72,7 +72,7 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateAttack):
 		return
 	state_machine.ChangeState(self)
-	if enemy.global_position.distance_to(player.global_position) > 65 and enemy.global_position.distance_to(player.global_position) <180:
+	if enemy.global_position.distance_to(player.global_position) > 60 and enemy.global_position.distance_to(player.global_position) <160:
 		player_in = true
 	else: 
 		player_in = false

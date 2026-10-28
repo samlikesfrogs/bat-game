@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brab1v6rutm0k" path="res://aart/Bullets animation.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://dmsg54crgnbc2" path="res://bullet/bullet.gd" id="1_v8qja"]
 [ext_resource type="Script" uid="uid://vwupm0u0be0o" path="res://bullet/bullet_hurt_box.gd" id="3_0qjqd"]
+[ext_resource type="Texture2D" uid="uid://cbqmdxh1ewm56" path="res://aart/light.png" id="4_xvnxm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4vbm"]
 atlas = ExtResource("1_v7oki")
@@ -150,6 +151,7 @@ collision_mask = 272
 script = ExtResource("1_v8qja")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2056286863]
+modulate = Color(1.825, 1.825, 1.825, 1)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
 animation = &"down"
 
@@ -161,3 +163,8 @@ script = ExtResource("3_0qjqd")
 
 [node name="HurtBox2" type="CollisionShape2D" parent="HurtBox" unique_id=2112991129]
 shape = SubResource("CapsuleShape2D_ykpt6")
+
+[node name="PointLight2D" type="PointLight2D" parent="HurtBox/HurtBox2" unique_id=175744760]
+color = Color(0.8957818, 0.8931549, 3.85046e-07, 0.5803922)
+energy = 1.5
+texture = ExtResource("4_xvnxm")

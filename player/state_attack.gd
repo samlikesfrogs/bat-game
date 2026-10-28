@@ -5,12 +5,10 @@ var attacking: bool = false
 @export var move_speed : float = 250.0
 @onready var idle : State_Idle = $"../idle"
 @onready var walk: State_Walk = $"../walk"
-@onready var sfx_attack: AudioStreamPlayer2D = $sfx_attack
 var shoot_buffer:bool = false
 @export var shoot_buffer_timer:float=0.41
 
 func Enter() -> void:
-	sfx_attack.play()
 	if player.direction == Vector2.ZERO:
 		player.updateAnim("attackstand")
 	else:
@@ -22,6 +20,8 @@ func Exit() -> void:
 	pass
 	
 func Process(_delta:float)  -> State:
+	#fix being able to move while stand shooting
+	#don't update direction while walk shooting
 	player.velocity = player.direction * move_speed
 	if attacking == false:
 		if player.direction == Vector2.ZERO:
