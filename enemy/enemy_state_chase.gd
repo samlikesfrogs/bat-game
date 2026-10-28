@@ -45,7 +45,7 @@ func process(_delta:float)->EnemyState:
 		player_in = false
 		can_attack = false
 		state_machine.ChangeState($"../attack")
-		attack_cooldown = 2.8
+		attack_cooldown = randi_range(2.4, 3.2)
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown < 0:

@@ -1611,6 +1611,10 @@ tile_set = SubResource("TileSet_v7niv")
 y_sort_enabled = true
 position = Vector2(215, 571)
 
+[node name="Enemy2" parent="." unique_id=1672910458 instance=ExtResource("3_e0an3")]
+y_sort_enabled = true
+position = Vector2(417, 494)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=296719435]
 position = Vector2(98, 572)
 collision_layer = 16
