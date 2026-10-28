@@ -1,6 +1,7 @@
 extends Node
 
 @onready var PLAYER = preload("res://player/player.tscn")
+
 var player:Player
 var player_in_scene:bool = false
 
