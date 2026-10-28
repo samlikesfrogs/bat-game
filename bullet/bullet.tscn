@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dmsg54crgnbc2" path="res://bullet/bullet.gd" id="1_v8qja"]
 [ext_resource type="Script" uid="uid://vwupm0u0be0o" path="res://bullet/bullet_hurt_box.gd" id="3_0qjqd"]
 [ext_resource type="Texture2D" uid="uid://cbqmdxh1ewm56" path="res://aart/light.png" id="4_xvnxm"]
+[ext_resource type="AudioStream" uid="uid://hd87hs5p4w1s" path="res://sound/10_human_special_atk_2.wav" id="5_ynyjt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4vbm"]
 atlas = ExtResource("1_v7oki")
@@ -168,3 +169,8 @@ shape = SubResource("CapsuleShape2D_ykpt6")
 color = Color(0.8957818, 0.8931549, 3.85046e-07, 0.5803922)
 energy = 1.5
 texture = ExtResource("4_xvnxm")
+
+[node name="sfx_shoot" type="AudioStreamPlayer2D" parent="." unique_id=1422996402]
+stream = ExtResource("5_ynyjt")
+volume_db = -4.0
+pitch_scale = 3.0

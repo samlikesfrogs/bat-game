@@ -5,6 +5,9 @@ extends Area2D
 var speed: int = 320
 var direction:Vector2
 
+func _ready() -> void:
+	$sfx_shoot.play()
+
 func _process(delta: float) -> void:
 	position += speed *direction*delta
 	if direction == Vector2.DOWN:
