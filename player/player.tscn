@@ -306,7 +306,7 @@ collision_layer = 2
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_hqtel")
-shoot_cooldown = 100.0
+shoot_cooldown = 150.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1229852486]
 limit_left = -25
