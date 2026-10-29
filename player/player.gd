@@ -11,6 +11,8 @@ var direction: Vector2 = Vector2.ZERO
 var view
 var invulnerable:bool=false
 var can_shoot:bool
+@export var shoot_cooldown:float 
+var _timer:float
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
@@ -32,6 +34,12 @@ func _process(_delta):
 	if Input.is_action_just_pressed("attack") and can_shoot:
 		shoot.emit(position, cardinal_dir)
 		can_shoot = false
+	if can_shoot == false:
+		_timer -= _delta
+		if _timer < 0:
+			can_shoot = true
+	else:
+		_timer = shoot_cooldown
 	
 func _physics_process(_delta):
 	move_and_slide()
@@ -62,7 +70,7 @@ func AnimDirection() -> String:
 	else:
 		return "side"
 		
-func updateAnim(state:String) -> void:
+func updateAnim(state:String):
 	$PlayerSprite.play (state + "_" + AnimDirection())
 	
 func _on_player_sprite_animation_finished() -> void:

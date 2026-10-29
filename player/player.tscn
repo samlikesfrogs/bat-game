@@ -30,73 +30,25 @@
 atlas = ExtResource("2_32hag")
 region = Rect2(69, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uw77l"]
-atlas = ExtResource("2_32hag")
-region = Rect2(23, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rptt4"]
 atlas = ExtResource("3_tqiix")
 region = Rect2(46, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b8hi5"]
-atlas = ExtResource("3_tqiix")
-region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ge24q"]
 atlas = ExtResource("4_e7oew")
 region = Rect2(69, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ejfk"]
-atlas = ExtResource("4_e7oew")
-region = Rect2(0, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dx5ib"]
 atlas = ExtResource("5_c35mf")
 region = Rect2(69, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_55jnj"]
-atlas = ExtResource("5_c35mf")
-region = Rect2(46, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1so5t"]
-atlas = ExtResource("5_c35mf")
-region = Rect2(23, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pnw6m"]
-atlas = ExtResource("5_c35mf")
-region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjxoa"]
 atlas = ExtResource("6_e7oew")
 region = Rect2(69, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_art4l"]
-atlas = ExtResource("6_e7oew")
-region = Rect2(46, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a2xo5"]
-atlas = ExtResource("6_e7oew")
-region = Rect2(23, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gswnw"]
-atlas = ExtResource("6_e7oew")
-region = Rect2(0, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmwog"]
 atlas = ExtResource("7_tqiix")
 region = Rect2(69, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hjies"]
-atlas = ExtResource("7_tqiix")
-region = Rect2(46, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j55il"]
-atlas = ExtResource("7_tqiix")
-region = Rect2(23, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcnuv"]
-atlas = ExtResource("7_tqiix")
-region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
 atlas = ExtResource("2_8t03j")
@@ -187,9 +139,6 @@ animations = [{
 "frames": [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_r7pn3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uw77l")
 }],
 "loop": 0,
 "name": &"attackstand_down",
@@ -198,9 +147,6 @@ animations = [{
 "frames": [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_rptt4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b8hi5")
 }],
 "loop": 0,
 "name": &"attackstand_side",
@@ -209,9 +155,6 @@ animations = [{
 "frames": [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_ge24q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ejfk")
 }],
 "loop": 0,
 "name": &"attackstand_up",
@@ -220,32 +163,14 @@ animations = [{
 "frames": [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_dx5ib")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_55jnj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1so5t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pnw6m")
 }],
 "loop": 0,
 "name": &"attackwalk_down",
 "speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_fjxoa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_art4l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a2xo5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gswnw")
 }],
 "loop": 0,
 "name": &"attackwalk_side",
@@ -254,15 +179,6 @@ animations = [{
 "frames": [{
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_mmwog")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hjies")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j55il")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xcnuv")
 }],
 "loop": 0,
 "name": &"attackwalk_up",
@@ -390,6 +306,7 @@ collision_layer = 2
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_hqtel")
+shoot_cooldown = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1229852486]
 limit_left = -25
@@ -399,7 +316,7 @@ limit_bottom = 790
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"stun_down"
+animation = &"attackwalk_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]

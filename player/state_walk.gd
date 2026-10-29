@@ -5,8 +5,6 @@ class_name State_Walk extends State
 @onready var attack:State = $"../attack"
 @onready var sfx_walk: AudioStreamPlayer2D = $sfx_walk
 var anim_name = "walk"
-#var this_anim = ()
-
 var i:int
 
 func Enter() -> void:
@@ -18,6 +16,8 @@ func Exit() -> void:
 	pass
 	
 func Process(_delta:float)  -> State:
+	if state_machine.current_state == State_Attack:
+		return
 	if player.direction == Vector2.ZERO:
 		return idle
 	player.velocity = player.direction * move_speed

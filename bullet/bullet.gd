@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var hurtbox = $HurtBox
 
-var speed: int = 320
+var speed: int = 400
 var direction:Vector2
 
 func _ready() -> void:

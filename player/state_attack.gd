@@ -7,12 +7,16 @@ var attacking: bool = false
 @onready var walk: State_Walk = $"../walk"
 var shoot_buffer:bool = false
 @export var shoot_buffer_timer:float=0.41
+var standing:bool
+var walking:bool
 
 func Enter() -> void:
 	if player.direction == Vector2.ZERO:
 		player.updateAnim("attackstand")
+		standing = true
 	else:
 		player.updateAnim("attackwalk")
+		walking = true
 	attacking = true
 	pass
 	
@@ -20,9 +24,10 @@ func Exit() -> void:
 	pass
 	
 func Process(_delta:float)  -> State:
-	#fix being able to move while stand shooting
-	#don't update direction while walk shooting
-	player.velocity = player.direction * move_speed
+	if walking:
+		player.velocity = player.direction * move_speed
+	elif standing:
+		player.velocity = Vector2.ZERO
 	if attacking == false:
 		if player.direction == Vector2.ZERO:
 			return idle
