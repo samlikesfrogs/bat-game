@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name Enemy
-
+#why can this mf jump into a cactus
 @export var hp: int = 3
 @export var aggrorange: = 128
 
