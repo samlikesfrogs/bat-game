@@ -25,6 +25,9 @@
 [ext_resource type="Script" uid="uid://c21wmm0cl0r1k" path="res://player/state_stun.gd" id="21_s7qer"]
 [ext_resource type="AudioStream" uid="uid://cbxo7tcxlo6xs" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_1.wav" id="22_7pqkx"]
 [ext_resource type="AudioStream" uid="uid://cynjbdas47ruv" path="res://sound/11_human_damage_3.wav" id="25_knn7v"]
+[ext_resource type="PackedScene" uid="uid://dcfq6rdhx3frq" path="res://inventory_ui.tscn" id="26_7pqkx"]
+[ext_resource type="Script" uid="uid://qju7jxxbdgkf" path="res://player/player_inventory.gd" id="26_uw77l"]
+[ext_resource type="Texture2D" uid="uid://bhs2bffoomyul" path="res://aart/Theme/Theme Wood/nine_path_panel.png" id="27_rptt4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
 atlas = ExtResource("2_32hag")
@@ -371,6 +374,58 @@ pitch_scale = 2.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1766816698]
 remote_path = NodePath("../Camera2D")
+
+[node name="inventory_ui" type="CanvasLayer" parent="." unique_id=2009687029]
+process_mode = 3
+script = ExtResource("26_uw77l")
+
+[node name="ColorRect2" type="ColorRect" parent="inventory_ui" unique_id=2113505069]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.83137256)
+
+[node name="ColorRect" type="ColorRect" parent="inventory_ui" unique_id=1127885248]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="inventory_ui/ColorRect" unique_id=196551689]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -32.0
+offset_right = 85.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("27_rptt4")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="inventory_ui" parent="inventory_ui/ColorRect" unique_id=2137149539 instance=ExtResource("26_7pqkx")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 23.0
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]

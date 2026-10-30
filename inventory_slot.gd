@@ -1,0 +1,49 @@
+extends Control
+
+@onready var item_icon: Sprite2D = $NinePatchRect/item_icon
+@onready var item_quantity: Label = $NinePatchRect/item_quantity
+@onready var info_panel: NinePatchRect = $InfoPanel
+@onready var item_type: Label = $InfoPanel/type
+@onready var item_name: Label = $InfoPanel/name
+@onready var item_function: Label = $InfoPanel/function
+@onready var usage_panel: ColorRect = $UsagePanel
+
+var item = null
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	info_panel.visible = false
+	usage_panel.visible = false
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_item_button_mouse_entered() -> void:
+	if item != null:
+		info_panel.visible = true
+
+func _on_item_button_mouse_exited() -> void:
+	if item != null:
+		info_panel.visible = false
+
+func _on_item_button_pressed() -> void:
+	usage_panel.visible = !usage_panel.visible
+
+func set_empty():
+	item_icon.texture=null
+	item_quantity.text = ""
+	
+func set_item(new_item):
+	item = new_item
+	item_icon.texture = new_item["texture"]
+	item_quantity.text = str(item["quantity"])
+	item_name.text = str(item["name"])
+	item_type.text = str(item["type"])
+	if item["function"]!="":
+		item_function.text = str("+ ", item["function"])
+	else:
+		item_function.text = ""

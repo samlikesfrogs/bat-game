@@ -5,6 +5,7 @@ class_name Player
 @export var max_hp: int = 6
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
+@onready var inventory_ui = $inventory_ui
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO

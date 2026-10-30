@@ -5,8 +5,7 @@ var inventory_size:int
 signal inventory_updated
 
 func _ready():
-	inventory_size = 30
-	inventory.resize(inventory_size)
+	inventory.resize(27)
 	
 func add_item(item):
 	print("no", inventory)
