@@ -2,14 +2,14 @@ extends Control
 @onready var grid_container: GridContainer = $GridContainer
 @onready var inventory_slot_scene = preload("res://inventory_slot.tscn")
 var dragged_slot = null
-@export var joystick_sensitivity: float = 600.0
+@export var joystick_sensitivity: float = 400.0
 @export var joy_device: int = 0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	InventoryManager.inventory_updated.connect(_on_inventory_updated)
 	_on_inventory_updated()
-	get_viewport().warp_mouse(Vector2(0,0))
+	get_viewport().warp_mouse(Vector2(9,7))
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _process(delta: float) -> void:
@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 			var current_pos = get_viewport().get_mouse_position()
 			var new_pos = get_viewport().get_mouse_position() + (input_vector * joystick_sensitivity * delta)
 			get_viewport().warp_mouse(new_pos)
+	elif get_tree().paused == true:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 

@@ -47,19 +47,27 @@ func set_item(new_item):
 	else:
 		item_function.text = ""
 
-
-
-func _on_item_button_gui_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("click"):
-		if item != null:
-			usage_panel.visible = !usage_panel.visible
+func _on_item_button_gui_input(event: InputEvent) -> void:	
 	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			print("click pressed")
+			if item != null:
+				usage_panel.visible = !usage_panel.visible
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
 				drag_start.emit(self)
 			else:
 				drag_end.emit()
-
+	elif event is InputEventJoypadButton:
+			if event.button_index == JOY_BUTTON_A and event.pressed:
+				var JoyClick = InputEventMouseButton.new()
+				JoyClick.button_index = MOUSE_BUTTON_RIGHT
+				JoyClick.position = get_viewport().get_mouse_position()
+				JoyClick.pressed = true
+				Input.parse_input_event(JoyClick)
+				JoyClick.pressed = false
+				Input.parse_input_event(JoyClick)
+		
 
 func _on_drop_pressed() -> void:
 	if item != null:
