@@ -22,6 +22,9 @@ signal shoot
 signal player_damaged(hurt_box:HurtBox)
 signal player_destroyed(hurt_box:HurtBox)
 
+var using_controller: bool = false
+var connected_joypads
+
 func _ready():
 	update_hp(99)
 	hit_box.Damaged.connect(_take_damage)
@@ -32,6 +35,13 @@ func _ready():
 	can_shoot = true
 	
 func _process(_delta):
+	connected_joypads = Input.get_connected_joypads()
+	if connected_joypads.size() > 0:
+		using_controller = true
+		print("Controller detected: ", Input.get_joy_name(connected_joypads[0]))
+	else:
+		using_controller = false
+		print("No controller found. Using keyboard/mouse.")
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	if Input.is_action_just_pressed("attack") and can_shoot:
 		shoot.emit(position, cardinal_dir)

@@ -50,16 +50,15 @@ func set_item(new_item):
 
 
 func _on_item_button_gui_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("click"):
+		if item != null:
+			usage_panel.visible = !usage_panel.visible
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
-			if item != null:
-				usage_panel.visible = !usage_panel.visible
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
 				drag_start.emit(self)
 			else:
 				drag_end.emit()
-	pass # Replace with function body.
 
 
 func _on_drop_pressed() -> void:
