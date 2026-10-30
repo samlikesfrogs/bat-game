@@ -127,17 +127,6 @@ offset_right = 40.0
 offset_bottom = 24.0
 color = Color(1, 1, 1, 0)
 
-[node name="InfoPanel4" type="NinePatchRect" parent="UsagePanel" unique_id=2105507599]
-layout_mode = 0
-offset_right = 22.0
-offset_bottom = 21.0
-texture = ExtResource("2_75pi0")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
 [node name="InfoPanel2" type="NinePatchRect" parent="UsagePanel" unique_id=242928203]
 layout_mode = 0
 offset_right = 22.0
@@ -194,6 +183,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_r7pn3")
 text = "Drop
 "
 
+[connection signal="gui_input" from="ItemButton" to="." method="_on_item_button_gui_input"]
 [connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
 [connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
-[connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="pressed" from="UsagePanel/drop" to="." method="_on_drop_pressed"]

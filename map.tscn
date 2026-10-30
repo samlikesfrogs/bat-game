@@ -16,8 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://0l8ixxfrf27j" path="res://aart/tiles/shadowtile.png" id="12_wbpbn"]
 [ext_resource type="Texture2D" uid="uid://dev1f8ulbgl62" path="res://aart/decorations/rocks.png" id="14_4on3e"]
 [ext_resource type="PackedScene" uid="uid://bfsnollsnrmie" path="res://inventory_item.tscn" id="17_4on3e"]
-[ext_resource type="Texture2D" uid="uid://bv7anu3ryq0d6" path="res://aart/Egg_item.png" id="18_bssq0"]
+[ext_resource type="Texture2D" uid="uid://bmf0y7ccier5s" path="res://aart/wheat.png" id="18_4on3e"]
 [ext_resource type="PackedScene" uid="uid://csmi717a3mp8p" path="res://player_spawner.tscn" id="19_bssq0"]
+[ext_resource type="Texture2D" uid="uid://bv7anu3ryq0d6" path="res://aart/Egg_item.png" id="19_jk4ss"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wjonb"]
 
@@ -1592,6 +1593,7 @@ agent_radius = 12.0
 y_sort_enabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=768260860]
+process_mode = 3
 position = Vector2(98, 572)
 stream = ExtResource("1_4on3e")
 volume_db = -22.348
@@ -1670,10 +1672,25 @@ use_edge_connections = false
 position = Vector2(275, 741)
 
 [node name="inventory_item" parent="." unique_id=2028360572 instance=ExtResource("17_4on3e")]
-z_index = 2
 y_sort_enabled = true
 position = Vector2(198, 409)
+item_type = "seed"
+item_name = "wheat"
+item_texture = ExtResource("18_4on3e")
+item_function = "plant"
+
+[node name="inventory_item2" parent="." unique_id=688376658 instance=ExtResource("17_4on3e")]
+y_sort_enabled = true
+position = Vector2(402, 415)
 item_type = "food"
 item_name = "egg"
-item_texture = ExtResource("18_bssq0")
+item_texture = ExtResource("19_jk4ss")
+item_function = "eat"
+
+[node name="inventory_item3" parent="." unique_id=62656656 instance=ExtResource("17_4on3e")]
+y_sort_enabled = true
+position = Vector2(458, 469)
+item_type = "food"
+item_name = "egg2"
+item_texture = ExtResource("19_jk4ss")
 item_function = "eat"

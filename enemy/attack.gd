@@ -56,5 +56,5 @@ func _on_enemy_sprite_animation_finished() -> void:
 
 func _on_enemy_sprite_frame_changed() -> void:
 	i+=1
-	if i == 2:
+	if i == 2 and state_machine.current_state == self:
 		sfx_enemy_attack.play()

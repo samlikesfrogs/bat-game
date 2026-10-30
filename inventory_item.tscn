@@ -5,6 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jgn8"]
 
 [node name="inventory_item" type="Node2D" unique_id=2028360572 groups=["items"]]
+z_index = 2
 script = ExtResource("1_gmchj")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1483051641]

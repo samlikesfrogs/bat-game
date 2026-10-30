@@ -5,10 +5,9 @@ class_name State_Walk extends State
 @onready var attack:State = $"../attack"
 @onready var sfx_walk: AudioStreamPlayer2D = $sfx_walk
 var anim_name = "walk"
-var i:int
+var i:int=0
 
 func Enter() -> void:
-	i = 0
 	player.updateAnim("walk")
 	pass
 	
@@ -38,12 +37,12 @@ func HandleInput(_event:InputEvent)  -> State:
 
 func _on_player_sprite_frame_changed() -> void:
 	if $"../../PlayerSprite".animation == anim_name + "_" + player.AnimDirection():
-		if i%3==0 or i == 0:
+		if i%3==0 or i == 1:
 			sfx_walk.play()
 		i+=1
 
 func _on_player_sprite_animation_changed() -> void:
 	if $"../../PlayerSprite".animation == anim_name + "_" + get_tree().get_first_node_in_group("player").AnimDirection():
-		if i%3==0 or i == 0:
+		if i%3==0 or i == 1:
 			sfx_walk.play()
 		i+=1

@@ -4,7 +4,7 @@ extends Node2D
 @export var item_name:String
 @export var item_texture:Texture
 @export var item_function:String
-var _scene = "res://inventory_item.tscn"
+var item_scene:PackedScene = preload("res://inventory_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 var player_in_range = false
 
@@ -25,7 +25,7 @@ func pickup_item():
 		"name":item_name,
 		"function":item_function,
 		"texture":item_texture,
-		"scene":_scene,
+		"scene":item_scene,
 		}
 	InventoryManager.add_item(item)
 	self.queue_free()
@@ -37,3 +37,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = false
+
+func set_item_data(data):
+	item_type = data["type"]
+	item_name = data["name"]
+	item_function = data["function"]
+	item_texture = data["texture"]

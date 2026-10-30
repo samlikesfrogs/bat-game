@@ -6,6 +6,7 @@ class_name Player
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 @onready var inventory_ui = $inventory_ui
+@onready var hotbar: CanvasLayer = $hotbar
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
@@ -100,3 +101,8 @@ func make_invulnerable( _duration) -> void:
 	
 	invulnerable = false
 	$HitBox/CollisionShape2D.set_deferred("disabled", false)
+	
+func apply_item_effect(item):
+	match item["effect"]:
+		_:
+			print("none")
