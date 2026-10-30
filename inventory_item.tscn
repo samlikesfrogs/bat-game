@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bfsnollsnrmie"]
+
+[ext_resource type="Script" uid="uid://b63k0dtpcwb5q" path="res://inventory_item.gd" id="1_gmchj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jgn8"]
+
+[node name="inventory_item" type="Node2D" unique_id=2028360572 groups=["items"]]
+script = ExtResource("1_gmchj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1483051641]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=845452519]
+shape = SubResource("CircleShape2D_7jgn8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2102545923]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

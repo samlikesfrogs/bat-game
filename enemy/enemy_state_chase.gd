@@ -45,13 +45,13 @@ func process(_delta:float)->EnemyState:
 		player_in = false
 		can_attack = false
 		state_machine.ChangeState($"../attack")
-		attack_cooldown = randi_range(2.4, 3.2)
+		attack_cooldown = randf_range(2.4, 3.2)
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown < 0:
 			can_attack = true
 	navigation_agent_2d.target_position = player.global_position
-	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 2*_delta)
+	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 5*_delta)
 	if navigation_agent_2d.is_target_reached() == false:
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()

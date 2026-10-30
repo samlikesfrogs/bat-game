@@ -5,7 +5,6 @@ class_name EnemyStateDestroy extends EnemyState
 
 var _animation_finished:bool=false
 var _direction : Vector2
-var _damage_position
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 
@@ -42,7 +41,7 @@ func _process(_delta: float) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	_animation_finished = true
 
-func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
+func _on_enemy_enemy_destroyed(_hurt_box: HurtBox) -> void:
 	state_machine.ChangeState(self)
 	await get_tree().create_timer(2).timeout
 	if _animation_finished:

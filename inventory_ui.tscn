@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dcfq6rdhx3frq"]
+
+[node name="inventory_ui" type="Control" unique_id=2137149539]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
