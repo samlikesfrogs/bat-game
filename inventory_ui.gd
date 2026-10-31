@@ -53,6 +53,7 @@ func on_drag_end():
 	if target_slot and dragged_slot != target_slot:
 		drop_slot(dragged_slot, target_slot)
 	elif dragged_slot != target_slot:
+		print("this is true for some reason")
 		var drop_position = PlayerManager.player.global_position
 		var drop_offset = Vector2(50,0)
 		drop_offset = drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())

@@ -60,13 +60,15 @@ func _on_item_button_gui_input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton:
-			if event.button_index == JOY_BUTTON_B and event.pressed:
+			if event.button_index == JOY_BUTTON_B:
 				if Rect2($NinePatchRect.global_position, $NinePatchRect.size).has_point(get_global_mouse_position()):
-					drag_start.emit(self)
-				elif Rect2($UsagePanel.global_position, $UsagePanel.size).has_point(get_global_mouse_position()):
-					_on_drop_pressed()
-				else:
-					drag_end.emit()
+					if event.pressed:
+						drag_start.emit(self)
+					else:
+						drag_end.emit()
+				#elif Rect2($UsagePanel.global_position, $UsagePanel.size).has_point(get_global_mouse_position()):
+				#	_on_drop_pressed()
+				
 
 func toggle_usage_panel():
 	if item != null:

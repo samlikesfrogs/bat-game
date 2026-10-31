@@ -57,6 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7jgn8")
 action_mode = 0
+keep_pressed_outside = true
 
 [node name="InfoPanel" type="NinePatchRect" parent="." unique_id=1088863496]
 layout_mode = 0
@@ -124,6 +125,7 @@ theme_override_font_sizes/font_size = 8
 text = "function"
 
 [node name="UsagePanel" type="ColorRect" parent="." unique_id=1608723833]
+visible = false
 z_index = 2
 layout_mode = 0
 offset_top = -22.0
