@@ -51,8 +51,6 @@ func set_item(new_item):
 
 func _on_item_button_gui_input(event: InputEvent) -> void:	
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			toggle_usage_panel()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
 				drag_start.emit(self)
@@ -62,28 +60,21 @@ func _on_item_button_gui_input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton:
 			if event.button_index == JOY_BUTTON_B:
-				if Rect2($ItemButton.global_position, $ItemButton.size).has_point(get_global_mouse_position()):
-					$ItemButton.toggle_mode = true
-					$ItemButton.button_pressed = true
-					print($ItemButton.button_pressed)
-				if event.is_pressed() and $ItemButton.button_pressed:
+				if Rect2($NinePatchRect/ItemButton.global_position, $NinePatchRect/ItemButton.size).has_point(get_global_mouse_position()):
+					$NinePatchRect/ItemButton.toggle_mode = true
+					$NinePatchRect/ItemButton.button_pressed = true
+					print($NinePatchRect/ItemButton.button_pressed)
+				if event.is_pressed() and $NinePatchRect/ItemButton.button_pressed:
 						drag_start.emit(self)
 				elif not event.is_pressed():
-					$ItemButton.toggle_mode = false
+					$NinePatchRect/ItemButton.toggle_mode = false
 					print("doing this")
 					drag_end.emit()
-				#elif Rect2($UsagePanel.global_position, $UsagePanel.size).has_point(get_global_mouse_position()):
-				#	_on_drop_pressed()
 				
-
-func toggle_usage_panel():
-	if item != null:
-		usage_panel.visible = !usage_panel.visible
-
 func _on_drop_pressed() -> void:
 	if item != null:
 		var drop_position = PlayerManager.player.global_position
-		var drop_offset = Vector2(0, 50)
+		var drop_offset = Vector2(0, 30)
 		drop_offset=drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
 		InventoryManager.drop_item(item, drop_position+drop_offset)
 		InventoryManager.remove_item(item["name"])
