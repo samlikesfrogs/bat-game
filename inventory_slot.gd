@@ -14,8 +14,8 @@ var item = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if PlayerManager.player.using_controller == true:
-		$ItemButton.grab_focus()
+	#if PlayerManager.player.using_controller == true:
+	#	$ItemButton.grab_focus()
 	info_panel.visible = false
 	usage_panel.visible = false
 	pass # Replace with function body.
@@ -62,11 +62,16 @@ func _on_item_button_gui_input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton:
 			if event.button_index == JOY_BUTTON_B:
-				if Rect2($NinePatchRect.global_position, $NinePatchRect.size).has_point(get_global_mouse_position()):
-					if event.pressed:
+				if Rect2($ItemButton.global_position, $ItemButton.size).has_point(get_global_mouse_position()):
+					$ItemButton.toggle_mode = true
+					$ItemButton.button_pressed = true
+					print($ItemButton.button_pressed)
+				if event.is_pressed() and $ItemButton.button_pressed:
 						drag_start.emit(self)
-					else:
-						drag_end.emit()
+				elif not event.is_pressed():
+					$ItemButton.toggle_mode = false
+					print("doing this")
+					drag_end.emit()
 				#elif Rect2($UsagePanel.global_position, $UsagePanel.size).has_point(get_global_mouse_position()):
 				#	_on_drop_pressed()
 				

@@ -6,10 +6,10 @@ var dragged_slot = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	InventoryManager.inventory_updated.connect(_on_inventory_updated)
-	_on_inventory_updated()
 	get_viewport().warp_mouse(Vector2(9,7))
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	InventoryManager.inventory_updated.connect(_on_inventory_updated)
+	_on_inventory_updated()
 
 func _process(delta: float) -> void:
 	if PlayerManager.player.using_controller and get_tree().paused == true:
@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _on_inventory_updated():
-	
 	clear_grid()
 	for item in InventoryManager.inventory:
 		var slot = inventory_slot_scene.instantiate()
@@ -37,6 +36,7 @@ func _on_inventory_updated():
 			slot.set_item(item)
 		else:
 			slot.set_empty()
+		#get_tree().get_root().get_node("ItemButton").grab_focus()
 	pass
 
 func clear_grid():
@@ -47,13 +47,13 @@ func clear_grid():
 		
 func on_drag_start(slot_control:Control):
 	dragged_slot = slot_control
+	print(dragged_slot)
 	
 func on_drag_end():
 	var target_slot = get_hovered_slot()
 	if target_slot and dragged_slot != target_slot:
 		drop_slot(dragged_slot, target_slot)
 	elif dragged_slot != target_slot:
-		print("this is true for some reason")
 		var drop_position = PlayerManager.player.global_position
 		var drop_offset = Vector2(50,0)
 		drop_offset = drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())

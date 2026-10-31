@@ -6,6 +6,9 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jgn8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75pi0"]
+bg_color = Color(0.9254902, 0.9254902, 0.9254902, 0.44705883)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rptt4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7pn3"]
@@ -57,6 +60,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7jgn8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_75pi0")
+toggle_mode = true
 action_mode = 0
 keep_pressed_outside = true
 

@@ -8,6 +8,7 @@ class_name Player
 @onready var inventory_ui = $inventory_ui
 @onready var hotbar: CanvasLayer = $hotbar
 
+var last_angle: float = 0.0
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var view
@@ -57,6 +58,10 @@ func _physics_process(_delta):
 func setDirection() -> bool:
 	if direction == Vector2.ZERO:
 		return false
+		
+	var current_angle = direction.angle()
+	if cardinal_dir != Vector2.ZERO and abs(angle_difference(current_angle, last_angle)) < 0.2:
+		return false
 	
 	var direction_id:int=int(round(
 		(direction).angle()
@@ -68,6 +73,7 @@ func setDirection() -> bool:
 		return false
 		
 	cardinal_dir = new_dir
+	last_angle = current_angle
 	$PlayerSprite.flip_h = true if cardinal_dir == Vector2.RIGHT else false
 	$PlayerSprite.offset.x = 3 if cardinal_dir == Vector2.RIGHT else 0
 	return true
