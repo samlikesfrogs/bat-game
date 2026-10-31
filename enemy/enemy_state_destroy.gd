@@ -7,11 +7,13 @@ var _direction : Vector2
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 @export var enemy_drop_rate: int = 3
+var _position
 
 func init() -> void:
 	pass
 
 func enter()-> void:
+	_position = enemy.global_position
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	sfx_enemy_hurt.play()
 	gpu_particles_2d.rotation = get_tree().get_first_node_in_group("player").cardinal_dir.angle()
@@ -24,7 +26,6 @@ func enter()-> void:
 	enemy.updateAnim(anim_name)
 	await get_tree().create_timer(0.5).timeout
 	sfx_enemy_die.play()
-	drop_rand_items(enemy_drop_rate)
 	
 func exit()->void:
 	pass
@@ -47,13 +48,14 @@ func _on_enemy_enemy_destroyed(_hurt_box: HurtBox) -> void:
 	await get_tree().create_timer(2).timeout
 	if _animation_finished:
 		var tween := create_tween()
-		tween.tween_property(enemy, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
-		tween.finished.connect(enemy.queue_free)
+		tween.tween_property(enemy.sprite, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
+		drop_rand_items(enemy_drop_rate)
+		#tween.finished.connect(enemy.queue_free)
 		
 func drop_rand_items(count):
 	var dropped = 0
 	while dropped < count:
-		var position = enemy.global_position
+		var position = _position
 		drop_item(enemy.spawnable_items[randi()% enemy.spawnable_items.size()], position)
 		dropped += 1
 		
@@ -62,3 +64,4 @@ func drop_item(data, position):
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
 	item_instance.global_position = position
 	enemy.items.add_child(item_instance)
+	print("done")

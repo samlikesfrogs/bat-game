@@ -9,8 +9,6 @@ class_name Enemy
 @export var spawnable_items: Array = [{"type":"seed", "name":"wheat", "function":" ", "texture":preload("res://aart/decorations/wheat.png")}, 
 {"type":"seed", "name":"pomegranate", "function":" ", "texture":preload("res://aart/decorations/pomegranate.png")}]
 @onready var items: Node2D = $items
-@onready var item_spawn: Area2D = $ItemSpawn
-@onready var collision_shape_2d: CollisionShape2D = $ItemSpawn/CollisionShape2D
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
