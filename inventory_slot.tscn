@@ -10,6 +10,9 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7pn3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfyh4"]
+bg_color = Color(0.105882354, 0.105882354, 0.105882354, 0.5176471)
+
 [node name="inventory_slot" type="Control" unique_id=1488793917]
 custom_minimum_size = Vector2(16, 16)
 custom_maximum_size = Vector2(150, -1)
@@ -52,15 +55,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7jgn8")
 action_mode = 0
 
 [node name="InfoPanel" type="NinePatchRect" parent="." unique_id=1088863496]
 layout_mode = 0
-offset_top = -33.0
-offset_right = 48.0
-offset_bottom = -3.0
+offset_left = -49.0
+offset_top = -14.0
+offset_right = -1.0
+offset_bottom = 16.0
 texture = ExtResource("2_75pi0")
 region_rect = Rect2(0, 0, 16, 16)
 patch_margin_left = 8
@@ -123,10 +126,9 @@ text = "function"
 [node name="UsagePanel" type="ColorRect" parent="." unique_id=1608723833]
 z_index = 2
 layout_mode = 0
-offset_left = 18.0
-offset_top = 3.0
-offset_right = 40.0
-offset_bottom = 24.0
+offset_top = -22.0
+offset_right = 22.0
+offset_bottom = -1.0
 color = Color(1, 1, 1, 0)
 
 [node name="InfoPanel2" type="NinePatchRect" parent="UsagePanel" unique_id=242928203]
@@ -182,10 +184,13 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_kiat1")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_r7pn3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bfyh4")
+action_mode = 0
 text = "Drop
 "
 
 [connection signal="gui_input" from="ItemButton" to="." method="_on_item_button_gui_input"]
 [connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
 [connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
+[connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
 [connection signal="pressed" from="UsagePanel/drop" to="." method="_on_drop_pressed"]

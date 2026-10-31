@@ -14,6 +14,7 @@ var item = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ItemButton.grab_focus()
 	info_panel.visible = false
 	usage_panel.visible = false
 	pass # Replace with function body.
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
 
 
 func _on_item_button_mouse_entered() -> void:
-	if item != null:
+	if item != null and usage_panel.visible == false:
 		info_panel.visible = true
 
 func _on_item_button_mouse_exited() -> void:
@@ -50,24 +51,26 @@ func set_item(new_item):
 func _on_item_button_gui_input(event: InputEvent) -> void:	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			print("click pressed")
-			if item != null:
-				usage_panel.visible = !usage_panel.visible
+			toggle_usage_panel()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
 				drag_start.emit(self)
 			else:
 				drag_end.emit()
-	elif event is InputEventJoypadButton:
-			if event.button_index == JOY_BUTTON_A and event.pressed:
-				var JoyClick = InputEventMouseButton.new()
-				JoyClick.button_index = MOUSE_BUTTON_RIGHT
-				JoyClick.position = get_viewport().get_mouse_position()
-				JoyClick.pressed = true
-				Input.parse_input_event(JoyClick)
-				JoyClick.pressed = false
-				Input.parse_input_event(JoyClick)
-		
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton:
+			if event.button_index == JOY_BUTTON_B and event.pressed:
+				if Rect2($NinePatchRect.global_position, $NinePatchRect.size).has_point(get_global_mouse_position()):
+					drag_start.emit(self)
+				elif Rect2($UsagePanel.global_position, $UsagePanel.size).has_point(get_global_mouse_position()):
+					_on_drop_pressed()
+				else:
+					drag_end.emit()
+
+func toggle_usage_panel():
+	if item != null:
+		usage_panel.visible = !usage_panel.visible
 
 func _on_drop_pressed() -> void:
 	if item != null:
