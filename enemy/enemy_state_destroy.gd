@@ -2,11 +2,11 @@ class_name EnemyStateDestroy extends EnemyState
 
 @export var anim_name:String="die"
 @onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
-
 var _animation_finished:bool=false
 var _direction : Vector2
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
+@export var enemy_drop_rate: int = 3
 
 func init() -> void:
 	pass
@@ -24,6 +24,7 @@ func enter()-> void:
 	enemy.updateAnim(anim_name)
 	await get_tree().create_timer(0.5).timeout
 	sfx_enemy_die.play()
+	drop_rand_items(enemy_drop_rate)
 	
 func exit()->void:
 	pass
@@ -48,3 +49,16 @@ func _on_enemy_enemy_destroyed(_hurt_box: HurtBox) -> void:
 		var tween := create_tween()
 		tween.tween_property(enemy, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
 		tween.finished.connect(enemy.queue_free)
+		
+func drop_rand_items(count):
+	var dropped = 0
+	while dropped < count:
+		var position = enemy.global_position
+		drop_item(enemy.spawnable_items[randi()% enemy.spawnable_items.size()], position)
+		dropped += 1
+		
+func drop_item(data, position):
+	var item_instance = preload("res://inventory_item.tscn").instantiate()
+	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
+	item_instance.global_position = position
+	enemy.items.add_child(item_instance)

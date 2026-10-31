@@ -63,18 +63,16 @@ func _unhandled_input(event: InputEvent) -> void:
 				if Rect2($NinePatchRect/ItemButton.global_position, $NinePatchRect/ItemButton.size).has_point(get_global_mouse_position()):
 					$NinePatchRect/ItemButton.toggle_mode = true
 					$NinePatchRect/ItemButton.button_pressed = true
-					print($NinePatchRect/ItemButton.button_pressed)
 				if event.is_pressed() and $NinePatchRect/ItemButton.button_pressed:
 						drag_start.emit(self)
 				elif not event.is_pressed():
 					$NinePatchRect/ItemButton.toggle_mode = false
-					print("doing this")
 					drag_end.emit()
 				
 func _on_drop_pressed() -> void:
 	if item != null:
 		var drop_position = PlayerManager.player.global_position
-		var drop_offset = Vector2(0, 30)
+		var drop_offset = Vector2(0, 10)
 		drop_offset=drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
 		InventoryManager.drop_item(item, drop_position+drop_offset)
 		InventoryManager.remove_item(item["name"])

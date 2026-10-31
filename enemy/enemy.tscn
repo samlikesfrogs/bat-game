@@ -672,6 +672,8 @@ damping_max = 800.00006
 scale_max = 3.0
 color_ramp = SubResource("GradientTexture1D_wqxq1")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgn8"]
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1672910458]
 z_index = 2
 collision_layer = 256
@@ -821,6 +823,17 @@ preprocess = 0.03
 explosiveness = 1.0
 randomness = 0.59
 process_material = SubResource("ParticleProcessMaterial_7jgn8")
+
+[node name="items" type="Node2D" parent="." unique_id=462822883]
+position = Vector2(0, 10)
+scale = Vector2(0.7, 0.7)
+
+[node name="ItemSpawn" type="Area2D" parent="." unique_id=1687083000]
+position = Vector2(0, 10)
+scale = Vector2(0.7, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemSpawn" unique_id=1601099078]
+shape = SubResource("RectangleShape2D_7jgn8")
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]

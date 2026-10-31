@@ -31,6 +31,7 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale=3.0
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://08qwf1s11fd1"
 
 [editor]
 
@@ -115,6 +116,7 @@ joypads/ignore_joypad_on_unfocused_application=true
 2d_physics/layer_4="bullet"
 2d_physics/layer_5="walls"
 2d_physics/layer_6="wallsforenemyonly"
+2d_physics/layer_7="items"
 2d_physics/layer_9="enemy"
 
 [physics]

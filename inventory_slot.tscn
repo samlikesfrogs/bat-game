@@ -2,12 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cvj077pnqncxn" path="res://inventory_slot.gd" id="1_42eed"]
 [ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="2_75pi0"]
+[ext_resource type="Texture2D" uid="uid://dbuqmp03hxstd" path="res://aart/inventory_select.png" id="4_75pi0"]
 [ext_resource type="FontFile" uid="uid://dd81h008hxeyn" path="res://quaver.ttf" id="4_kiat1"]
+[ext_resource type="FontFile" uid="uid://c1tpdh11d0q75" path="res://3x5-Microfont.ttf" id="5_kiat1"]
+[ext_resource type="Texture2D" uid="uid://p3orce7xom2b" path="res://aart/inventory_hover.png" id="5_rhcms"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jgn8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75pi0"]
-bg_color = Color(0.9254902, 0.9254902, 0.9254902, 0.44705883)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75pi0"]
+texture = ExtResource("4_75pi0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rhcms"]
+texture = ExtResource("5_rhcms")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rptt4"]
 
@@ -39,6 +45,20 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="ItemButton" type="Button" parent="NinePatchRect" unique_id=105416547]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7jgn8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_75pi0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rhcms")
+toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+
 [node name="item_icon" type="Sprite2D" parent="NinePatchRect" unique_id=1089445149]
 position = Vector2(8, 8)
 
@@ -48,22 +68,9 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 14.0
 offset_bottom = 14.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_kiat1")
+theme_override_colors/font_color = Color(0.9843137, 0.99607843, 0.8745098, 1)
+theme_override_fonts/font = ExtResource("5_kiat1")
 theme_override_font_sizes/font_size = 8
-
-[node name="ItemButton" type="Button" parent="." unique_id=105416547]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7jgn8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_75pi0")
-toggle_mode = true
-action_mode = 0
-keep_pressed_outside = true
 
 [node name="InfoPanel" type="NinePatchRect" parent="." unique_id=1088863496]
 layout_mode = 0
@@ -93,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
 theme_override_colors/font_outline_color = Color(0.072842635, 0.072842635, 0.072842635, 1)
-theme_override_fonts/font = ExtResource("4_kiat1")
+theme_override_fonts/font = ExtResource("5_kiat1")
 theme_override_font_sizes/font_size = 8
 text = "type"
 
@@ -108,7 +115,7 @@ offset_right = 20.0
 offset_bottom = 10.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_kiat1")
+theme_override_fonts/font = ExtResource("5_kiat1")
 theme_override_font_sizes/font_size = 8
 text = "name"
 
@@ -126,7 +133,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.33660764, 0.3366076, 0.3366076, 1)
-theme_override_fonts/font = ExtResource("4_kiat1")
+theme_override_fonts/font = ExtResource("5_kiat1")
 theme_override_font_sizes/font_size = 8
 text = "function"
 
@@ -197,8 +204,8 @@ action_mode = 0
 text = "Drop
 "
 
-[connection signal="gui_input" from="ItemButton" to="." method="_on_item_button_gui_input"]
-[connection signal="mouse_entered" from="ItemButton" to="." method="_on_item_button_mouse_entered"]
-[connection signal="mouse_exited" from="ItemButton" to="." method="_on_item_button_mouse_exited"]
-[connection signal="pressed" from="ItemButton" to="." method="_on_item_button_pressed"]
+[connection signal="gui_input" from="NinePatchRect/ItemButton" to="." method="_on_item_button_gui_input"]
+[connection signal="mouse_entered" from="NinePatchRect/ItemButton" to="." method="_on_item_button_mouse_entered"]
+[connection signal="mouse_exited" from="NinePatchRect/ItemButton" to="." method="_on_item_button_mouse_exited"]
+[connection signal="pressed" from="NinePatchRect/ItemButton" to="." method="_on_item_button_pressed"]
 [connection signal="pressed" from="UsagePanel/drop" to="." method="_on_drop_pressed"]

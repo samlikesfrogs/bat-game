@@ -47,7 +47,6 @@ func clear_grid():
 		
 func on_drag_start(slot_control:Control):
 	dragged_slot = slot_control
-	print(dragged_slot)
 	
 func on_drag_end():
 	var target_slot = get_hovered_slot()

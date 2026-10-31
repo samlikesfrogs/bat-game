@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name InventoryItem extends Node2D
 @export var item_type:String
 @export var item_name:String
 @export var item_texture:Texture
@@ -43,3 +43,9 @@ func set_item_data(data):
 	item_name = data["name"]
 	item_function = data["function"]
 	item_texture = data["texture"]
+	
+func instance_item(type, name, function, texture):
+	item_type = type
+	item_name = name
+	item_function = function
+	item_texture = texture

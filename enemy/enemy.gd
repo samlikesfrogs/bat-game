@@ -3,10 +3,14 @@ class_name Enemy
 #why can this mf jump into a cactus
 @export var hp: int = 3
 @export var aggrorange: = 128
-
 @onready var sprite:AnimatedSprite2D = $EnemySprite
 @onready var _hit_box: HitBox = $HitBox
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
+@export var spawnable_items: Array = [{"type":"seed", "name":"wheat", "function":" ", "texture":preload("res://aart/decorations/wheat.png")}, 
+{"type":"seed", "name":"pomegranate", "function":" ", "texture":preload("res://aart/decorations/pomegranate.png")}]
+@onready var items: Node2D = $items
+@onready var item_spawn: Area2D = $ItemSpawn
+@onready var collision_shape_2d: CollisionShape2D = $ItemSpawn/CollisionShape2D
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
@@ -71,3 +75,4 @@ func _take_damage(hurt_box:HurtBox) -> void:
 		enemy_damaged.emit(hurt_box)
 	else:
 		enemy_destroyed.emit(hurt_box)
+		
