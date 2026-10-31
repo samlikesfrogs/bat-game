@@ -48,7 +48,7 @@ func swap_inventory_items(index1, index2):
 	return true
 	
 func adjust_drop(position):
-	var radius = 100
+	var radius = 20
 	var nearby_items = get_tree().get_nodes_in_group("items")
 	for item in nearby_items:
 		if item.global_position.distance_to(position)<radius:

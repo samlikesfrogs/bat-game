@@ -22,6 +22,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 26.0
 offset_bottom = 26.0
+focus_mode = 2
 script = ExtResource("1_42eed")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1409232665]

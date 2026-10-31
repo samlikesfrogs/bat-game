@@ -7,12 +7,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
+focus_mode = 2
 script = ExtResource("1_5v8q7")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1718098722]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 48.0
+focus_mode = 2
 theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 columns = 9

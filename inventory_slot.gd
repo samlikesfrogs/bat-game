@@ -14,7 +14,8 @@ var item = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$ItemButton.grab_focus()
+	if PlayerManager.player.using_controller == true:
+		$ItemButton.grab_focus()
 	info_panel.visible = false
 	usage_panel.visible = false
 	pass # Replace with function body.

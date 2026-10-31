@@ -3,7 +3,6 @@ extends Control
 @onready var inventory_slot_scene = preload("res://inventory_slot.tscn")
 var dragged_slot = null
 @export var joystick_sensitivity: float = 400.0
-@export var joy_device: int = 0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -16,7 +15,7 @@ func _process(delta: float) -> void:
 	if PlayerManager.player.using_controller and get_tree().paused == true:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		var input_vector := Input.get_vector(
-			"left", "right", "up", "down")
+			"ui_left", "ui_right", "ui_up", "ui_down")
 		if input_vector != Vector2.ZERO:
 			var current_pos = get_viewport().get_mouse_position()
 			var new_pos = get_viewport().get_mouse_position() + (input_vector * joystick_sensitivity * delta)
@@ -27,6 +26,7 @@ func _process(delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _on_inventory_updated():
+	
 	clear_grid()
 	for item in InventoryManager.inventory:
 		var slot = inventory_slot_scene.instantiate()
