@@ -1,6 +1,7 @@
 Oasis (working title)
 
-<img width="1916" height="1078" alt="Screenshot 2026-10-24 225106" src="https://github.com/user-attachments/assets/6fb0d182-b743-462d-bca8-f2aa7cf5c251" />
+<img width="1919" height="1199" alt="Screenshot 2026-11-01 175422" src="https://github.com/user-attachments/assets/6ec1c058-63a3-4519-b3d0-279642a29780" />
+
 
 What is it:
 
