@@ -13,12 +13,13 @@ var _direction : Vector2
 var _player_visible: bool = false
 var animation_finished:bool
 var player_pos
-var i:int
+var i:int =0
 
 func init() -> void:
 	pass
 
 func enter()-> void:
+	print("enter", i)
 	$"../../CollisionShape2D".set_deferred("disabled", true)
 	enemy.velocity = Vector2.ZERO	
 	i = 0
@@ -26,14 +27,14 @@ func enter()-> void:
 	animation_finished = false
 	if hurt_box:
 		hurt_box.monitoring = true
-	pass
-	enemy.velocity = Vector2.ZERO	
 	
 func exit()->void:
+	i = 0
 	_player_visible = false
 	pass
 	
 func process(_delta:float)->EnemyState:
+	print("process", i)
 	if animation_finished:
 		return next_state
 	if i == 1 or i == 2:

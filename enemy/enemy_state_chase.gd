@@ -16,7 +16,7 @@ var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 var can_attack:bool
-var attack_cooldown: float 
+var attack_cooldown: float = 2.2
 var player_in:bool
 
 func init() -> void:
@@ -41,14 +41,16 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
+	print(can_attack, player_in)
 	if can_attack and player_in:
+		print("why is bro not attackin")
+		state_machine.ChangeState($"../attack")
 		player_in = false
 		can_attack = false
-		state_machine.ChangeState($"../attack")
-		attack_cooldown = randf_range(2.4, 3.2)
+		attack_cooldown = 2.2
 	if not can_attack:
 		attack_cooldown -=_delta
-		if attack_cooldown < 0:
+		if attack_cooldown <= 0:
 			can_attack = true
 	navigation_agent_2d.target_position = player.global_position
 	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 5*_delta)
@@ -72,7 +74,7 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateAttack):
 		return
 	state_machine.ChangeState(self)
-	if enemy.global_position.distance_to(player.global_position) > 60 and enemy.global_position.distance_to(player.global_position) <160:
+	if enemy.global_position.distance_to(PlayerManager.player.global_position) >30:
 		player_in = true
 	else: 
 		player_in = false

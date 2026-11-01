@@ -226,7 +226,7 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jgn8"]
 animations = [{
 "frames": [{
-"duration": 1.4,
+"duration": 1.9,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -243,7 +243,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.4,
+"duration": 1.9,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -260,7 +260,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.4,
+"duration": 1.9,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
 "duration": 1.0,
@@ -675,7 +675,7 @@ color_ramp = SubResource("GradientTexture1D_wqxq1")
 [node name="Enemy" type="CharacterBody2D" unique_id=1672910458]
 z_index = 2
 collision_layer = 256
-collision_mask = 48
+collision_mask = 304
 motion_mode = 1
 script = ExtResource("1_pmsee")
 metadata/_edit_group_ = true
@@ -684,7 +684,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"comeout_up"
+animation = &"attack_up"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -824,11 +824,13 @@ process_material = SubResource("ParticleProcessMaterial_7jgn8")
 
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
+[connection signal="direction_changed" from="." to="EnemyStateMachine/attack" method="_on_enemy_direction_changed"]
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/destroy" method="_on_enemy_enemy_destroyed"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/chase" method="_on_enemy_enemy_destroyed"]
 [connection signal="enemy_entered" from="." to="EnemyStateMachine/comeout" method="_on_enemy_enemy_entered"]
 [connection signal="animation_changed" from="EnemySprite" to="EnemyStateMachine/chase" method="_on_enemy_sprite_animation_changed"]
+[connection signal="animation_changed" from="EnemySprite" to="EnemyStateMachine/attack" method="_on_enemy_sprite_animation_changed"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/idle" method="_on_enemy_sprite_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/comeout" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="EnemySprite" to="EnemyStateMachine/stun" method="_on_animated_sprite_2d_animation_finished"]

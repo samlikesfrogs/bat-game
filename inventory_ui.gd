@@ -55,7 +55,7 @@ func on_drag_end():
 		drop_slot(dragged_slot, target_slot)
 	elif dragged_slot != target_slot:
 		var drop_position = PlayerManager.player.global_position
-		var drop_offset = Vector2(20,0)
+		var drop_offset = Vector2(25,0)
 		drop_offset = drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
 		InventoryManager.drop_item(dragged_slot.item, drop_position + drop_offset)
 		InventoryManager.remove_item(dragged_slot.item["name"])

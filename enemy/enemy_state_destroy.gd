@@ -1,7 +1,7 @@
 class_name EnemyStateDestroy extends EnemyState
 
 @export var anim_name:String="die"
-@export var knockback_speed:float = 100.0
+@export var knockback_speed:float = 50.0
 @onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
 var _animation_finished:bool=false
 var _direction : Vector2
