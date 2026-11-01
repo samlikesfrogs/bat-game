@@ -24,7 +24,6 @@ func add_item(item):
 func remove_item(item_name):
 	for i in range(inventory.size()):
 		if inventory[i]!= null and inventory[i]["name"] == item_name:
-			print(inventory[i])
 			inventory[i]["quantity"]-=1
 			if inventory[i]["quantity"] <=0:
 				inventory[i] = null

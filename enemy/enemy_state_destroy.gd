@@ -4,7 +4,7 @@ class_name EnemyStateDestroy extends EnemyState
 @export var knockback_speed:float = 100.0
 @onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
 var _animation_finished:bool=false
-var direction : Vector2
+var _direction : Vector2
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 @export var enemy_drop_rate: int = randi_range(1, 3)
@@ -17,12 +17,13 @@ func init() -> void:
 func enter()-> void:
 	sfx_enemy_hurt.play()
 	gpu_particles_2d.emitting = true
-	direction = enemy.global_position.direction_to(_damage_position)
+	_direction = (enemy.global_position).direction_to(_damage_position)
+	print(_direction)
 	gpu_particles_2d.rotation = get_tree().get_first_node_in_group("player").cardinal_dir.angle()
 	gpu_particles_2d.restart()
-	enemy.setDirection(direction)
-	print(enemy.setDirection(direction))
-	enemy.velocity=direction * -knockback_speed
+	enemy.setDirection(_direction)
+	print(enemy.setDirection(_direction))
+	enemy.velocity=_direction * -knockback_speed
 	enemy.updateAnim(anim_name)
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	Engine.time_scale=0
@@ -49,7 +50,8 @@ func _process(_delta: float) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	_animation_finished = true
 
-func _on_enemy_enemy_destroyed(_hurt_box: HurtBox) -> void:
+func _on_enemy_enemy_destroyed(hurt_box: HurtBox) -> void:
+	_damage_position = hurt_box.global_position
 	state_machine.ChangeState(self)
 	await get_tree().create_timer(2).timeout
 	if _animation_finished:
@@ -65,12 +67,10 @@ func drop_rand_items(count):
 		var position = enemy.global_position
 		drop_item(enemy.spawnable_items[randi()% enemy.spawnable_items.size()], position)
 		dropped += 1
-		print(dropped)
 		
 func drop_item(data, position):
 	var item_instance = preload("res://inventory_item.tscn").instantiate()
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
 	enemy.get_parent().call_deferred("add_child", item_instance)
 	item_instance.global_position = position
-	item_instance.velocity = (direction * -knockback_speed).rotated(randf_range(-0.8,0.8))*randf_range(0.9, 1.2)
-	print("done")
+	item_instance.velocity = (_direction * -knockback_speed).rotated(randf_range(-0.8,0.8))*randf_range(0.9, 1.2)
