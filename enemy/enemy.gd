@@ -6,8 +6,8 @@ class_name Enemy
 @onready var sprite:AnimatedSprite2D = $EnemySprite
 @onready var _hit_box: HitBox = $HitBox
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
-@export var spawnable_items: Array = [{"type":"seed", "name":"wheat", "function":" ", "texture":preload("res://aart/decorations/wheat.png")}, 
-{"type":"seed", "name":"pomegranate", "function":" ", "texture":preload("res://aart/decorations/pomegranate.png")}]
+@export var spawnable_items: Array = [{"type":"seed", "name":"wheat", "function":"3 days", "texture":preload("res://aart/decorations/wheat.png")}, 
+{"type":"seed", "name":"pomegranate", "function":"5 days", "texture":preload("res://aart/decorations/pomegranate.png")}]
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO

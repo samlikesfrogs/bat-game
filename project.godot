@@ -31,7 +31,6 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale=3.0
 window/stretch/scale_mode="integer"
-mouse_cursor/custom_image="uid://08qwf1s11fd1"
 
 [editor]
 

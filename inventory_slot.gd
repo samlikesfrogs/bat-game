@@ -45,7 +45,7 @@ func set_item(new_item):
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])
 	if item["function"]!="":
-		item_function.text = str("+ ", item["function"])
+		item_function.text = str(item["function"])
 	else:
 		item_function.text = ""
 
