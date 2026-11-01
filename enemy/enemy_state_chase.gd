@@ -41,12 +41,11 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
-	print(can_attack, player_in)
+	print(player_in, can_attack)
 	if can_attack and player_in:
-		print("why is bro not attackin")
-		state_machine.ChangeState($"../attack")
 		player_in = false
 		can_attack = false
+		state_machine.ChangeState($"../attack")
 		attack_cooldown = 2.2
 	if not can_attack:
 		attack_cooldown -=_delta
