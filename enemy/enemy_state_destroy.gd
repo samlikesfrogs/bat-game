@@ -6,7 +6,7 @@ var _animation_finished:bool=false
 var _direction : Vector2
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
-@export var enemy_drop_rate: int = 3
+@export var enemy_drop_rate: int = randi_range(1, 3)
 var _position
 
 func init() -> void:
@@ -49,8 +49,9 @@ func _on_enemy_enemy_destroyed(_hurt_box: HurtBox) -> void:
 	if _animation_finished:
 		var tween := create_tween()
 		tween.tween_property(enemy.sprite, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
+		tween.finished.connect(enemy.sprite.queue_free)
 		drop_rand_items(enemy_drop_rate)
-		#tween.finished.connect(enemy.queue_free)
+		enemy.queue_free()
 		
 func drop_rand_items(count):
 	var dropped = 0
@@ -58,10 +59,11 @@ func drop_rand_items(count):
 		var position = _position
 		drop_item(enemy.spawnable_items[randi()% enemy.spawnable_items.size()], position)
 		dropped += 1
+		print(dropped)
 		
 func drop_item(data, position):
 	var item_instance = preload("res://inventory_item.tscn").instantiate()
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
-	item_instance.global_position = position
-	enemy.items.add_child(item_instance)
+	enemy.get_parent().call_deferred("add_child", item_instance)
+	item_instance.global_position = position+Vector2(randf()*16, randf() *16)
 	print("done")
