@@ -14,6 +14,8 @@ I like video games, and want to learn how to code in Godot. Also as a born and b
 How I made it:
 
 Godot and Aseprite and my very own human brain !!
++BG ASSETS ADAPTED FROM HERE: https://alwore.itch.io/pixel-mood-dirt-biome (with license)
++BGM FROM HERE: https://bellkalengar.itch.io/essential-game-music-pack (open source)
 
 How to run:
 
