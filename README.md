@@ -8,7 +8,11 @@ A game where you, as a fox cowboy, kill a bunch of plants that drop seeds. Event
 
 Why I made it:
 
-I like video games? Also as a born and bred Texan (this is not true), I am very invested in cowboy culture (I have been to maybe two rodeos) so this project is very meaningful frfr. I also think Stardew Valley is lacking in furries and guns <3
+I like video games, and want to learn how to code in Godot. Also as a born and bred Texan (this is not true), I am very invested in cowboy culture (I have been to maybe two rodeos) so this project is very meaningful frfr. I also think Stardew Valley is lacking in furries and guns <3
+
+How I made it:
+
+Godot and Aseprite and my very own human brain !!
 
 How to run:
 
