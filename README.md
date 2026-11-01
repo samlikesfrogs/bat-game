@@ -5,7 +5,7 @@ Oasis (working title)
 
 What is it:
 
-A game where you, as a fox cowboy, kill a bunch of plants that drop seeds. Eventually, you will be able to use these seeds for farming but the game loop is incomplete at the moment. 
+A game where you, as a fox cowboy, fight evil (semi-desert) plants that drop seeds. Eventually, you will be able to use these seeds for farming but the game loop is incomplete at the moment. 
 
 Why I made it:
 
