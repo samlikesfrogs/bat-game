@@ -4,7 +4,7 @@ class_name EnemyStateDestroy extends EnemyState
 @export var knockback_speed:float = 100.0
 @onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
 var _animation_finished:bool=false
-var _direction : Vector2
+var direction : Vector2
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 @export var enemy_drop_rate: int = randi_range(1, 3)
@@ -17,11 +17,12 @@ func init() -> void:
 func enter()-> void:
 	sfx_enemy_hurt.play()
 	gpu_particles_2d.emitting = true
-	_direction = enemy.global_position.direction_to(_damage_position)
+	direction = enemy.global_position.direction_to(_damage_position)
 	gpu_particles_2d.rotation = get_tree().get_first_node_in_group("player").cardinal_dir.angle()
 	gpu_particles_2d.restart()
-	enemy.setDirection(_direction)
-	enemy.velocity=_direction * -knockback_speed
+	enemy.setDirection(direction)
+	print(enemy.setDirection(direction))
+	enemy.velocity=direction * -knockback_speed
 	enemy.updateAnim(anim_name)
 	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	Engine.time_scale=0
@@ -71,5 +72,5 @@ func drop_item(data, position):
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
 	enemy.get_parent().call_deferred("add_child", item_instance)
 	item_instance.global_position = position
-	item_instance.velocity = (_direction * -knockback_speed).rotated(randf_range(-0.8,0.8))*randf_range(0.9, 1.2)
+	item_instance.velocity = (direction * -knockback_speed).rotated(randf_range(-0.8,0.8))*randf_range(0.9, 1.2)
 	print("done")

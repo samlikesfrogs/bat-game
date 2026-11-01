@@ -5,7 +5,7 @@ class_name Player
 @export var max_hp: int = 6
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
-@onready var inventory_ui = $inventory_ui
+var inventory_ui_visible:bool = false
 
 var last_angle: float = 0.0
 var cardinal_dir: Vector2 = Vector2.DOWN
@@ -19,6 +19,7 @@ var _timer:float
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 signal shoot
+signal inventory_opened 
 signal player_damaged(hurt_box:HurtBox)
 signal player_destroyed(hurt_box:HurtBox)
 
@@ -50,6 +51,8 @@ func _process(_delta):
 			can_shoot = true
 	else:
 		_timer = shoot_cooldown
+	if Input.is_action_just_pressed("inventory"):
+		inventory_opened.emit()
 	
 func _physics_process(_delta):
 	move_and_slide()

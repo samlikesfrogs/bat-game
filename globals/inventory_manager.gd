@@ -13,11 +13,11 @@ func add_item(item):
 	for i in range(inventory.size()):
 		if inventory[i]!=null and inventory[i]["name"]==item["name"]:
 			inventory[i]["quantity"]+=item["quantity"]
-			inventory_updated.emit()
+			#inventory_updated.emit()
 			return true
 		elif inventory[i]==null:
 			inventory[i] = item
-			inventory_updated.emit()
+			#inventory_updated.emit()
 			return true
 	return false
 		
@@ -28,12 +28,12 @@ func remove_item(item_name):
 			inventory[i]["quantity"]-=1
 			if inventory[i]["quantity"] <=0:
 				inventory[i] = null
-			inventory_updated.emit()
+			#inventory_updated.emit()
 			return true
 	return false
 	
-func increase_inventory_size():
-	inventory_updated.emit()
+#func increase_inventory_size():
+	#inventory_updated.emit()
 	
 func swap_inventory_items(index1, index2):
 	if (index1 < 0 or index1 > inventory.size()) or (index2 < 0 or index2 > inventory.size()):
@@ -41,7 +41,7 @@ func swap_inventory_items(index1, index2):
 	var temp = inventory[index1]
 	inventory[index1]=inventory[index2]
 	inventory[index2] = temp
-	inventory_updated.emit()
+	#inventory_updated.emit()
 	return true
 	
 func adjust_drop(position):

@@ -8,7 +8,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	get_viewport().warp_mouse(Vector2(9,7))
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	InventoryManager.inventory_updated.connect(_on_inventory_updated)
+	#InventoryManager.inventory_updated.connect(_on_inventory_updated)
+	PlayerManager.player.inventory_opened.connect(_on_inventory_updated)
 	_on_inventory_updated()
 
 func _process(delta: float) -> void:
