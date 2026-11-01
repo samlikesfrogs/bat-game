@@ -15,10 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://wx4yol2f6een" path="res://aart/tiles/tileset_Dirt cliff to grass.png" id="10_r5om4"]
 [ext_resource type="Texture2D" uid="uid://0l8ixxfrf27j" path="res://aart/tiles/shadowtile.png" id="12_wbpbn"]
 [ext_resource type="Texture2D" uid="uid://dev1f8ulbgl62" path="res://aart/decorations/rocks.png" id="14_4on3e"]
-[ext_resource type="PackedScene" uid="uid://bfsnollsnrmie" path="res://inventory_item.tscn" id="17_4on3e"]
-[ext_resource type="Texture2D" uid="uid://bmf0y7ccier5s" path="res://aart/wheat.png" id="18_4on3e"]
 [ext_resource type="PackedScene" uid="uid://csmi717a3mp8p" path="res://player_spawner.tscn" id="19_bssq0"]
-[ext_resource type="Texture2D" uid="uid://v8gfgmdp875o" path="res://aart/pomegranate.png" id="19_jk4ss"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wjonb"]
 
@@ -1618,26 +1615,26 @@ position = Vector2(215, 571)
 y_sort_enabled = true
 position = Vector2(417, 494)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=296719435]
+[node name="invis walls" type="StaticBody2D" parent="." unique_id=296719435]
 position = Vector2(98, 572)
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1076626681]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="invis walls" unique_id=1076626681]
 position = Vector2(184.25, -355)
 shape = SubResource("RectangleShape2D_7jgn8")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=943145619]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="invis walls" unique_id=943145619]
 position = Vector2(-136, -83)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7jgn8")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1905560628]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="invis walls" unique_id=1905560628]
 position = Vector2(540, -91)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7jgn8")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=368484600]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="invis walls" unique_id=368484600]
 position = Vector2(227.99997, 226)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_7jgn8")
@@ -1670,17 +1667,3 @@ use_edge_connections = false
 
 [node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("19_bssq0")]
 position = Vector2(275, 741)
-
-[node name="inventory_item" parent="." unique_id=2028360572 instance=ExtResource("17_4on3e")]
-position = Vector2(186, 394)
-item_type = "seed"
-item_name = "wheat"
-item_texture = ExtResource("18_4on3e")
-item_function = "plant"
-
-[node name="inventory_item2" parent="." unique_id=674169887 instance=ExtResource("17_4on3e")]
-position = Vector2(359, 370)
-item_type = "seed"
-item_name = "pomegranate"
-item_texture = ExtResource("19_jk4ss")
-item_function = "plant"

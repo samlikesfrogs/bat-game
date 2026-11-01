@@ -6,7 +6,6 @@ class_name Player
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 @onready var inventory_ui = $inventory_ui
-@onready var hotbar: CanvasLayer = $hotbar
 
 var last_angle: float = 0.0
 var cardinal_dir: Vector2 = Vector2.DOWN

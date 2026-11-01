@@ -1,5 +1,5 @@
 @tool
-class_name InventoryItem extends Node2D
+class_name InventoryItem extends CharacterBody2D
 @export var item_type:String
 @export var item_name:String
 @export var item_texture:Texture
@@ -17,6 +17,12 @@ func _process(delta: float) -> void:
 		sprite.texture = item_texture
 	if player_in_range:
 		pickup_item()
+		
+func _physics_process(delta: float) -> void:
+	var collision_info = move_and_collide(velocity*delta)
+	if collision_info: 
+		velocity = velocity.bounce(collision_info.get_normal())
+	velocity -= velocity*delta*4
 		
 func pickup_item():
 	var item = {

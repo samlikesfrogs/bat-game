@@ -8,7 +8,6 @@ class_name Enemy
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 @export var spawnable_items: Array = [{"type":"seed", "name":"wheat", "function":" ", "texture":preload("res://aart/decorations/wheat.png")}, 
 {"type":"seed", "name":"pomegranate", "function":" ", "texture":preload("res://aart/decorations/pomegranate.png")}]
-@onready var items: Node2D = $items
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
@@ -52,6 +51,7 @@ func setDirection(_new_direction: Vector2) -> bool:
 		
 func updateAnim(state:String) -> void:
 	%EnemySprite.play (state + "_" + AnimDirection())
+	print((state + "_" + AnimDirection()))
 
 func AnimDirection() -> String:
 	if cardinal_dir == Vector2.DOWN:

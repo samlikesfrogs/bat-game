@@ -1,6 +1,7 @@
 class_name EnemyStateDestroy extends EnemyState
 
 @export var anim_name:String="die"
+@export var knockback_speed:float = 100.0
 @onready var gpu_particles_2d: GPUParticles2D = $"../../GPUParticles2D"
 var _animation_finished:bool=false
 var _direction : Vector2
@@ -8,22 +9,26 @@ var _direction : Vector2
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 @export var enemy_drop_rate: int = randi_range(1, 3)
 var _position
+var _damage_position:Vector2
 
 func init() -> void:
 	pass
 
 func enter()-> void:
-	_position = enemy.global_position
-	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
 	sfx_enemy_hurt.play()
+	gpu_particles_2d.emitting = true
+	_direction = enemy.global_position.direction_to(_damage_position)
 	gpu_particles_2d.rotation = get_tree().get_first_node_in_group("player").cardinal_dir.angle()
 	gpu_particles_2d.restart()
-	gpu_particles_2d.emitting = true
-	await get_tree().create_timer(0.1).timeout
+	enemy.setDirection(_direction)
+	enemy.velocity=_direction * -knockback_speed
+	enemy.updateAnim(anim_name)
+	$"../../HurtBox/CollisionShape2D".set_deferred("disabled", true)
+	Engine.time_scale=0
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	Engine.time_scale=1
 	enemy.velocity = Vector2.ZERO
 	enemy.invulnerable = true
-	enemy.setDirection(_direction)
-	enemy.updateAnim(anim_name)
 	await get_tree().create_timer(0.5).timeout
 	sfx_enemy_die.play()
 	
@@ -56,7 +61,7 @@ func _on_enemy_enemy_destroyed(_hurt_box: HurtBox) -> void:
 func drop_rand_items(count):
 	var dropped = 0
 	while dropped < count:
-		var position = _position
+		var position = enemy.global_position
 		drop_item(enemy.spawnable_items[randi()% enemy.spawnable_items.size()], position)
 		dropped += 1
 		print(dropped)
@@ -65,5 +70,6 @@ func drop_item(data, position):
 	var item_instance = preload("res://inventory_item.tscn").instantiate()
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
 	enemy.get_parent().call_deferred("add_child", item_instance)
-	item_instance.global_position = position+Vector2(randf()*16, randf() *16)
+	item_instance.global_position = position
+	item_instance.velocity = (_direction * -knockback_speed).rotated(randf_range(-0.8,0.8))*randf_range(0.9, 1.2)
 	print("done")
