@@ -16,7 +16,7 @@ var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 var can_attack:bool
-var attack_cooldown: float = 2.2
+var attack_cooldown: float = randf_range(1.9, 2.4)
 var player_in:bool
 
 func init() -> void:
@@ -64,7 +64,12 @@ func process(_delta:float)->EnemyState:
 			return next_state
 	else:
 		_timer = aggroed
+	if enemy.global_position.distance_to(PlayerManager.player.global_position) > randi_range(19, 28):
+		player_in = true
+	else: 
+		player_in = false
 	return null
+	
 	
 func _on_fov_player_entered() -> void:
 	_player_visible = true
@@ -73,11 +78,7 @@ func _on_fov_player_entered() -> void:
 	state_machine.current_state is EnemyStateAttack):
 		return
 	state_machine.ChangeState(self)
-	if enemy.global_position.distance_to(PlayerManager.player.global_position) >30:
-		player_in = true
-	else: 
-		player_in = false
-
+	
 func _on_fov_player_exited() -> void:
 	_player_visible = false
 

@@ -47,18 +47,20 @@ func clear_grid():
 		child.queue_free()
 		
 func on_drag_start(slot_control:Control):
-	dragged_slot = slot_control
+	if slot_control.item != null:
+		dragged_slot = slot_control
 	
 func on_drag_end():
-	var target_slot = get_hovered_slot()
-	if target_slot and dragged_slot != target_slot:
-		drop_slot(dragged_slot, target_slot)
-	elif dragged_slot != target_slot:
-		var drop_position = PlayerManager.player.global_position
-		var drop_offset = Vector2(25,0)
-		drop_offset = drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
-		InventoryManager.drop_item(dragged_slot.item, drop_position + drop_offset)
-		InventoryManager.remove_item(dragged_slot.item["name"])
+	if dragged_slot != null:
+		var target_slot = get_hovered_slot()
+		if target_slot and dragged_slot != target_slot:
+			drop_slot(dragged_slot, target_slot)
+		elif dragged_slot != target_slot:
+			var drop_position = PlayerManager.player.global_position
+			var drop_offset = Vector2(25,0)
+			drop_offset = drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
+			InventoryManager.drop_item(dragged_slot.item, drop_position + drop_offset)
+			InventoryManager.remove_item(dragged_slot.item["name"])
 	dragged_slot = null
 	
 func get_hovered_slot() ->Control:
