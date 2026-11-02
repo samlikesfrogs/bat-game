@@ -41,7 +41,6 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
-	print(player_in, can_attack)
 	if can_attack and player_in:
 		player_in = false
 		can_attack = false

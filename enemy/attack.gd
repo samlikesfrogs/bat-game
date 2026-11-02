@@ -26,7 +26,6 @@ func enter()-> void:
 	i=0
 	if hurt_box:
 		hurt_box.monitoring = true
-	print("enter", i)
 	
 func exit()->void:
 	i = 0
@@ -34,13 +33,10 @@ func exit()->void:
 	pass
 	
 func process(_delta:float)->EnemyState:
-	print("process", i)
 	if animation_finished:
 		return next_state
 	if i ==0:
-		print("i is zero")
 		enemy.velocity = Vector2.ZERO	
-		print(enemy.velocity)
 	elif i == 1:
 		_direction = enemy.global_position.direction_to(player.global_position)
 		enemy.velocity = _direction * speed
@@ -52,9 +48,6 @@ func process(_delta:float)->EnemyState:
 	elif i == 3:
 		$"../../CollisionShape2D".set_deferred("disabled", false)
 		enemy.velocity = Vector2.ZERO	
-	else:
-		print(animation_finished)
-		print("i aint doing shit")
 	if i == 3:
 		animation_finished = true
 	return null
@@ -73,6 +66,5 @@ func _on_enemy_sprite_frame_changed() -> void:
 	if %EnemySprite.animation == anim_name + "_" + enemy.AnimDirection():
 		if state_machine.current_state == self:
 				i+=1
-				print("changed", i)
 	if i == 2 and state_machine.current_state == self:
 		sfx_enemy_attack.play()
