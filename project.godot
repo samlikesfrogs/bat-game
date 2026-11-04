@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="bat-game"
-run/main_scene="uid://ygw5al0mwo2e"
+run/main_scene="uid://dnxn0m26v5uiu"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerManager="*uid://rpa8jios5h6q"
 BulletManager="*uid://dygy17k5dgraw"
 InventoryManager="*uid://c6wldcsxte2qv"
+RoomManager="*uid://ba3i7wqbm8ll1"
 
 [display]
 

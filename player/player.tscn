@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://buj03d4dqn7qf" path="res://player/player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://bh5mqllk6cdm4" path="res://aart/fox sprites/idle_down.png" id="2_8t03j"]
 [ext_resource type="Texture2D" uid="uid://b6w5egayui2ug" path="res://aart/fox sprites/shootstand_down.png" id="2_32hag"]
+[ext_resource type="Script" uid="uid://bvnrlx8etk6cw" path="res://player/camera_script.gd" id="2_r7pn3"]
 [ext_resource type="Texture2D" uid="uid://c1qm88i31ksfv" path="res://aart/fox sprites/idle_side.png" id="3_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://orakul42788b" path="res://aart/fox sprites/shootstand_side.png" id="3_tqiix"]
 [ext_resource type="Texture2D" uid="uid://5xwoph4vqhkn" path="res://aart/fox sprites/walk_down.png" id="4_boad6"]
@@ -312,10 +313,7 @@ script = ExtResource("1_hqtel")
 shoot_cooldown = 150.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1229852486]
-limit_left = -25
-limit_top = 230
-limit_right = 625
-limit_bottom = 790
+script = ExtResource("2_r7pn3")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
