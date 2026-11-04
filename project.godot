@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="bat-game"
-run/main_scene="uid://dnxn0m26v5uiu"
+run/main_scene="uid://ygw5al0mwo2e"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
