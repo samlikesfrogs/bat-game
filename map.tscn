@@ -1672,7 +1672,7 @@ shape = SubResource("RectangleShape2D_7jgn8")
 
 [node name="LevelTrans" parent="." unique_id=1130782072 instance=ExtResource("18_4on3e")]
 z_index = 3
-position = Vector2(16.185913, -279.49463)
+position = Vector2(16.321045, -268.54904)
 level = "uid://d3ljeafl0b12b"
 size = 6
 side = 2

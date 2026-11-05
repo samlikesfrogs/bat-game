@@ -1626,7 +1626,7 @@ navigation_polygon = SubResource("NavigationPolygon_sh32c")
 use_edge_connections = false
 
 [node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("16_lf4f1")]
-position = Vector2(275, 741)
+position = Vector2(236, 251)
 
 [node name="bottom" type="Area2D" parent="." unique_id=618270898]
 visible = false

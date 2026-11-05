@@ -8,6 +8,10 @@ var current_limits:Array[Vector2]
 var target_transition_area:String
 var position_offset: Vector2
 
+func _ready() -> void:
+	await get_tree().process_frame
+	room_load_end.emit()
+
 func update_map_limits(limits:Array[Vector2]) -> void:
 	current_limits = limits
 	map_limits_update.emit(limits)
