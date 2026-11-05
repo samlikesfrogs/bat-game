@@ -6,10 +6,11 @@ class_name Level extends Node2D
 func _ready() -> void:
 	self.y_sort_enabled
 	PlayerManager.set_as_parent(self)
-	#for opening in opendoors:
-	#	randomize()
-	#	await get_tree().create_timer(0.5).timeout
+	RoomManager.room_load_start.connect(_free_level)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _free_level():
+	PlayerManager.unparent_player(self)
+	queue_free()
+
 func _process(delta: float) -> void:
 	pass
