@@ -20,12 +20,12 @@ func load_level(level_path:String, _target_transition_area:String, _position_off
 	get_tree().paused = true
 	target_transition_area = _target_transition_area
 	position_offset = _position_offset
-	await get_tree().process_frame
+	await SceneTransUi.fade_in()
 	room_load_start.emit()
 	await get_tree().process_frame
 	get_tree().change_scene_to_file(level_path)
-	await get_tree().process_frame
 	get_tree().paused =false
 	await get_tree().process_frame
 	room_load_end.emit()
+	await SceneTransUi.fade_out()
 	

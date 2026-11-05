@@ -61,16 +61,16 @@ func update_area()-> void:
 	
 	if side == SIDE.TOP:
 		new_rect.x *= size
-		new_position.y -= 8
+		new_position.y -= 16
 	elif side == SIDE.BOTTOM:
 		new_rect.x *= size
-		new_position.y += 8
+		new_position.y += 16
 	if side == SIDE.LEFT:
 		new_rect.y *= size
-		new_position.x -= 8
+		new_position.x -= 16
 	elif side == SIDE.RIGHT:
 		new_rect.y *= size
-		new_position.x += 8
+		new_position.x += 16
 		
 	if collision_shape_2d == null:
 		collision_shape_2d = get_node("CollisionShape2D")

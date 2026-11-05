@@ -1656,12 +1656,12 @@ position = Vector2(-299, 300)
 position = Vector2(271, -168.5)
 shape = SubResource("RectangleShape2D_v7niv")
 
+[node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("16_lf4f1")]
+position = Vector2(237, 239)
+
 [node name="LevelTrans" parent="." unique_id=1130782072 instance=ExtResource("17_c8u8o")]
-position = Vector2(240, 273)
+position = Vector2(240, 256)
 level = "uid://ygw5al0mwo2e"
 target_transition_area = "LevelTrans"
 size = 6
 side = 3
-
-[node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("16_lf4f1")]
-position = Vector2(236, 251)
