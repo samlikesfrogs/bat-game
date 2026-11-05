@@ -1,6 +1,6 @@
 class_name HurtBox extends Area2D
 @export var damage:int=1
-@export var go_through:float
+@export var go_through:float=0.0
 #this can be changed for power up that lets bullets go through enemies
 
 func _ready() -> void:
