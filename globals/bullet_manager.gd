@@ -3,11 +3,11 @@ extends Node2D
 var bullet
 
 func _ready() -> void:
-	get_tree().get_first_node_in_group("player").shoot.connect(_on_player_shoot)
+	PlayerManager.player.shoot.connect(_on_player_shoot)
 
 func _on_player_shoot(pos, dir) -> void:
 	bullet = BULLET.instantiate()
-	add_child(bullet)
 	bullet.position = pos
 	bullet.direction = dir
+	add_child(bullet)
 	bullet.add_to_group("bullets")

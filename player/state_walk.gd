@@ -42,7 +42,7 @@ func _on_player_sprite_frame_changed() -> void:
 		i+=1
 
 func _on_player_sprite_animation_changed() -> void:
-	if $"../../PlayerSprite".animation == anim_name + "_" + get_tree().get_first_node_in_group("player").AnimDirection():
+	if $"../../PlayerSprite".animation == anim_name + "_" + PlayerManager.player.AnimDirection():
 		if i%3==0 or i == 1:
 			sfx_walk.play()
 		i+=1

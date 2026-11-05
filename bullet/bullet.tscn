@@ -165,12 +165,12 @@ script = ExtResource("3_0qjqd")
 [node name="HurtBox2" type="CollisionShape2D" parent="HurtBox" unique_id=2112991129]
 shape = SubResource("CapsuleShape2D_ykpt6")
 
-[node name="PointLight2D" type="PointLight2D" parent="HurtBox/HurtBox2" unique_id=175744760]
-color = Color(0.8957818, 0.8931549, 3.85046e-07, 0.5803922)
-energy = 1.5
-texture = ExtResource("4_xvnxm")
-
 [node name="sfx_shoot" type="AudioStreamPlayer2D" parent="." unique_id=1422996402]
 stream = ExtResource("5_ynyjt")
 volume_db = -4.0
 pitch_scale = 3.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=175744760]
+color = Color(0.8957818, 0.8931549, 3.85046e-07, 0.5803922)
+energy = 1.5
+texture = ExtResource("4_xvnxm")

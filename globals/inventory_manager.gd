@@ -1,7 +1,7 @@
 extends Node
 var inventory:Array = []
 var inventory_size:int
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = PlayerManager.player
 signal inventory_updated
 var hotbar_inventory = []
 

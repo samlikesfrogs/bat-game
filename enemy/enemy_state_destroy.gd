@@ -18,7 +18,7 @@ func enter()-> void:
 	sfx_enemy_hurt.play()
 	gpu_particles_2d.emitting = true
 	_direction = (enemy.global_position).direction_to(_damage_position)
-	gpu_particles_2d.rotation = get_tree().get_first_node_in_group("player").cardinal_dir.angle()
+	gpu_particles_2d.rotation = PlayerManager.player.cardinal_dir.angle()
 	gpu_particles_2d.restart()
 	enemy.setDirection(_direction)
 	enemy.velocity=_direction * -knockback_speed

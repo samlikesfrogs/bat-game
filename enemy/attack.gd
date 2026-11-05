@@ -4,7 +4,7 @@ class_name EnemyStateAttack extends EnemyState
 @export var speed = 78
 @export var aggroed: float = 1.5
 @export var next_state:EnemyState
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = PlayerManager.player
 @onready var hurt_box: EnemyHurtBox = $"../../HurtBox"
 @onready var hit_box: HitBox = $"../../HitBox"
 @onready var sfx_enemy_attack: AudioStreamPlayer2D = $sfx_enemy_attack

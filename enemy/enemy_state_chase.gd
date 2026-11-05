@@ -1,7 +1,7 @@
 class_name EnemyStateChase extends EnemyState
 
 @onready var navigation_agent_2d: NavigationAgent2D = $"../../NavigationAgent2D"
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = PlayerManager.player
 @export var speed = 17
 @export var anim_name:String="walk"
 @export var aggroed: float = 4.5
