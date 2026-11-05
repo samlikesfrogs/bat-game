@@ -55,6 +55,7 @@ func _process(_delta):
 		inventory_opened.emit()
 	
 func _physics_process(_delta):
+	$Camera2D.global_position = global_position.round()
 	move_and_slide()
 	
 func setDirection() -> bool:
