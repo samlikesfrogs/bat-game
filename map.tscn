@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://jo85n1ng082y" path="res://aart/tiles/tileset_Dirt to grass - dirt path.png" id="1_0t07s"]
 [ext_resource type="AudioStream" uid="uid://s1811dmml3nd" path="res://cowboying.wav" id="1_4on3e"]
+[ext_resource type="Script" uid="uid://btkysp613cdds" path="res://room0.gd" id="1_bssq0"]
 [ext_resource type="Texture2D" uid="uid://ci0rm8546pcjm" path="res://aart/tiles/tileset_Dirt to water.png" id="2_6qsgm"]
 [ext_resource type="PackedScene" uid="uid://c3hxsrvwjy7wi" path="res://enemy/enemy.tscn" id="3_e0an3"]
 [ext_resource type="Texture2D" uid="uid://b3hvu0cr8ngk2" path="res://aart/tiles/tileset_Lake to dit.png" id="3_ooc2g"]
@@ -1590,6 +1591,7 @@ size = Vector2(391.00464, 17.315735)
 
 [node name="map" type="Node2D" unique_id=1768187972]
 y_sort_enabled = true
+script = ExtResource("1_bssq0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=768260860]
 process_mode = 3
@@ -1674,5 +1676,6 @@ shape = SubResource("RectangleShape2D_7jgn8")
 z_index = 3
 position = Vector2(16.321045, -268.54904)
 level = "uid://d3ljeafl0b12b"
+target_transition_area = "LevelTrans"
 size = 6
 side = 2

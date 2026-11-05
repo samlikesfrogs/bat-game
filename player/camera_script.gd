@@ -10,6 +10,4 @@ func make_limits(limits:Array[Vector2])->void:
 	limit_top = int(limits[0].y + 18)
 	limit_right = int(limits[1].x - 18)
 	limit_bottom = int(limits[1].y - 18)
-
-	print(limit_bottom)
 	

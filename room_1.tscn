@@ -1625,9 +1625,6 @@ position = Vector2(-50, -373)
 navigation_polygon = SubResource("NavigationPolygon_sh32c")
 use_edge_connections = false
 
-[node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("16_lf4f1")]
-position = Vector2(236, 251)
-
 [node name="bottom" type="Area2D" parent="." unique_id=618270898]
 visible = false
 
@@ -1662,5 +1659,9 @@ shape = SubResource("RectangleShape2D_v7niv")
 [node name="LevelTrans" parent="." unique_id=1130782072 instance=ExtResource("17_c8u8o")]
 position = Vector2(240, 273)
 level = "uid://ygw5al0mwo2e"
+target_transition_area = "LevelTrans"
 size = 6
 side = 3
+
+[node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("16_lf4f1")]
+position = Vector2(236, 251)
