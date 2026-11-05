@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://wx4yol2f6een" path="res://aart/tiles/tileset_Dirt cliff to grass.png" id="10_r5om4"]
 [ext_resource type="Texture2D" uid="uid://0l8ixxfrf27j" path="res://aart/tiles/shadowtile.png" id="12_wbpbn"]
 [ext_resource type="Texture2D" uid="uid://dev1f8ulbgl62" path="res://aart/decorations/rocks.png" id="14_4on3e"]
+[ext_resource type="PackedScene" uid="uid://b7qhtqla3hxv8" path="res://level_trans.tscn" id="18_4on3e"]
 [ext_resource type="PackedScene" uid="uid://csmi717a3mp8p" path="res://player_spawner.tscn" id="19_bssq0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a6rn7"]
@@ -1617,6 +1618,7 @@ y_sort_enabled = true
 position = Vector2(160.12366, -113.64551)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2105897882]
+visible = false
 position = Vector2(-257.2307, -502.7691)
 navigation_polygon = SubResource("NavigationPolygon_7jgn8")
 use_edge_connections = false
@@ -1667,3 +1669,10 @@ shape = SubResource("RectangleShape2D_7jgn8")
 position = Vector2(40.3349, 292.5833)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_7jgn8")
+
+[node name="LevelTrans" parent="." unique_id=1130782072 instance=ExtResource("18_4on3e")]
+z_index = 3
+position = Vector2(16.185913, -279.49463)
+level = "uid://d3ljeafl0b12b"
+size = 6
+side = 2

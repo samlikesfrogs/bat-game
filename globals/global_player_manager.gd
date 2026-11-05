@@ -15,3 +15,11 @@ func add_player_instance()->void:
 
 func player_spawn_point(_new_position:Vector2)->void:
 	player.global_position= _new_position
+
+func set_as_parent(p:Node2D):
+	if player.get_parent():
+		player.get_parent().remove_child(player)
+	p.add_child(player)
+	
+func unparent_player(p:Node2D):
+	p.remove_child(player)
