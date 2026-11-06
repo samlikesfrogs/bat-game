@@ -1613,14 +1613,12 @@ navigation_polygon = SubResource("NavigationPolygon_sh32c")
 use_edge_connections = false
 
 [node name="bottom" type="Area2D" parent="." unique_id=618270898]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom" unique_id=558410999]
 position = Vector2(247, 300)
 shape = SubResource("RectangleShape2D_wqxq1")
 
 [node name="top" type="Area2D" parent="." unique_id=1900766544]
-visible = false
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top" unique_id=1792073412]
@@ -1628,7 +1626,6 @@ position = Vector2(247, -30)
 shape = SubResource("RectangleShape2D_wqxq1")
 
 [node name="right" type="Area2D" parent="." unique_id=143639998]
-visible = false
 position = Vector2(247, 300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right" unique_id=2113187418]
@@ -1636,7 +1633,6 @@ position = Vector2(294, -168.5)
 shape = SubResource("RectangleShape2D_v7niv")
 
 [node name="left" type="Area2D" parent="." unique_id=921656426]
-visible = false
 position = Vector2(-299, 300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left" unique_id=1402781272]
@@ -1665,8 +1661,9 @@ position = Vector2(-260, -515)
 tile_set = SubResource("TileSet_afqhc")
 
 [node name="LevelTrans" parent="." unique_id=1130782072 instance=ExtResource("17_c8u8o")]
+z_index = 4
 position = Vector2(240, 256)
-level = "uid://ygw5al0mwo2e"
+level = "uid://c8iaek7olk52x"
 target_transition_area = "LevelTrans"
 size = 6
 side = 3
