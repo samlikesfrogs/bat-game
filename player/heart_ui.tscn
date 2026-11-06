@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bywf5v2hwj7c5"]
+
+[ext_resource type="Texture2D" uid="uid://mmpvpuco84wc" path="res://aart/Receptacle/Heart.png" id="1_743tg"]
+
+[node name="heart_ui" type="Control" unique_id=2106547303]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1494359778]
+texture = ExtResource("1_743tg")
+centered = false
+hframes = 5

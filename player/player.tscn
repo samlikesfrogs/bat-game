@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://dcfq6rdhx3frq" path="res://inventory_ui.tscn" id="26_7pqkx"]
 [ext_resource type="Script" uid="uid://qju7jxxbdgkf" path="res://player/player_inventory.gd" id="26_uw77l"]
 [ext_resource type="Texture2D" uid="uid://bhs2bffoomyul" path="res://aart/Theme/Theme Wood/nine_path_panel.png" id="27_rptt4"]
+[ext_resource type="Script" uid="uid://d3uasotorqaj4" path="res://player/health_ui.gd" id="30_2uvqg"]
+[ext_resource type="PackedScene" uid="uid://bywf5v2hwj7c5" path="res://player/heart_ui.tscn" id="30_b8hi5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
 atlas = ExtResource("2_32hag")
@@ -423,6 +425,58 @@ offset_left = 9.0
 offset_top = 7.0
 offset_right = 25.0
 offset_bottom = 23.0
+
+[node name="health_ui" type="CanvasLayer" parent="." unique_id=714491201]
+script = ExtResource("30_2uvqg")
+
+[node name="Control" type="Control" parent="health_ui" unique_id=1764929011]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="health_ui/Control" unique_id=900726525]
+custom_minimum_size = Vector2(84, 32)
+custom_maximum_size = Vector2(160, 32)
+layout_mode = 0
+offset_left = 305.0
+offset_top = 328.0
+offset_right = 389.0
+offset_bottom = 360.0
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+
+[node name="heart_ui" parent="health_ui/Control/HFlowContainer" unique_id=2106547303 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui2" parent="health_ui/Control/HFlowContainer" unique_id=1620557673 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui3" parent="health_ui/Control/HFlowContainer" unique_id=1398407113 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui4" parent="health_ui/Control/HFlowContainer" unique_id=13012428 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui5" parent="health_ui/Control/HFlowContainer" unique_id=695634411 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui6" parent="health_ui/Control/HFlowContainer" unique_id=294143131 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui7" parent="health_ui/Control/HFlowContainer" unique_id=54480489 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui8" parent="health_ui/Control/HFlowContainer" unique_id=1821307140 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui9" parent="health_ui/Control/HFlowContainer" unique_id=744676391 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
+
+[node name="heart_ui10" parent="health_ui/Control/HFlowContainer" unique_id=273715087 instance=ExtResource("30_b8hi5")]
+layout_mode = 2
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]

@@ -229,7 +229,7 @@ animations = [{
 "duration": 2.2,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
@@ -246,7 +246,7 @@ animations = [{
 "duration": 2.2,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
@@ -263,7 +263,7 @@ animations = [{
 "duration": 2.2,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
@@ -804,10 +804,10 @@ pitch_scale = 0.65
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1809083458]
 path_desired_distance = 10.0
 simplify_path = true
-avoidance_enabled = true
 radius = 6.0
 time_horizon_agents = 0.5
 time_horizon_obstacles = 5.0
+debug_enabled = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2029569116]
 z_index = 2

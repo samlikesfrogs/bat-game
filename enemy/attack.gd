@@ -20,6 +20,7 @@ func init() -> void:
 
 func enter()-> void:
 	$"../../CollisionShape2D".set_deferred("disabled", true)
+	#enemy.setDirection(enemy.global_position.direction_to(player.global_position))
 	enemy.updateAnim(anim_name)
 	enemy.velocity = Vector2.ZERO	
 	animation_finished = false

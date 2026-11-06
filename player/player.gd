@@ -31,7 +31,6 @@ func _ready():
 	hit_box.Damaged.connect(_take_damage)
 	PlayerManager.player = self
 	state_machine.Initialize(self)
-	#$PlayerSprite.animation = "idle_down"
 	$PlayerSprite.flip_h = false
 	can_shoot = true
 	
