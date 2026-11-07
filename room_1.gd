@@ -5,7 +5,6 @@ class_name Room extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.y_sort_enabled
-	print("entering scene 2")
 	PlayerManager.set_as_parent(self)
 	RoomManager.room_load_start.connect(_free_level)
 	

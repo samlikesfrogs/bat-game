@@ -38,7 +38,6 @@ func _on_inventory_updated():
 		else:
 			slot.set_empty()
 		#get_tree().get_root().get_node("ItemButton").grab_focus()
-	pass
 
 func clear_grid():
 	while grid_container.get_child_count()>0:

@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://b4fq07l0dcdg1" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_2.wav" id="19_pg32h"]
 [ext_resource type="AudioStream" uid="uid://dltcdc8dgmvtg" path="res://sound/05_step_dirt_3.wav" id="20_34gv7"]
 [ext_resource type="Script" uid="uid://dd12vxayixipg" path="res://enemy/attack.gd" id="22_nfy00"]
+[ext_resource type="Script" uid="uid://b2lhc1ip70y7l" path="res://enemy/ray_cast_2d.gd" id="24_05kf6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26s8d"]
 atlas = ExtResource("2_xoplw")
@@ -226,10 +227,10 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jgn8"]
 animations = [{
 "frames": [{
-"duration": 2.2,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
-"duration": 1.2,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
@@ -243,10 +244,10 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.2,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
-"duration": 1.2,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
@@ -260,10 +261,10 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 2.2,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_26s8d")
 }, {
-"duration": 1.2,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_51aa2")
 }, {
 "duration": 1.0,
@@ -684,7 +685,7 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attack_up"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="EnemySprite" unique_id=401911381]
@@ -822,9 +823,16 @@ explosiveness = 1.0
 randomness = 0.59
 process_material = SubResource("ParticleProcessMaterial_7jgn8")
 
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1246023665]
+position = Vector2(0, 10)
+scale = Vector2(6, 1)
+collision_mask = 48
+script = ExtResource("24_05kf6")
+
 [connection signal="direction_changed" from="." to="FOV" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/chase" method="_on_enemy_direction_changed"]
 [connection signal="direction_changed" from="." to="EnemyStateMachine/attack" method="_on_enemy_direction_changed"]
+[connection signal="direction_changed" from="." to="RayCast2D" method="_on_enemy_direction_changed"]
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/stun" method="_on_enemy_damaged"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/destroy" method="_on_enemy_enemy_destroyed"]
 [connection signal="enemy_destroyed" from="." to="EnemyStateMachine/chase" method="_on_enemy_enemy_destroyed"]

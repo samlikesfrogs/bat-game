@@ -25,7 +25,6 @@ func _ready():
 	state_machine.Initialize(self)
 	_hit_box.Damaged.connect(_take_damage)
 	player = PlayerManager.player
-	pass
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()

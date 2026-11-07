@@ -29,14 +29,12 @@ func _ready() -> void:
 	
 
 func on_player_entered(player:Node2D):
-	print("going here")
 	RoomManager.load_level(level, target_transition_area,get_offset())
 
 func player_pos():
 	if name != RoomManager.target_transition_area:
 		return
 	else:
-		print("doing player pos?")
 		PlayerManager.player_spawn_point(global_position + RoomManager.position_offset)
 	
 func get_offset()->Vector2:
@@ -52,7 +50,6 @@ func get_offset()->Vector2:
 		offset.y = 8
 		if side == SIDE.TOP:
 			offset.y *= -1
-	print(offset)
 	return offset
 		
 func update_area()-> void:

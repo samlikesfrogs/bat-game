@@ -12,16 +12,12 @@ signal drag_end()
 
 var item = null
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#if PlayerManager.player.using_controller == true:
 	#	$ItemButton.grab_focus()
 	info_panel.visible = false
 	usage_panel.visible = false
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 

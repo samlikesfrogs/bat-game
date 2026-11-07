@@ -18,7 +18,6 @@ func Enter() -> void:
 		player.updateAnim("attackwalk")
 		walking = true
 	attacking = true
-	pass
 	
 func Exit() -> void:
 	pass
@@ -52,4 +51,3 @@ func EndAttack()->void:
 	
 func on_shoot_buffer_timeout()->void:
 	shoot_buffer = false
-	pass

@@ -16,7 +16,7 @@ var _timer: float = 0
 var _direction : Vector2
 var _player_visible: bool = false
 var can_attack:bool
-var attack_cooldown: float = randf_range(1.9, 2.4)
+var attack_cooldown: float = randf_range(1.9, 2.6)
 var player_in:bool
 
 func init() -> void:
@@ -42,14 +42,15 @@ func exit()->void:
 	
 func process(_delta:float)->EnemyState:
 	if can_attack and player_in:
-		player_in = false
-		can_attack = false
+		print("I should attack rn")
 		state_machine.ChangeState($"../attack")
-		attack_cooldown = 2.2
+		player_in = !player_in
+		can_attack = !can_attack
+		attack_cooldown = randf_range(1.9, 2.6)
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown <= 0:
-			can_attack = true
+			can_attack = !can_attack
 	navigation_agent_2d.target_position = player.global_position
 	_direction = lerp(_direction, enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position()), 5*_delta)
 	if navigation_agent_2d.is_target_reached() == false:

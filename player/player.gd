@@ -106,10 +106,8 @@ func _take_damage(hurt_box:HurtBox) -> void:
 		update_hp(99)
 		
 func update_hp(delta:int):
-	print("player update hp happens")
 	hp=clampi(hp+delta, 0, max_hp)
 	DifferentName.update_hp(hp, max_hp)
-	pass
 	
 func make_invulnerable( _duration) -> void:
 	invulnerable = true
