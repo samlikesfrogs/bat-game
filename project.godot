@@ -17,11 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+InventoryManager="*uid://c6wldcsxte2qv"
 RoomManager="*uid://ba3i7wqbm8ll1"
 DifferentName="*uid://bgwb0hxeonpqm"
 PlayerManager="*uid://rpa8jios5h6q"
 BulletManager="*uid://dygy17k5dgraw"
-InventoryManager="*uid://c6wldcsxte2qv"
 SceneTransUi="*uid://cvq1uxb6adx4"
 
 [display]
