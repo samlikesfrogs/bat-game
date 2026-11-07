@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var hp: int = 6
-@export var max_hp: int = 6
+@export var max_hp: int = 8
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 var inventory_ui_visible:bool = false
@@ -106,7 +106,9 @@ func _take_damage(hurt_box:HurtBox) -> void:
 		update_hp(99)
 		
 func update_hp(delta:int):
+	print("player update hp happens")
 	hp=clampi(hp+delta, 0, max_hp)
+	DifferentName.update_hp(hp, max_hp)
 	pass
 	
 func make_invulnerable( _duration) -> void:

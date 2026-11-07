@@ -42,7 +42,6 @@ func process(_delta:float)->EnemyState:
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
 	elif i == 2:
-		$"../../CollisionShape2D".set_deferred("disabled", false)
 		_direction = enemy.global_position.direction_to(player.global_position)
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
