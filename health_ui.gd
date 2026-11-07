@@ -16,6 +16,7 @@ func update_hp(_hp: int, _max_hp: int):
 	update_max(_max_hp)
 		
 func update_heart(_index:int, _hp:int):
+	_index = _index/4
 	var _value: int = clampi(_hp-_index*4, 0, 4)
 	hearts[_index].value = _value
 	print("update hearts happens")

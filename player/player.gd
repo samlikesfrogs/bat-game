@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@export var hp: int = 6
-@export var max_hp: int = 8
+@export var hp: int = 20
+@export var max_hp: int = 20
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 var inventory_ui_visible:bool = false
