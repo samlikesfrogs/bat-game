@@ -23,8 +23,8 @@ func init() -> void:
 	pass
 
 func enter()-> void:
-	$"../../CollisionShape2D".set_deferred("disabled", false)
-	enemy.setDirection(enemy.global_position.direction_to(player.global_position))
+	print("going here")
+	#enemy.setDirection(enemy.global_position.direction_to(player.global_position))
 	enemy.updateAnim(anim_name)
 	if ray_cast_2d.is_colliding():
 			print("this happens")
@@ -54,7 +54,6 @@ func process(_delta:float)->EnemyState:
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
 	elif i == 3:
-		$"../../CollisionShape2D".set_deferred("disabled", false)
 		enemy.velocity = Vector2.ZERO	
 	if i == 3:
 		animation_finished = true

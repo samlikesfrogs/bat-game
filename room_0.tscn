@@ -1702,7 +1702,7 @@ side = 1
 
 [node name="LevelTrans5" parent="." unique_id=1769062057 instance=ExtResource("19_7l30b")]
 z_index = 3
-position = Vector2(16, 264)
+position = Vector2(16, 270)
 level = "uid://cbnlx6amihn4r"
 target_transition_area = "LevelTrans5"
 size = 6
