@@ -36,13 +36,12 @@ func process(_delta:float)->EnemyState:
 	if animation_finished:
 		return next_state
 	if i ==0:
-		enemy.velocity = Vector2.ZERO	
+		enemy.velocity = Vector2.ZERO
 	elif i == 1:
-		_direction = enemy.global_position.direction_to(player.global_position)
+		_direction = enemy.global_position.direction_to(player.global_position)	
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
 	elif i == 2:
-		_direction = enemy.global_position.direction_to(player.global_position)
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
 	elif i == 3:
