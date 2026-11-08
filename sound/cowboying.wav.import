@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://s1811dmml3nd"
-path="res://.godot/imported/cowboying.wav-ea68a1f6d9838b9f835118709cfe529a.sample"
+path="res://.godot/imported/cowboying.wav-fc8a22486ca55022c68e7b0b31e38d51.sample"
 
 [deps]
 
-source_file="res://cowboying.wav"
-dest_files=["res://.godot/imported/cowboying.wav-ea68a1f6d9838b9f835118709cfe529a.sample"]
+source_file="res://sound/cowboying.wav"
+dest_files=["res://.godot/imported/cowboying.wav-fc8a22486ca55022c68e7b0b31e38d51.sample"]
 
 [params]
 

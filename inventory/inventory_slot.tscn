@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgc078slpj1tk"]
 
-[ext_resource type="Script" uid="uid://cvj077pnqncxn" path="res://inventory_slot.gd" id="1_42eed"]
+[ext_resource type="Script" uid="uid://cvj077pnqncxn" path="res://inventory/inventory_slot.gd" id="1_42eed"]
 [ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="2_75pi0"]
 [ext_resource type="Texture2D" uid="uid://dbuqmp03hxstd" path="res://aart/inventory_select.png" id="4_75pi0"]
 [ext_resource type="FontFile" uid="uid://dd81h008hxeyn" path="res://quaver.ttf" id="4_kiat1"]

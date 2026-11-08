@@ -67,7 +67,7 @@ func drop_rand_items(count):
 		dropped += 1
 		
 func drop_item(data, position):
-	var item_instance = preload("res://inventory_item.tscn").instantiate()
+	var item_instance = preload("res://inventory/inventory_item.tscn").instantiate()
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
 	enemy.get_parent().call_deferred("add_child", item_instance)
 	item_instance.global_position = position

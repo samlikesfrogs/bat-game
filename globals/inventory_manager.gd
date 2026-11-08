@@ -54,7 +54,7 @@ func adjust_drop(position):
 	return position
 		
 func drop_item(item_data, drop_position):
-	var item_instance = preload("res://inventory_item.tscn").instantiate()
+	var item_instance = preload("res://inventory/inventory_item.tscn").instantiate()
 	item_instance.set_item_data(item_data)
 	drop_position = adjust_drop(drop_position)
 	get_tree().current_scene.add_child(item_instance)

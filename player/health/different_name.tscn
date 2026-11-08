@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bgwb0hxeonpqm"]
+
+[ext_resource type="Script" uid="uid://l8brj5scu58b" path="res://player/health/health_ui.gd" id="1_ywbvf"]
+[ext_resource type="PackedScene" uid="uid://bywf5v2hwj7c5" path="res://player/heart_ui.tscn" id="2_772x5"]
+
+[node name="Control" type="CanvasLayer" unique_id=769851107]
+script = ExtResource("1_ywbvf")
+
+[node name="Control" type="Control" parent="." unique_id=2080082224]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=464074909]
+custom_minimum_size = Vector2(84, 32)
+custom_maximum_size = Vector2(84, 32)
+propagate_maximum_size = false
+offset_left = 2.0
+offset_right = 86.0
+offset_bottom = 32.0
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+
+[node name="heart_ui" parent="HFlowContainer" unique_id=2106547303 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui2" parent="HFlowContainer" unique_id=1258153162 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui3" parent="HFlowContainer" unique_id=1660256952 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui4" parent="HFlowContainer" unique_id=2123740361 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui5" parent="HFlowContainer" unique_id=1428259610 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui6" parent="HFlowContainer" unique_id=1659288764 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui7" parent="HFlowContainer" unique_id=674475772 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui8" parent="HFlowContainer" unique_id=824516235 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui9" parent="HFlowContainer" unique_id=1965481566 instance=ExtResource("2_772x5")]
+layout_mode = 2
+
+[node name="heart_ui10" parent="HFlowContainer" unique_id=774990733 instance=ExtResource("2_772x5")]
+layout_mode = 2

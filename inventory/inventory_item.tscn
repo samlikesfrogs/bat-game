@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfsnollsnrmie"]
 
-[ext_resource type="Script" uid="uid://b63k0dtpcwb5q" path="res://inventory_item.gd" id="1_gmchj"]
+[ext_resource type="Script" uid="uid://b63k0dtpcwb5q" path="res://inventory/inventory_item.gd" id="1_gmchj"]
 [ext_resource type="Texture2D" uid="uid://2di6bbdshoa5" path="res://aart/enemies/bulb_shadow.png" id="2_gmchj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jgn8"]

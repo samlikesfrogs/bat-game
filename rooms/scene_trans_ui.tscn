@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvq1uxb6adx4"]
 
-[ext_resource type="Script" uid="uid://cyxclpdm8vknp" path="res://scene_trans_ui.gd" id="1_6qadj"]
+[ext_resource type="Script" uid="uid://cyxclpdm8vknp" path="res://rooms/scene_trans_ui.gd" id="1_6qadj"]
 
 [node name="SceneTransUI" type="CanvasLayer" unique_id=2009677464]
 process_mode = 3

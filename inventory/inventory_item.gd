@@ -4,7 +4,7 @@ class_name InventoryItem extends CharacterBody2D
 @export var item_name:String
 @export var item_texture:Texture
 @export var item_function:String
-var item_scene:PackedScene = preload("res://inventory_item.tscn")
+var item_scene:PackedScene = preload("res://inventory/inventory_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 var player_in_range = false
 
