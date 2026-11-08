@@ -4,7 +4,7 @@ class_name EnemyStateChase extends EnemyState
 @onready var player = PlayerManager.player
 @export var speed = 17
 @export var anim_name:String="walk"
-@export var aggroed: float = 1.5
+@export var aggroed: float = 1.7
 @export var next_state:EnemyState
 @onready var sfx_enemy_walk: AudioStreamPlayer2D = $sfx_enemy_walk
 @onready var fov: FieldOfVision = $"../../FOV"

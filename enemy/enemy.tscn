@@ -727,7 +727,7 @@ script = ExtResource("14_gf88j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOV" unique_id=699529050]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-60, -8, 60, -8, 125, 120, -125, 120)
+polygon = PackedVector2Array(-60, -8, 60, -8, 125, 160, -125, 160)
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
