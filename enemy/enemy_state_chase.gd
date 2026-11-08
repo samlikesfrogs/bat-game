@@ -4,7 +4,7 @@ class_name EnemyStateChase extends EnemyState
 @onready var player = PlayerManager.player
 @export var speed = 17
 @export var anim_name:String="walk"
-@export var aggroed: float = 4.5
+@export var aggroed: float = 1.5
 @export var next_state:EnemyState
 @onready var sfx_enemy_walk: AudioStreamPlayer2D = $sfx_enemy_walk
 @onready var fov: FieldOfVision = $"../../FOV"
@@ -12,11 +12,11 @@ class_name EnemyStateChase extends EnemyState
 @onready var hit_box: HitBox = $"../../HitBox"
 var i: int = 0
 var destroyed:bool
-var _timer: float = 0
+var _timer: float
 var _direction : Vector2
 var _player_visible: bool = false
 var can_attack:bool
-var attack_cooldown: float = 3.0
+var attack_cooldown: float = randf_range(3.0, 4.0)
 var player_in:bool
 
 func init() -> void:
@@ -42,12 +42,18 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
+	if _player_visible == false or player_in == false:
+		_timer -= _delta
+		if _timer < 0:
+			return next_state
+	else:
+		_timer = aggroed
 	if can_attack and player_in:
 		print("I should attack rn")
 		state_machine.ChangeState($"../attack")
 		player_in = !player_in
 		can_attack = !can_attack
-		attack_cooldown = 3.0
+		attack_cooldown = randf_range(3.0, 4.0)
 	if not can_attack:
 		attack_cooldown -=_delta
 		if attack_cooldown <= 0:
@@ -59,12 +65,6 @@ func process(_delta:float)->EnemyState:
 		enemy.move_and_slide()
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
-	if _player_visible == false:
-		_timer -= _delta
-		if _timer < 0:
-			return next_state
-	else:
-		_timer = aggroed
 	if enemy.global_position.distance_to(PlayerManager.player.global_position) > randi_range(30, 38):
 		player_in = true
 	else: 
