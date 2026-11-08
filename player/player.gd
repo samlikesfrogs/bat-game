@@ -21,7 +21,7 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 signal shoot
 signal inventory_opened 
 signal player_damaged(hurt_box:HurtBox)
-signal player_destroyed(hurt_box:HurtBox)
+#signal player_destroyed(hurt_box:HurtBox)
 
 var using_controller: bool = false
 var connected_joypads

@@ -8,7 +8,6 @@ var _direction : Vector2
 @onready var sfx_enemy_die: AudioStreamPlayer2D = $sfx_enemy_die
 @onready var sfx_enemy_hurt: AudioStreamPlayer2D = $"../stun/sfx_enemy_hurt"
 @export var enemy_drop_rate: int = randi_range(1, 3)
-var _position
 var _damage_position:Vector2
 
 func init() -> void:

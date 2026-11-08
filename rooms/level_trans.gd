@@ -27,8 +27,7 @@ func _ready() -> void:
 	monitoring = true
 	body_entered.connect(on_player_entered)
 	
-
-func on_player_entered(player:Node2D):
+func on_player_entered(_player:Node2D):
 	RoomManager.load_level(level, target_transition_area,get_offset())
 
 func player_pos():
@@ -39,14 +38,14 @@ func player_pos():
 	
 func get_offset()->Vector2:
 	var offset : Vector2 = Vector2.ZERO
-	var player_pos:Vector2 = PlayerManager.player.global_position
+	var _player_pos:Vector2 = PlayerManager.player.global_position
 	if side == SIDE.LEFT or side == SIDE.RIGHT:
-		offset.y = player_pos.y - global_position.y
+		offset.y = _player_pos.y - global_position.y
 		offset.x = 8
 		if side == SIDE.LEFT:
 			offset.x *= -1
 	else:
-		offset.x = player_pos.x - global_position.x
+		offset.x = _player_pos.x - global_position.x
 		offset.y = 8
 		if side == SIDE.TOP:
 			offset.y *= -1

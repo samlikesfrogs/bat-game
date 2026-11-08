@@ -9,8 +9,3 @@ func _ready() -> void:
 	player.process_mode=Node.PROCESS_MODE_ALWAYS
 	player.volume_db=-20.0
 	player.play()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

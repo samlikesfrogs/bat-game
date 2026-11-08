@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cbnlx6amihn4r"]
 
-[ext_resource type="Script" uid="uid://de4rv1bjxxc4w" path="res://rooms/room_4.gd" id="1_rgx3f"]
+[ext_resource type="Script" uid="uid://13w1wl4g6m5v" path="res://rooms/room_1.gd" id="1_rgx3f"]
 [ext_resource type="Texture2D" uid="uid://jo85n1ng082y" path="res://aart/tiles/tileset_Dirt to grass - dirt path.png" id="2_251q2"]
 [ext_resource type="Texture2D" uid="uid://ci0rm8546pcjm" path="res://aart/tiles/tileset_Dirt to water.png" id="3_7geca"]
 [ext_resource type="Texture2D" uid="uid://b3hvu0cr8ngk2" path="res://aart/tiles/tileset_Lake to dit.png" id="4_ldy6n"]

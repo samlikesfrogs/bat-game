@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://3nuinbi1trwd"]
 
-[ext_resource type="Script" uid="uid://dgworaleuvvr5" path="res://rooms/room_3.gd" id="1_pytw5"]
+[ext_resource type="Script" uid="uid://13w1wl4g6m5v" path="res://rooms/room_1.gd" id="1_pytw5"]
 [ext_resource type="AudioStream" uid="uid://s1811dmml3nd" path="res://sound/cowboying.wav" id="2_pytw5"]
 [ext_resource type="Texture2D" uid="uid://jo85n1ng082y" path="res://aart/tiles/tileset_Dirt to grass - dirt path.png" id="3_evh4e"]
 [ext_resource type="Texture2D" uid="uid://ci0rm8546pcjm" path="res://aart/tiles/tileset_Dirt to water.png" id="4_h8lbs"]

@@ -15,11 +15,13 @@ func update_hp(_hp: int, _max_hp: int):
 	update_max(_max_hp)
 		
 func update_heart(_index:int, _hp:int):
+	@warning_ignore("integer_division")
 	_index = _index/4
 	var _value: int = clampi(_hp-_index*4, 0, 4)
 	hearts[_index].value = _value
 	
 func update_max(_max_hp:int):
+	@warning_ignore("integer_division")
 	var _heart_amnt:int = round(_max_hp/4)
 	for i in hearts.size():
 		if i < _heart_amnt:

@@ -18,7 +18,6 @@ func _process(delta: float) -> void:
 		var input_vector := Input.get_vector(
 			"ui_left", "ui_right", "ui_up", "ui_down")
 		if input_vector != Vector2.ZERO:
-			var current_pos = get_viewport().get_mouse_position()
 			var new_pos = get_viewport().get_mouse_position() + (input_vector * joystick_sensitivity * delta)
 			get_viewport().warp_mouse(new_pos)
 	elif get_tree().paused == true:

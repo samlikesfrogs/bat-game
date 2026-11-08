@@ -12,7 +12,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		sprite.texture = item_texture
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		sprite.texture = item_texture
 	if player_in_range:
@@ -50,8 +50,8 @@ func set_item_data(data):
 	item_function = data["function"]
 	item_texture = data["texture"]
 	
-func instance_item(type, name, function, texture):
+func instance_item(type, _name, function, texture):
 	item_type = type
-	item_name = name
+	item_name = _name
 	item_function = function
 	item_texture = texture

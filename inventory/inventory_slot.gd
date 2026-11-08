@@ -18,10 +18,6 @@ func _ready() -> void:
 	info_panel.visible = false
 	usage_panel.visible = false
 
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_item_button_mouse_entered() -> void:
 	if item != null and usage_panel.visible == false:
 		info_panel.visible = true

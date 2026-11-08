@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cvj077pnqncxn" path="res://inventory/inventory_slot.gd" id="1_42eed"]
 [ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="2_75pi0"]
 [ext_resource type="Texture2D" uid="uid://dbuqmp03hxstd" path="res://aart/inventory_select.png" id="4_75pi0"]
-[ext_resource type="FontFile" uid="uid://dd81h008hxeyn" path="res://quaver.ttf" id="4_kiat1"]
 [ext_resource type="FontFile" uid="uid://c1tpdh11d0q75" path="res://3x5-Microfont.ttf" id="5_kiat1"]
 [ext_resource type="Texture2D" uid="uid://p3orce7xom2b" path="res://aart/inventory_hover.png" id="5_rhcms"]
 
@@ -138,7 +137,6 @@ theme_override_font_sizes/font_size = 8
 text = "function"
 
 [node name="UsagePanel" type="ColorRect" parent="." unique_id=1608723833]
-visible = false
 z_index = 2
 layout_mode = 0
 offset_top = -22.0
@@ -166,7 +164,6 @@ offset_left = -11.0
 offset_right = 11.0
 offset_bottom = 10.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_kiat1")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rptt4")
 text = "Use
@@ -196,7 +193,6 @@ offset_top = -10.0
 offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("4_kiat1")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_r7pn3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bfyh4")
