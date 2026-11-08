@@ -1662,7 +1662,7 @@ tile_set = SubResource("TileSet_afqhc")
 
 [node name="LevelTrans5" parent="." unique_id=1130782072 instance=ExtResource("17_2qmut")]
 z_index = 4
-position = Vector2(240, -18)
+position = Vector2(241, -21)
 level = "uid://c8iaek7olk52x"
 target_transition_area = "LevelTrans5"
 size = 6

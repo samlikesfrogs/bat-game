@@ -686,9 +686,6 @@ sources/3 = SubResource("TileSetAtlasSource_snwrp")
 sources/4 = SubResource("TileSetAtlasSource_ebs71")
 sources/5 = SubResource("TileSetAtlasSource_2uqfx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgn8"]
-size = Vector2(701.5, 20)
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbxwu"]
 vertices = PackedVector2Array(-29, 391, -33.617188, 391, -33.039063, 223.75781, -29, 311, 531, 551, 531, 567, 483, 567, 499, 463, 483, 583, 451, 583, 451, 599, 403, 599, 299, 367, 403, 615, 339, 615, 267, 383, 267, 367, 339, 631, 219, 631, 219, 615, 107, 615, 107, 599, 75, 599, 75, 583, 107, 415, 59, 583, 59, 567, 43, 567, 43, 519, 27, 519, 27, 431, 43, 431, 43, 415, 107, 399, 187, 399, 187, 383, 299, 351, 347, 351, 347, 335, 371, 335, 371, 351, 419, 351, 419, 367, 435, 367, 435, 383, 467, 383, 467, 415, 483, 415, 483, 431, 499, 431, 531, 463, 531, 479, 619, 295, 603, 295, 603, 279, 636.77344, 210.25, 379, 279, 379, 263, 307, 263, 307, 279, 227, 279, 227, 295, 3, 295, 3, 311, -34.953125, 781.27344, -34.632813, 687, 603, 687, 626.21094, 796.71094, 603, 551, 619, 479, -29, 599, -34.328125, 599, -33.859375, 463, -29, 463)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(6, 8, 9), PackedInt32Array(9, 10, 11), PackedInt32Array(12, 11, 13, 14, 15, 16), PackedInt32Array(14, 17, 18, 19, 15), PackedInt32Array(19, 20, 21), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(23, 25, 26, 24), PackedInt32Array(26, 27, 28, 24), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(31, 32, 24), PackedInt32Array(24, 33, 34, 19), PackedInt32Array(34, 35, 15, 19), PackedInt32Array(12, 36, 37, 11), PackedInt32Array(37, 38, 39, 40), PackedInt32Array(40, 41, 42, 11), PackedInt32Array(42, 43, 44, 11), PackedInt32Array(11, 44, 45, 46, 9), PackedInt32Array(46, 47, 48, 9), PackedInt32Array(9, 48, 49, 7, 6), PackedInt32Array(7, 50, 51), PackedInt32Array(52, 53, 54, 55), PackedInt32Array(54, 56, 57, 55), PackedInt32Array(58, 59, 60), PackedInt32Array(60, 61, 62), PackedInt32Array(62, 63, 3, 2), PackedInt32Array(62, 2, 55, 58), PackedInt32Array(64, 65, 66, 67), PackedInt32Array(28, 31, 24), PackedInt32Array(19, 21, 24), PackedInt32Array(11, 37, 40), PackedInt32Array(4, 7, 51, 68), PackedInt32Array(68, 51, 69), PackedInt32Array(66, 68, 69, 67), PackedInt32Array(55, 67, 69, 52), PackedInt32Array(55, 57, 58), PackedInt32Array(62, 58, 60), PackedInt32Array(70, 71, 72, 73)])
@@ -1283,30 +1280,6 @@ position = Vector2(-34, -393)
 y_sort_enabled = true
 position = Vector2(103, -256)
 
-[node name="invis walls" type="StaticBody2D" parent="." unique_id=296719435]
-position = Vector2(-194, -302)
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="invis walls" unique_id=1076626681]
-position = Vector2(253, -226)
-shape = SubResource("RectangleShape2D_7jgn8")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="invis walls" unique_id=943145619]
-position = Vector2(-69, -71)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_7jgn8")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="invis walls" unique_id=1905560628]
-position = Vector2(540, -91)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_7jgn8")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="invis walls" unique_id=368484600]
-position = Vector2(233, 152)
-rotation = -3.1415925
-shape = SubResource("RectangleShape2D_7jgn8")
-
 [node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("10_da5j0")]
 z_index = 4
 position = Vector2(282, -325)
@@ -1337,7 +1310,7 @@ tile_set = SubResource("TileSet_pdia1")
 
 [node name="LevelTrans3" parent="." unique_id=1130782072 instance=ExtResource("18_ptkyr")]
 z_index = 4
-position = Vector2(312, -321)
+position = Vector2(342, -320)
 level = "uid://c8iaek7olk52x"
 target_transition_area = "LevelTrans3"
 size = 6
