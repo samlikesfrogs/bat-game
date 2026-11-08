@@ -63,16 +63,16 @@ func process(_delta:float)->EnemyState:
 	
 func physics(_delta:float)->EnemyState:
 	return null
-
-#func _on_enemy_sprite_animation_changed() -> void:
-#	i = 0
 	
 func _on_enemy_sprite_animation_finished() -> void:
 	animation_finished = true
 
 func _on_enemy_sprite_frame_changed() -> void:
-	if %EnemySprite.animation == anim_name + "_" + enemy.AnimDirection():
-		if state_machine.current_state == self:
-				i+=1
-	if i == 2 and state_machine.current_state == self:
-		sfx_enemy_attack.play()
+	if state_machine.current_state == self:
+		i+=1
+		if i == 2:
+			sfx_enemy_attack.play()
+
+
+func _on_enemy_sprite_animation_changed() -> void:
+	i = 0

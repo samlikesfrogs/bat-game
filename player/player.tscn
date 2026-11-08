@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://cynjbdas47ruv" path="res://sound/11_human_damage_3.wav" id="25_knn7v"]
 [ext_resource type="Script" uid="uid://qju7jxxbdgkf" path="res://player/player_inventory.gd" id="26_uw77l"]
 [ext_resource type="Texture2D" uid="uid://bhs2bffoomyul" path="res://aart/Theme/Theme Wood/nine_path_panel.png" id="27_rptt4"]
+[ext_resource type="PackedScene" uid="uid://dcfq6rdhx3frq" path="res://inventory/inventory_ui.tscn" id="29_r7pn3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
 atlas = ExtResource("2_32hag")
@@ -357,7 +358,6 @@ unique_name_in_owner = true
 stream = ExtResource("22_7pqkx")
 volume_db = -4.0
 pitch_scale = 0.75
-bus = &"SFX"
 
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
 script = ExtResource("17_tqiix")
@@ -415,6 +415,13 @@ patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="inventory_ui" parent="inventory_ui/ColorRect/NinePatchRect" unique_id=2137149539 instance=ExtResource("29_r7pn3")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 23.0
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]

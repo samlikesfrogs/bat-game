@@ -35,6 +35,7 @@ func enter()-> void:
 		hurt_box.monitoring = true
 	
 func exit()->void:
+	enemy.setDirection(_direction)
 	i = 0
 	if hurt_box:
 		hurt_box.monitoring=false

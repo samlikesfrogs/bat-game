@@ -22,6 +22,7 @@ buses/default_bus_layout=""
 [autoload]
 
 InventoryManager="*uid://c6wldcsxte2qv"
+MusicManager="*uid://sgt3yvupdc7w"
 RoomManager="*uid://ba3i7wqbm8ll1"
 DifferentName="*uid://bgwb0hxeonpqm"
 PlayerManager="*uid://rpa8jios5h6q"
