@@ -19,11 +19,7 @@ Godot and Aseprite and my very own human brain !!
 
 How to run:
 
-Terra Week 2: Back to zip lol (https://samiiswriting.itch.io/oasis-week-2)
-
-Terra Week 1: Play in browser (https://samiiswriting.itch.io/oasis)
-
-Terra Prep Week 3: Download the zip file, extract, run index.exe (https://samiiswriting.itch.io/work-in-progress)
+Download the zip file, extract, run index.exe (https://samiiswriting.itch.io/oasis-for-terra)
 
 
 
