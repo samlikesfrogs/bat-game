@@ -39,16 +39,23 @@ func player_pos():
 func get_offset()->Vector2:
 	var offset : Vector2 = Vector2.ZERO
 	var _player_pos:Vector2 = PlayerManager.player.global_position
-	if side == SIDE.LEFT or side == SIDE.RIGHT:
-		offset.y = _player_pos.y - global_position.y
-		offset.x = 8
-		if side == SIDE.LEFT:
-			offset.x *= -1
-	else:
-		offset.x = _player_pos.x - global_position.x
-		offset.y = 8
-		if side == SIDE.TOP:
-			offset.y *= -1
+	match side:
+		SIDE.LEFT:
+			self.level = "res://rooms/room_3.tscn"
+			offset.y = _player_pos.y - global_position.y
+			offset.x = -8
+		SIDE.RIGHT:
+			self.level = "res://rooms/room_2.tscn"
+			offset.y = _player_pos.y - global_position.y
+			offset.x = 8
+		SIDE.TOP:
+			self.level = "res://rooms/room_1.tscn"
+			offset.x = _player_pos.x - global_position.x
+			offset.y = -8
+		SIDE.BOTTOM:
+			self.level = "res://rooms/room_4.tscn"
+			offset.x = _player_pos.x - global_position.x
+			offset.y = 8
 	return offset
 		
 func update_area()-> void:
