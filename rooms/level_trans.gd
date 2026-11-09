@@ -36,7 +36,8 @@ func on_player_entered(_player:Node2D):
 	prev_door = self.side
 	if is_return_door:
 		RoomManager.go_back(target_transition_area,get_offset())
-	RoomManager.load_level(level, target_transition_area,get_offset())
+	else:
+		RoomManager.load_level(level, target_transition_area,get_offset())
 
 func player_pos():
 	if name != RoomManager.target_transition_area:
@@ -45,37 +46,39 @@ func player_pos():
 		PlayerManager.player_spawn_point(global_position + RoomManager.position_offset)
 	
 func get_offset()->Vector2:
+	print(prev_door)
 	var offset : Vector2 = Vector2.ZERO
 	var _player_pos:Vector2 = PlayerManager.player.global_position
 	match side:
 		SIDE.LEFT:
-			if prev_door == SIDE.RIGHT:
+			if prev_door == 0:
 				is_return_door = true
 			else:
 				self.level = possible_rooms_left.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = -8
 		SIDE.RIGHT:
-			if prev_door == SIDE.LEFT:
+			if prev_door == 1:
 				is_return_door = true
 			else:
 				self.level = possible_rooms_right.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = 8
 		SIDE.TOP:
-			if prev_door == SIDE.BOTTOM:
+			if prev_door == 2:
 				is_return_door = true
 			else:
 				self.level = possible_rooms_top.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = -8
 		SIDE.BOTTOM:
-			if prev_door == SIDE.TOP:
+			if prev_door == 3:
 				is_return_door = true
 			else:
 				self.level = possible_rooms_bottom.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = 8
+	print(is_return_door)
 	return offset
 		
 func update_area()-> void:

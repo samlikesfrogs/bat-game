@@ -20,6 +20,7 @@ func update_map_limits(limits:Array[Vector2]) -> void:
 func load_level(level_path:String, _target_transition_area:String, _position_offset:Vector2):
 	get_tree().paused = true
 	previous = get_tree().current_scene.scene_file_path
+	print(previous)
 	room_history.append(previous)
 	target_transition_area = _target_transition_area
 	position_offset = _position_offset
