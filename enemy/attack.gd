@@ -24,9 +24,7 @@ func init() -> void:
 
 func enter()-> void:
 	enemy.updateAnim(anim_name)
-	print("going here")
 	if ray_cast_2d.is_colliding():
-			print("this happens")
 			navigation_agent_2d.target_position = player.global_position
 			_direction = enemy.global_position.direction_to(navigation_agent_2d.get_next_path_position())
 	else:
@@ -49,7 +47,6 @@ func process(_delta:float)->EnemyState:
 	if i == 0:
 		enemy.velocity = Vector2.ZERO
 	elif i == 1:
-		print("gets to 1")
 		enemy.velocity = _direction * speed
 		enemy.move_and_slide()
 	elif i == 2:

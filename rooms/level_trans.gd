@@ -1,8 +1,13 @@
 @tool
 class_name LvlTrans extends Area2D
-
+var prev_door
 enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
+@export var possible_rooms_right:Array=["res://rooms/room_2.tscn"]
+@export var possible_rooms_left:Array=["res://rooms/room_3.tscn"]
+@export var possible_rooms_bottom:Array=["res://rooms/room_4.tscn"]
+@export var possible_rooms_top:Array=["res://rooms/room_1.tscn"]
+@export var is_return_door:bool = false
 @export_file("*.tscn") var level
 @export var target_transition_area :String = "LevelTransition"
 @export_range(1,12,1, "or_greater") var size:int = 2:
@@ -28,6 +33,9 @@ func _ready() -> void:
 	body_entered.connect(on_player_entered)
 	
 func on_player_entered(_player:Node2D):
+	prev_door = self.side
+	if is_return_door:
+		RoomManager.go_back(target_transition_area,get_offset())
 	RoomManager.load_level(level, target_transition_area,get_offset())
 
 func player_pos():
@@ -41,19 +49,31 @@ func get_offset()->Vector2:
 	var _player_pos:Vector2 = PlayerManager.player.global_position
 	match side:
 		SIDE.LEFT:
-			self.level = "res://rooms/room_3.tscn"
+			if prev_door == SIDE.RIGHT:
+				is_return_door = true
+			else:
+				self.level = possible_rooms_left.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = -8
 		SIDE.RIGHT:
-			self.level = "res://rooms/room_2.tscn"
+			if prev_door == SIDE.LEFT:
+				is_return_door = true
+			else:
+				self.level = possible_rooms_right.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = 8
 		SIDE.TOP:
-			self.level = "res://rooms/room_1.tscn"
+			if prev_door == SIDE.BOTTOM:
+				is_return_door = true
+			else:
+				self.level = possible_rooms_top.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = -8
 		SIDE.BOTTOM:
-			self.level = "res://rooms/room_4.tscn"
+			if prev_door == SIDE.TOP:
+				is_return_door = true
+			else:
+				self.level = possible_rooms_bottom.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = 8
 	return offset

@@ -49,7 +49,6 @@ func process(_delta:float)->EnemyState:
 	else:
 		_timer = aggroed
 	if can_attack and player_in:
-		print("I should attack rn")
 		state_machine.ChangeState($"../attack")
 		player_in = !player_in
 		can_attack = !can_attack

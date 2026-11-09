@@ -117,8 +117,3 @@ func make_invulnerable( _duration) -> void:
 	
 	invulnerable = false
 	$HitBox/CollisionShape2D.set_deferred("disabled", false)
-	
-func apply_item_effect(item):
-	match item["effect"]:
-		_:
-			print("none")
