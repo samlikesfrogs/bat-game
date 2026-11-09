@@ -42,7 +42,7 @@ func exit()->void:
 	_player_visible = false
 	
 func process(_delta:float)->EnemyState:
-	if _player_visible == false or player_in == false:
+	if _player_visible == false:
 		_timer -= _delta
 		if _timer < 0:
 			return next_state

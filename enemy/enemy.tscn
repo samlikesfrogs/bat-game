@@ -809,6 +809,7 @@ avoidance_enabled = true
 radius = 6.0
 time_horizon_agents = 0.5
 time_horizon_obstacles = 5.0
+debug_enabled = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2029569116]
 z_index = 2
