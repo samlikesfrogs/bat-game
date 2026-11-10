@@ -24,7 +24,6 @@ var position_offset:Vector2 = Vector2.ZERO
 var i:int = 0
 
 func _ready() -> void:
-	print("ready", is_return_door)
 	update_area()
 	if Engine.is_editor_hint():
 		return
