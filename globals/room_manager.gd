@@ -34,9 +34,13 @@ func load_level(level_path:String, _target_transition_area:String, _position_off
 	await SceneTransUi.fade_out()
 	
 func go_back(_target_transition_area:String, _position_offset:Vector2):
+	print("in go back")
 	var _temp_trans = _target_transition_area
 	var _temp_offset = _position_offset
+	print(room_history)
 	if room_history.size()>0:
+		print("room history not 0")
 		var previous = room_history.pop_back()
+		print("is this just the same", previous)
 	load_level(previous, _temp_trans, _temp_offset)
 	

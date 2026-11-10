@@ -1,15 +1,16 @@
 @tool
 class_name LvlTrans extends Area2D
 var prev_door
+var current_door
 enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
 @export var possible_rooms_right:Array=["res://rooms/room_2.tscn"]
 @export var possible_rooms_left:Array=["res://rooms/room_3.tscn"]
 @export var possible_rooms_bottom:Array=["res://rooms/room_4.tscn"]
 @export var possible_rooms_top:Array=["res://rooms/room_1.tscn"]
-@export var is_return_door:bool = false
+var is_return_door:bool = false
 @export_file("*.tscn") var level
-@export var target_transition_area :String = "LevelTransition"
+@export var target_transition_area :String = "LevelTrans"
 @export_range(1,12,1, "or_greater") var size:int = 2:
 	set(value):
 		size = value
@@ -20,8 +21,10 @@ enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 		update_area()
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 var position_offset:Vector2 = Vector2.ZERO
+var i:int = 0
 
 func _ready() -> void:
+	print("ready", is_return_door)
 	update_area()
 	if Engine.is_editor_hint():
 		return
@@ -33,7 +36,6 @@ func _ready() -> void:
 	body_entered.connect(on_player_entered)
 	
 func on_player_entered(_player:Node2D):
-	prev_door = self.side
 	if is_return_door:
 		RoomManager.go_back(target_transition_area,get_offset())
 	else:
@@ -43,42 +45,34 @@ func player_pos():
 	if name != RoomManager.target_transition_area:
 		return
 	else:
+		is_return_door = true
 		PlayerManager.player_spawn_point(global_position + RoomManager.position_offset)
 	
 func get_offset()->Vector2:
-	print(prev_door)
 	var offset : Vector2 = Vector2.ZERO
 	var _player_pos:Vector2 = PlayerManager.player.global_position
 	match side:
 		SIDE.LEFT:
-			if prev_door == 0:
-				is_return_door = true
-			else:
+			if not is_return_door:
 				self.level = possible_rooms_left.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = -8
 		SIDE.RIGHT:
-			if prev_door == 1:
-				is_return_door = true
-			else:
+			if not is_return_door:
 				self.level = possible_rooms_right.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = 8
 		SIDE.TOP:
-			if prev_door == 2:
-				is_return_door = true
-			else:
+			if not is_return_door:
 				self.level = possible_rooms_top.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = -8
 		SIDE.BOTTOM:
-			if prev_door == 3:
-				is_return_door = true
-			else:
+			if not is_return_door:
 				self.level = possible_rooms_bottom.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = 8
-	print(is_return_door)
+	print(is_return_door, self.side)
 	return offset
 		
 func update_area()-> void:
