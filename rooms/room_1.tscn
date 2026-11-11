@@ -1637,14 +1637,9 @@ tile_set = SubResource("TileSet_ujn84")
 position = Vector2(-260, -515)
 tile_set = SubResource("TileSet_afqhc")
 
-[node name="LevelTrans1" parent="." unique_id=1130782072 instance=ExtResource("17_lwdxx")]
+[node name="ExitBottom" parent="." unique_id=1130782072 instance=ExtResource("17_lwdxx")]
 z_index = 4
 position = Vector2(240, 265)
-possible_rooms_right = null
-possible_rooms_left = null
-possible_rooms_bottom = null
-possible_rooms_top = null
-is_return_door = null
-target_transition_area = "LevelTrans1"
+possible_rooms_bottom = ["res://rooms/room_4.tscn"]
 size = 6
 side = 3

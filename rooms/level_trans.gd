@@ -6,11 +6,11 @@ enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
 @export var possible_rooms_right:Array=["res://rooms/room_2.tscn"]
 @export var possible_rooms_left:Array=["res://rooms/room_3.tscn"]
-@export var possible_rooms_bottom:Array=["res://rooms/room_4.tscn"]
+@export var possible_rooms_bottom:Array=["res://rooms/room_4.tscn", "res://rooms/room_5.tscn"]
 @export var possible_rooms_top:Array=["res://rooms/room_1.tscn"]
 var is_return_door:bool = false
 @export_file("*.tscn") var level
-@export var target_transition_area :String = "LevelTrans"
+@export var target_transition_area :String
 @export_range(1,12,1, "or_greater") var size:int = 2:
 	set(value):
 		size = value
@@ -24,6 +24,17 @@ var position_offset:Vector2 = Vector2.ZERO
 var i:int = 0
 
 func _ready() -> void:
+	match self.name:
+		"EnterLeft":
+			target_transition_area = "ExitRight"
+		"EnterTop":
+			target_transition_area = "ExitBottom"
+		"ExitRight":
+			target_transition_area = "EnterLeft"
+		"ExitBottom":
+			target_transition_area = "EnterTop"
+		_:
+			print("shit fuck what the hell")
 	update_area()
 	if Engine.is_editor_hint():
 		return
@@ -52,22 +63,22 @@ func get_offset()->Vector2:
 	var _player_pos:Vector2 = PlayerManager.player.global_position
 	match side:
 		SIDE.LEFT:
-			if not is_return_door:
+			if not is_return_door and self.level == null:
 				self.level = possible_rooms_left.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = -8
 		SIDE.RIGHT:
-			if not is_return_door:
+			if not is_return_door and self.level == null:
 				self.level = possible_rooms_right.pick_random()
 			offset.y = _player_pos.y - global_position.y
 			offset.x = 8
 		SIDE.TOP:
-			if not is_return_door:
+			if not is_return_door and self.level == null:
 				self.level = possible_rooms_top.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = -8
 		SIDE.BOTTOM:
-			if not is_return_door:
+			if not is_return_door and self.level == null:
 				self.level = possible_rooms_bottom.pick_random()
 			offset.x = _player_pos.x - global_position.x
 			offset.y = 8

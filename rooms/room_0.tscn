@@ -1668,49 +1668,29 @@ shape = SubResource("RectangleShape2D_7jgn8")
 position = Vector2(6, -294)
 shape = SubResource("RectangleShape2D_7jgn8")
 
-[node name="LevelTrans1" parent="." unique_id=1130782072 instance=ExtResource("19_ei1j6")]
+[node name="EnterTop" parent="." unique_id=1130782072 instance=ExtResource("19_ei1j6")]
 z_index = 3
 position = Vector2(16, -276)
-possible_rooms_right = null
-possible_rooms_left = null
-possible_rooms_bottom = null
-possible_rooms_top = null
-is_return_door = null
-target_transition_area = "LevelTrans1"
+possible_rooms_bottom = ["res://rooms/room_4.tscn"]
 size = 6
 side = 2
 
-[node name="LevelTrans2" parent="." unique_id=990186267 instance=ExtResource("19_ei1j6")]
+[node name="EnterLeft" parent="." unique_id=990186267 instance=ExtResource("19_ei1j6")]
 z_index = 3
 position = Vector2(-277, 16)
-possible_rooms_right = null
-possible_rooms_left = null
-possible_rooms_bottom = null
-possible_rooms_top = null
-is_return_door = null
-target_transition_area = "LevelTrans2"
+possible_rooms_bottom = ["res://rooms/room_4.tscn"]
 size = 6
 
-[node name="LevelTrans3" parent="." unique_id=2018603222 instance=ExtResource("19_ei1j6")]
+[node name="ExitRight" parent="." unique_id=2018603222 instance=ExtResource("19_ei1j6")]
 z_index = 3
 position = Vector2(355, 81)
-possible_rooms_right = null
-possible_rooms_left = null
-possible_rooms_bottom = null
-possible_rooms_top = null
-is_return_door = null
-target_transition_area = "LevelTrans3"
+possible_rooms_bottom = ["res://rooms/room_4.tscn"]
 size = 6
 side = 1
 
-[node name="LevelTrans4" parent="." unique_id=1769062057 instance=ExtResource("19_ei1j6")]
+[node name="ExitBottom" parent="." unique_id=1769062057 instance=ExtResource("19_ei1j6")]
 z_index = 3
 position = Vector2(16, 277)
-possible_rooms_right = null
-possible_rooms_left = null
-possible_rooms_bottom = null
-possible_rooms_top = null
-is_return_door = null
-target_transition_area = "LevelTrans4"
+possible_rooms_bottom = ["res://rooms/room_4.tscn"]
 size = 6
 side = 3
