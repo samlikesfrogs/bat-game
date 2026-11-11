@@ -6,7 +6,7 @@ enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
 @export var possible_rooms_right:Array=["res://rooms/room_2.tscn"]
 @export var possible_rooms_left:Array=["res://rooms/room_3.tscn"]
-@export var possible_rooms_bottom:Array=["res://rooms/room_5.tscn", "res://rooms/room_4.tscn"]
+@export var possible_rooms_bottom:Array=["res://rooms/room_5.tscn"]
 @export var possible_rooms_top:Array=["res://rooms/room_1.tscn"]
 var is_return_door:bool = false
 @export_file("*.tscn") var level
@@ -80,6 +80,7 @@ func get_offset()->Vector2:
 		SIDE.BOTTOM:
 			if not is_return_door and self.level == null:
 				self.level = possible_rooms_bottom.pick_random()
+				print("selected", self.level)
 			offset.x = _player_pos.x - global_position.x
 			offset.y = 8
 	print(is_return_door, self.side)
