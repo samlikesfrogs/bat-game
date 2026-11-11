@@ -48,8 +48,6 @@ func _ready() -> void:
 				self.level = possible_rooms_bottom.pick_random()
 	if self.is_return_door and self.level == null:
 		self.level = RoomManager.previous
-	print("selected", self.level)
-	update_area()
 	if Engine.is_editor_hint():
 		return
 	monitoring = false
@@ -58,6 +56,11 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	monitoring = true
 	body_entered.connect(on_player_entered)
+	#var scene = get_tree().current_scene
+	#var packed = PackedScene.new()
+	#packed.pack(scene)
+	#ResourceSaver.save(packed, scene.scene_file_path)
+	update_area()
 	
 func on_player_entered(_player:Node2D):
 	if self.is_return_door:
@@ -98,16 +101,16 @@ func update_area()-> void:
 	
 	if side == SIDE.TOP:
 		new_rect.x *= size
-		new_position.y -= 16
+		new_position.y -= 8
 	elif side == SIDE.BOTTOM:
 		new_rect.x *= size
-		new_position.y += 16
+		new_position.y += 8
 	if side == SIDE.LEFT:
 		new_rect.y *= size
-		new_position.x -= 16
+		new_position.x -= 8
 	elif side == SIDE.RIGHT:
 		new_rect.y *= size
-		new_position.x += 16
+		new_position.x += 8
 		
 	if collision_shape_2d == null:
 		collision_shape_2d = get_node("CollisionShape2D")
