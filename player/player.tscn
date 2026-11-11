@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://qju7jxxbdgkf" path="res://player/player_inventory.gd" id="26_uw77l"]
 [ext_resource type="Texture2D" uid="uid://bhs2bffoomyul" path="res://aart/Theme/Theme Wood/nine_path_panel.png" id="27_rptt4"]
 [ext_resource type="PackedScene" uid="uid://dcfq6rdhx3frq" path="res://inventory/inventory_ui.tscn" id="29_r7pn3"]
+[ext_resource type="PackedScene" uid="uid://ne23y3xlqy3a" path="res://save_load.tscn" id="30_b8hi5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
 atlas = ExtResource("2_32hag")
@@ -422,6 +423,12 @@ offset_left = 9.0
 offset_top = 7.0
 offset_right = 25.0
 offset_bottom = 23.0
+
+[node name="Save_Load" parent="inventory_ui" unique_id=688554000 instance=ExtResource("30_b8hi5")]
+offset_left = -100.0
+offset_top = 6.0
+offset_right = -100.0
+offset_bottom = 6.0
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]

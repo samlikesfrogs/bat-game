@@ -1775,7 +1775,6 @@ size = 6
 z_index = 4
 position = Vector2(376, 109)
 possible_rooms_bottom = ["res://rooms/room_4.tscn"]
-level = "uid://dsfxgykchhltf"
 target_transition_area = "ExitBottom"
 size = 1
 side = 2

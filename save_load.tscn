@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://ne23y3xlqy3a"]
+
+[ext_resource type="Script" uid="uid://dkd3yoopri5qy" path="res://save_load.gd" id="1_6ywai"]
+[ext_resource type="FontFile" uid="uid://c1tpdh11d0q75" path="res://3x5-Microfont.ttf" id="2_dsm26"]
+[ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="3_cerri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3blse"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ywai"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsm26"]
+bg_color = Color(0.105882354, 0.105882354, 0.105882354, 0.5176471)
+
+[node name="Save_Load" type="Control" unique_id=688554000]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ywai")
+
+[node name="panel" type="ColorRect" parent="." unique_id=1419040271]
+z_index = 2
+layout_mode = 0
+offset_left = -14.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 6.0
+color = Color(1, 1, 1, 0)
+
+[node name="InfoPanel2" type="NinePatchRect" parent="panel" unique_id=401204150]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 14.0
+texture = ExtResource("3_cerri")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Save" type="Button" parent="panel/InfoPanel2" unique_id=383997379]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -17.0
+offset_right = 17.0
+offset_bottom = 14.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_dsm26")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3blse")
+text = "Save"
+
+[node name="InfoPanel3" type="NinePatchRect" parent="panel" unique_id=279911254]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 34.0
+offset_bottom = 30.0
+texture = ExtResource("3_cerri")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Load" type="Button" parent="panel/InfoPanel3" unique_id=1880560556]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -14.0
+offset_right = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_dsm26")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6ywai")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dsm26")
+action_mode = 0
+text = "load
+"
+
+[connection signal="pressed" from="panel/InfoPanel2/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="panel/InfoPanel3/Load" to="." method="_on_load_pressed"]
