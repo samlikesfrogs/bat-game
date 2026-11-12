@@ -36,7 +36,10 @@ func _ready() -> void:
 	match side:
 		SIDE.LEFT:
 			if not is_return_door and self.level == null:
+				#if counter > 4: generate end room left, if boss room picked update roommanager boss_room_exists
+				#if boss room exists: generate end room left
 				self.level = possible_rooms_left.pick_random()
+				#update counter
 		SIDE.RIGHT:
 			if not is_return_door and self.level == null:
 				self.level = possible_rooms_right.pick_random()

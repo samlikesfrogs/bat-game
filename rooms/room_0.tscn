@@ -1660,7 +1660,7 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7jgn8")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="invis walls" unique_id=368484600]
-position = Vector2(33, 296)
+position = Vector2(33, 294)
 rotation = -3.1415925
 shape = SubResource("RectangleShape2D_7jgn8")
 
