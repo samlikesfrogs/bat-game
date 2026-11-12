@@ -13,6 +13,11 @@ func add_player_instance()->void:
 	player = PLAYER.instantiate()
 	get_tree().current_scene.add_child(player)
 
+func set_health(hp:int, max_hp:int):
+	player.max_hp = max_hp
+	player.hp = hp
+	player.update_hp(0)
+	
 func player_spawn_point(_new_position:Vector2)->void:
 	player.global_position= _new_position
 

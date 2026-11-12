@@ -29,7 +29,16 @@ func save_game():
 	
 func load_game():
 	print("load pressed")
-	pass
+	var file := FileAccess.open(SAVE_PATH+"save.sav", FileAccess.READ)
+	var json :=JSON.new()
+	json.parse(file.get_line())
+	var save_dict : Dictionary = json.get_data() as Dictionary
+	current_save = save_dict
+	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false)
+	await RoomManager.room_load_start
+	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
+	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
+	await RoomManager.room_load_end
 
 func update_player_data():
 	current_save.player.hp = PlayerManager.player.hp

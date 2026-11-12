@@ -32,6 +32,8 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	get_tree().paused =false
 	await get_tree().process_frame
 	room_load_end.emit()
+	print("emit happened")
+	print(get_tree().paused)
 	await SceneTransUi.fade_out()
 
 func go_back(_target_transition_area:String, _position_offset:Vector2):
