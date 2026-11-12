@@ -20,7 +20,6 @@ func _on_save_pressed() -> void:
 	if get_tree().paused == false:
 		return
 	else:
-		print("bro go")
 		SaveManager.save_game()
 
 
@@ -28,5 +27,4 @@ func _on_load_pressed() -> void:
 	if get_tree().paused == false:
 		return
 	else:
-		print("bro go")
 		SaveManager.load_game()

@@ -3,13 +3,24 @@
 [ext_resource type="Script" uid="uid://dkd3yoopri5qy" path="res://save_load.gd" id="1_6ywai"]
 [ext_resource type="FontFile" uid="uid://c1tpdh11d0q75" path="res://3x5-Microfont.ttf" id="2_dsm26"]
 [ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="3_cerri"]
+[ext_resource type="Texture2D" uid="uid://dm5100cb4nryh" path="res://aart/save_select.png" id="4_cerri"]
+[ext_resource type="Texture2D" uid="uid://qlqgox62kqn4" path="res://aart/save_hover.png" id="5_h7dwu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3blse"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ywai"]
+texture = ExtResource("4_cerri")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cerri"]
+texture = ExtResource("5_h7dwu")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ywai"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsm26"]
-bg_color = Color(0.105882354, 0.105882354, 0.105882354, 0.5176471)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2rg3e"]
+texture = ExtResource("4_cerri")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ghkq"]
+texture = ExtResource("5_h7dwu")
 
 [node name="Save_Load" type="Control" unique_id=688554000]
 process_mode = 3
@@ -29,7 +40,7 @@ layout_mode = 0
 offset_left = -14.0
 offset_top = -22.0
 offset_right = 20.0
-offset_bottom = 6.0
+offset_bottom = 8.0
 color = Color(1, 1, 1, 0)
 
 [node name="InfoPanel2" type="NinePatchRect" parent="panel" unique_id=401204150]
@@ -55,6 +66,8 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_dsm26")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3blse")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6ywai")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cerri")
 text = "Save"
 
 [node name="InfoPanel3" type="NinePatchRect" parent="panel" unique_id=279911254]
@@ -84,7 +97,8 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_dsm26")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_6ywai")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dsm26")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2rg3e")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3ghkq")
 action_mode = 0
 text = "load
 "

@@ -18,9 +18,24 @@ var current_save: Dictionary = {
 }
 
 func save_game():
+	update_player_data()
+	update_scene()
+	var file := FileAccess.open(SAVE_PATH+"save.sav", FileAccess.WRITE)
+	var save_json = JSON.stringify(current_save)
+	file.store_line(save_json)
+	game_saved.emit()
 	print("save pressed")
 	pass
 	
 func load_game():
 	print("load pressed")
 	pass
+
+func update_player_data():
+	current_save.player.hp = PlayerManager.player.hp
+	current_save.player.max_hp = PlayerManager.player.max_hp
+	current_save.player.pos_x = PlayerManager.player.global_position.x
+	current_save.player.pos_y = PlayerManager.player.global_position.y
+
+func update_scene():
+	current_save.scene_path = get_tree().current_scene.scene_file_path
