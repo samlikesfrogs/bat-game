@@ -42,7 +42,7 @@ func load_game():
 	await RoomManager.room_load_end
 	for i in range(current_save.items.size()):
 		if current_save.items[i]!=null:
-			InventoryManager.add_item(current_save.items[i])
+			InventoryManager.inventory[i] = current_save.items[i]
 			print(InventoryManager.inventory)
 		else:
 			InventoryManager.inventory[i] = null

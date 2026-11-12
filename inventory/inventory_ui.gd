@@ -30,7 +30,6 @@ func _on_inventory_updated():
 	for item in InventoryManager.inventory:
 		var slot = inventory_slot_scene.instantiate()
 		grid_container.add_child(slot)
-		print("scene stanched, added child")
 		slot.drag_start.connect(on_drag_start)
 		slot.drag_end.connect(on_drag_end)
 		if item != null:
