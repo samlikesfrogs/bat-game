@@ -39,3 +39,5 @@ func update_player_data():
 
 func update_scene():
 	current_save.scene_path = get_tree().current_scene.scene_file_path
+	if current_save.scene_path == "res://rooms/room_town.tscn":
+		pass #reset all room door persistance

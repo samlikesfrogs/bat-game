@@ -1,5 +1,4 @@
 class_name Room extends Node2D
-
 @export var opendoors: PackedStringArray
 
 func _ready() -> void:
@@ -7,6 +6,5 @@ func _ready() -> void:
 	RoomManager.room_load_start.connect(_free_level)
 	
 func _free_level():
-	
 	PlayerManager.unparent_player(self)
-	#queue_free()
+	queue_free()
