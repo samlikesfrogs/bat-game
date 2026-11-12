@@ -20,6 +20,7 @@ var current_save: Dictionary = {
 func save_game():
 	update_player_data()
 	update_scene()
+	update_inventory()
 	var file := FileAccess.open(SAVE_PATH+"save.sav", FileAccess.WRITE)
 	var save_json = JSON.stringify(current_save)
 	file.store_line(save_json)
@@ -39,6 +40,13 @@ func load_game():
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
 	await RoomManager.room_load_end
+	for i in range(current_save.items.size()):
+		if current_save.items[i]!=null:
+			InventoryManager.add_item(current_save.items[i])
+			print(InventoryManager.inventory)
+		else:
+			InventoryManager.inventory[i] = null
+	InventoryManager.inventory_updated.emit()
 
 func update_player_data():
 	current_save.player.hp = PlayerManager.player.hp
@@ -50,3 +58,6 @@ func update_scene():
 	current_save.scene_path = get_tree().current_scene.scene_file_path
 	if current_save.scene_path == "res://rooms/room_town.tscn":
 		pass #reset all room door persistance
+
+func update_inventory():
+	current_save.items = InventoryManager.inventory

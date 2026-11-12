@@ -59,7 +59,7 @@ action_mode = 0
 keep_pressed_outside = true
 
 [node name="item_icon" type="Sprite2D" parent="NinePatchRect" unique_id=1089445149]
-position = Vector2(8, 8)
+position = Vector2(8, 9)
 
 [node name="item_quantity" type="Label" parent="NinePatchRect" unique_id=177955604]
 layout_mode = 0

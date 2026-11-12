@@ -17,6 +17,7 @@ func _ready() -> void:
 	#	$ItemButton.grab_focus()
 	info_panel.visible = false
 	usage_panel.visible = false
+	print(item_icon)
 
 func _on_item_button_mouse_entered() -> void:
 	if item != null and usage_panel.visible == false:
@@ -31,6 +32,7 @@ func set_empty():
 	item_quantity.text = ""
 	
 func set_item(new_item):
+	print(new_item)
 	item = new_item
 	item_icon.texture = new_item["texture"]
 	item_quantity.text = str(item["quantity"])

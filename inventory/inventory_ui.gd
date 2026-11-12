@@ -1,6 +1,6 @@
 extends Control
 @onready var grid_container: GridContainer = $GridContainer
-@onready var inventory_slot_scene = preload("res://inventory/inventory_slot.tscn")
+@onready var inventory_slot_scene = load("res://inventory/inventory_slot.tscn")
 var dragged_slot = null
 @export var joystick_sensitivity: float = 400.0
 
@@ -30,12 +30,14 @@ func _on_inventory_updated():
 	for item in InventoryManager.inventory:
 		var slot = inventory_slot_scene.instantiate()
 		grid_container.add_child(slot)
+		print("scene stanched, added child")
 		slot.drag_start.connect(on_drag_start)
 		slot.drag_end.connect(on_drag_end)
 		if item != null:
 			slot.set_item(item)
 		else:
 			slot.set_empty()
+	get_child(0).grab_focus()
 		#get_tree().get_root().get_node("ItemButton").grab_focus()
 
 func clear_grid():

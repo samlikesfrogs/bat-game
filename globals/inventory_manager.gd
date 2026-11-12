@@ -13,10 +13,12 @@ func add_item(item):
 	for i in range(inventory.size()):
 		if inventory[i]!=null and inventory[i]["name"]==item["name"]:
 			inventory[i]["quantity"]+=item["quantity"]
+			print(inventory)
 			#inventory_updated.emit()
 			return true
 		elif inventory[i]==null:
 			inventory[i] = item
+			print(inventory)
 			#inventory_updated.emit()
 			return true
 	return false
