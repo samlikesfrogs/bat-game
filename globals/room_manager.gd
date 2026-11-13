@@ -21,7 +21,7 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	get_tree().paused = true
 	previous = get_tree().current_scene.scene_file_path
 	room_history.append(previous)
-	print(previous)
+	print("previous", previous)
 	print("load", room_history)
 	target_transition_area = _target_transition_area
 	position_offset = _position_offset
@@ -32,8 +32,6 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	get_tree().paused =false
 	await get_tree().process_frame
 	room_load_end.emit()
-	print("emit happened")
-	print(get_tree().paused)
 	await SceneTransUi.fade_out()
 
 func go_back(_target_transition_area:String, _position_offset:Vector2):

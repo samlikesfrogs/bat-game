@@ -26,6 +26,7 @@ func save_game():
 	file.store_line(save_json)
 	game_saved.emit()
 	print("save pressed")
+	print(current_save)
 	pass
 	
 func load_game():
@@ -42,8 +43,7 @@ func load_game():
 	await RoomManager.room_load_end
 	for i in range(current_save.items.size()):
 		if current_save.items[i]!=null:
-			InventoryManager.inventory[i] = current_save.items[i]
-			print(InventoryManager.inventory)
+			InventoryManager.inventory[i]=current_save.items[i]
 		else:
 			InventoryManager.inventory[i] = null
 	InventoryManager.inventory_updated.emit()
@@ -60,4 +60,17 @@ func update_scene():
 		pass #reset all room door persistance
 
 func update_inventory():
+	#save path to texture here somehow
 	current_save.items = InventoryManager.inventory
+	
+func add_persistent_value(value:String):
+	if check_persistent_value(value) == false:
+		current_save.persistence.append(value)
+	print(current_save.persistence)
+	
+func check_persistent_value(value:String) -> bool:
+	var p = current_save.persistence as Array
+	print("checkper", p.has(value))
+	print(current_save.persistence)
+	return p.has(value)
+	

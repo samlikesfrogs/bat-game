@@ -1641,11 +1641,14 @@ tile_set = SubResource("TileSet_afqhc")
 z_index = 4
 position = Vector2(240, 10)
 possible_rooms_bottom = ["res://rooms/room_4.tscn"]
+level = ""
 target_transition_area = "ExitBottom"
 size = 6
 side = 2
 
 [node name="ExitBottom" parent="." unique_id=1664825899 instance=ExtResource("17_2qmut")]
 position = Vector2(240, 260)
+level = "res://rooms/room_5.tscn"
+target_transition_area = "EnterTop"
 size = 6
 side = 3
