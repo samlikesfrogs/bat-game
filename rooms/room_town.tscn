@@ -1899,5 +1899,6 @@ tile_set = SubResource("TileSet_afqhc")
 [node name="EnterTop" parent="." unique_id=1130782072 instance=ExtResource("18_c73wd")]
 position = Vector2(288, -58)
 level = "uid://c8iaek7olk52x"
+target_transition_area = "ExitBottom"
 size = 6
 side = 2

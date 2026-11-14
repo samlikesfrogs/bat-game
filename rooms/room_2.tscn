@@ -1768,7 +1768,7 @@ tile_set = SubResource("TileSet_ykpt6")
 [node name="EnterLeft" parent="." unique_id=1130782072 instance=ExtResource("17_vwuv8")]
 position = Vector2(-2, 128)
 possible_rooms_bottom = ["res://rooms/room_4.tscn"]
-level = ""
+level = "uid://3nuinbi1trwd"
 target_transition_area = "ExitRight"
 size = 6
 

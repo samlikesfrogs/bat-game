@@ -55,4 +55,3 @@ func instance_item(type, _name, function, texture):
 	item_name = _name
 	item_function = function
 	item_texture = texture
-	

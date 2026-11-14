@@ -1280,7 +1280,6 @@ tile_set = SubResource("TileSet_pdia1")
 [node name="ExitRight" parent="." unique_id=1130782072 instance=ExtResource("18_ptkyr")]
 z_index = 4
 position = Vector2(342, -320)
-level = ""
 target_transition_area = "EnterLeft"
 size = 6
 side = 1
