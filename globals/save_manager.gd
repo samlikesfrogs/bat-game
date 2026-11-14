@@ -14,7 +14,12 @@ var current_save: Dictionary = {
 	},
 	items = [],
 	enemies_defeated = {},
-	quests = []
+	rooms = [],
+	room_transitions = [],
+	prev_id = -1,
+	current_id = -1,
+	queued_trans_room = "",
+	id = 0,
 }
 
 func save_game():
@@ -35,6 +40,14 @@ func load_game():
 	json.parse(file.get_line())
 	var save_dict : Dictionary = json.get_data() as Dictionary
 	current_save = save_dict
+	RoomManager.prev_id = current_save.prev_id
+	print(RoomManager.prev_id)
+	RoomManager.current_id = current_save.current_id
+	RoomManager.queued_trans_room = current_save.queued_trans_room 
+	RoomManager.id = current_save.id
+	RoomManager.rooms = current_save.rooms
+	RoomManager.room_transitions = current_save.room_transitions
+	print("passed in", RoomManager.room_transitions)
 	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false)
 	await RoomManager.room_load_start
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
@@ -55,6 +68,12 @@ func update_player_data():
 	current_save.player.pos_y = PlayerManager.player.global_position.y
 
 func update_scene():
+	current_save.prev_id = RoomManager.prev_id
+	current_save.current_id = RoomManager.current_id
+	current_save.queued_trans_room = RoomManager.queued_trans_room
+	current_save.id = RoomManager.id
+	current_save.rooms = RoomManager.rooms
+	current_save.room_transitions = RoomManager.room_transitions
 	current_save.scene_path = get_tree().current_scene.scene_file_path
 	if current_save.scene_path == "res://rooms/room_town.tscn":
 		pass #reset all room door persistance

@@ -29,6 +29,7 @@ func _ready():
 	for enemy:Enemy in existing_enemies:
 		enemy.id = set_id
 		set_id += 1
+	print("I have an id", id)
 	var room_id = RoomManager.current_id
 	if SaveManager.check_defeated_enemies(room_id, id):
 		self.queue_free()
