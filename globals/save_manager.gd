@@ -13,7 +13,7 @@ var current_save: Dictionary = {
 		pos_y = 0
 	},
 	items = [],
-	persistence = [],
+	enemies_defeated = {},
 	quests = []
 }
 
@@ -61,3 +61,14 @@ func update_scene():
 
 func update_inventory():
 	current_save.items = InventoryManager.inventory
+	
+func check_defeated_enemies(room_id: int, id: int) -> bool:
+	if room_id in current_save.enemies_defeated:
+		return id in current_save.enemies_defeated[room_id]
+	return false
+
+func insert_defeated_enemy(room_id: int, id: int) -> void:
+	if not room_id in current_save.enemies_defeated:
+		current_save.enemies_defeated[room_id] = []
+	if not id in current_save.enemies_defeated[room_id]:
+		current_save.enemies_defeated[room_id].append(id)

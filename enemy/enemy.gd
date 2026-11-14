@@ -8,11 +8,13 @@ class_name Enemy
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 @export var spawnable_items: Array = [{"type":"seed", "name":"wheat", "function":"3 days", "texture":preload("res://aart/decorations/wheat.png")}, 
 {"type":"seed", "name":"pomegranate", "function":"5 days", "texture":preload("res://aart/decorations/pomegranate.png")}]
+@export var id:int
 
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var player:Player
 var invulnerable:bool=false
+var is_dead:bool=false
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
@@ -22,6 +24,14 @@ signal enemy_entered()
 signal enemy_destroyed(hurt_box:HurtBox)
 
 func _ready():
+	var set_id := 0
+	var existing_enemies = get_tree().get_nodes_in_group("enemies")
+	for enemy:Enemy in existing_enemies:
+		enemy.id = set_id
+		set_id += 1
+	var room_id = RoomManager.current_id
+	if SaveManager.check_defeated_enemies(room_id, id):
+		self.queue_free()
 	state_machine.Initialize(self)
 	_hit_box.Damaged.connect(_take_damage)
 	player = PlayerManager.player
@@ -70,5 +80,6 @@ func _take_damage(hurt_box:HurtBox) -> void:
 	if hp>0:
 		enemy_damaged.emit(hurt_box)
 	else:
+		var room_id = RoomManager.current_id
+		SaveManager.insert_defeated_enemy(room_id, id)
 		enemy_destroyed.emit(hurt_box)
-		
