@@ -35,7 +35,8 @@ sources/0 = SubResource("TileSetAtlasSource_7c1vj")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_php4a"]
 texture = ExtResource("5_i7t6u")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ypxw"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nic8j"]
+texture = ExtResource("6_i7t6u")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvw4f"]
 texture = ExtResource("6_i7t6u")
@@ -139,11 +140,12 @@ offset_bottom = 128.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
 theme_override_colors/font_focus_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_pressed_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
 theme_override_colors/font_hover_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
 theme_override_fonts/font = ExtResource("1_cjlmp")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxTexture_php4a")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6ypxw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nic8j")
 theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_hvw4f")
 theme_override_styles/hover = SubResource("StyleBoxTexture_c6exi")
 theme_override_styles/focus = SubResource("StyleBoxTexture_lsimw")

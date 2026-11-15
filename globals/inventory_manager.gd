@@ -10,6 +10,12 @@ func _ready():
 	hotbar_inventory.resize(5)
 	
 func add_item(item):
+	if get_tree().paused != true:
+		player = AudioStreamPlayer.new()
+		await get_tree().process_frame
+		get_tree().root.add_child(player)
+		player.stream = preload("res://sound/Cozy SFX Volume 1/UI/ITEM_PICKUP_3.wav")
+		player.play()
 	for i in range(inventory.size()):
 		if inventory[i]!=null and inventory[i]["name"]==item["name"]:
 			inventory[i]["quantity"]+=item["quantity"]
