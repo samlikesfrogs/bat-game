@@ -33,7 +33,6 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	await SceneTransUi.fade_in()
 	room_load_start.emit()
 	await get_tree().process_frame
-	DifferentName.hide_game_over()
 	get_tree().change_scene_to_file(level_path)
 	get_tree().paused =false
 	
@@ -53,7 +52,7 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	
 	await get_tree().process_frame
 	room_load_end.emit()
-	print("rooms", rooms, "trans", room_transitions)
+	DifferentName.hide_game_over()
 	await SceneTransUi.fade_out()
 	
 

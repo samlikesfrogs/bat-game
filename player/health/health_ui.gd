@@ -53,18 +53,17 @@ func show_game_over():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 func hide_game_over():
+	PlayerManager.player.revive_player()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	gameover.visible = false
 	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 func load_game():
 	gameover.fade_out()
-	PlayerManager.player.revive_player()
 	SaveManager.load_game()
 	pass
 	
 func title_screen():
 	gameover.fade_out()
-	PlayerManager.player.revive_player()
 	RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false)
 	pass
