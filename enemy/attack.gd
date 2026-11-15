@@ -15,9 +15,7 @@ var _direction : Vector2 = Vector2.ZERO
 var _player_visible: bool = false
 var animation_finished:bool
 var player_pos
-var i:int =0
-
-#IDEA: add raycast, if raycast is colliding, jump to the next navigation point and otherwise jump to player position 
+var i:int =0 
 
 func init() -> void:
 	pass

@@ -11,6 +11,7 @@ var direction: Vector2
 var _damage_position: Vector2
 @onready var sfx_hurt: AudioStreamPlayer2D = $sfx_hurt
 @export var next_state:State 
+@onready var death: StateDeath = $"../death"
 
 func init():
 	pass
@@ -32,6 +33,8 @@ func Exit() -> void:
 	
 func Process(_delta:float)  -> State:
 	if _animation_finished ==true:
+		if player.hp <= 0:
+			next_state=death
 		return next_state
 	player.velocity -= player.velocity * decelerate_speed * _delta
 	return null
@@ -45,7 +48,8 @@ func HandleInput(_event:InputEvent)  -> State:
 func _on_player_player_damaged(_hurt_box:HurtBox) -> void:
 	hurt_box = _hurt_box
 	_damage_position = hurt_box.global_position
-	state_machine.ChangeState(self)
+	if state_machine.current_state != death:
+		state_machine.ChangeState(self)
 
 func _on_player_sprite_animation_finished() -> void:
 	_animation_finished=true

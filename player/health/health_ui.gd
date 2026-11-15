@@ -1,5 +1,8 @@
 extends CanvasLayer
 @onready var container: HFlowContainer = $HFlowContainer
+@onready var gameover: Control = $gameover
+@onready var button_continue: Button = $gameover/continue
+@onready var button_title: Button = $gameover/title
 
 var hearts:Array[HeartUI]=[]
 func _ready() -> void:
@@ -7,6 +10,8 @@ func _ready() -> void:
 		if child is HeartUI:
 			hearts.append(child)
 			child.visible = false
+	button_continue.pressed.connect(load_game)
+	button_title.pressed.connect(title_screen)
 	self.visible = true
 
 func update_hp(_hp: int, _max_hp: int):
@@ -28,3 +33,33 @@ func update_max(_max_hp:int):
 			hearts[i].visible = true
 		else:
 			hearts[i].visible=false
+
+func show_game_over():
+	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(0.7).timeout
+	get_tree().paused = true
+	gameover.visible = true
+	var can_continue:bool = SaveManager.get_save_file() != null
+	button_continue.visible = can_continue
+	gameover.fade_in()
+	if PlayerManager.using_controller:
+		if can_continue:
+			button_continue.grab_focus()
+		else:
+			button_title.grab_focus()
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+func hide_game_over():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	gameover.fade_out()
+	gameover.visible = false
+	gameover.process_mode = Node.PROCESS_MODE_DISABLED
+	
+func load_game():
+	print("pressed")
+	pass
+	
+func title_screen():
+	print("pressed")
+	pass

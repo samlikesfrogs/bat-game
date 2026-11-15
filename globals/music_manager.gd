@@ -5,6 +5,8 @@ var menu = preload("res://sound/town.wav")
 var player = AudioStreamPlayer.new()
 
 func play_music(bgm) -> void:
+	if bgm == null:
+		pass
 	player.stream = bgm
 	await get_tree().process_frame
 	get_tree().root.add_child(player)

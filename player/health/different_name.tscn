@@ -2,25 +2,38 @@
 
 [ext_resource type="Script" uid="uid://l8brj5scu58b" path="res://player/health/health_ui.gd" id="1_ywbvf"]
 [ext_resource type="PackedScene" uid="uid://bywf5v2hwj7c5" path="res://player/heart_ui.tscn" id="2_772x5"]
+[ext_resource type="FontFile" uid="uid://td35nwle7fa6" path="res://aart/Theme/Theme Wood/quaver.ttf" id="3_a8rms"]
+[ext_resource type="Script" uid="uid://b7yur58smh6hw" path="res://player/health/gameover.gd" id="3_uvawp"]
+[ext_resource type="Texture2D" uid="uid://cyoloekfd77hw" path="res://menu_button.png" id="4_uvawp"]
+[ext_resource type="Texture2D" uid="uid://3vevrp11ajcm" path="res://menu_button_select.png" id="5_1kiys"]
+[ext_resource type="Texture2D" uid="uid://u3cl0b36knif" path="res://menu_button_hover.png" id="6_h7hnc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ydt1a"]
+texture = ExtResource("4_uvawp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vhlj3"]
+texture = ExtResource("5_1kiys")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5pbxq"]
+texture = ExtResource("5_1kiys")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ynp7w"]
+texture = ExtResource("6_h7hnc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjyqx"]
+texture = ExtResource("6_h7hnc")
 
 [node name="Control" type="CanvasLayer" unique_id=769851107]
 script = ExtResource("1_ywbvf")
-
-[node name="Control" type="Control" parent="." unique_id=2080082224]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=464074909]
 custom_minimum_size = Vector2(84, 32)
 custom_maximum_size = Vector2(84, 32)
 propagate_maximum_size = false
-offset_left = 2.0
-offset_right = 86.0
-offset_bottom = 32.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 90.0
+offset_bottom = 37.0
 theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 
@@ -53,3 +66,84 @@ layout_mode = 2
 
 [node name="heart_ui10" parent="HFlowContainer" unique_id=774990733 instance=ExtResource("2_772x5")]
 layout_mode = 2
+
+[node name="gameover" type="Control" parent="." unique_id=1926836495]
+process_mode = 3
+custom_maximum_size = Vector2(960, 540)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_uvawp")
+
+[node name="Label" type="Label" parent="gameover" unique_id=581606196]
+process_mode = 3
+z_index = 100
+custom_maximum_size = Vector2(88, 16)
+layout_mode = 0
+offset_left = 112.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_fonts/font = ExtResource("3_a8rms")
+theme_override_font_sizes/font_size = 16
+text = "GAME OVER"
+
+[node name="ColorRect3" type="ColorRect" parent="gameover" unique_id=1070009127]
+process_mode = 3
+custom_maximum_size = Vector2(960, 540)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.17254902, 0, 0, 0.7764706)
+
+[node name="continue" type="Button" parent="gameover" unique_id=1567162381]
+process_mode = 3
+custom_maximum_size = Vector2(132, 32)
+layout_mode = 0
+offset_left = 120.0
+offset_top = 85.0
+offset_right = 252.0
+offset_bottom = 117.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_focus_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_pressed_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_hover_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_fonts/font = ExtResource("3_a8rms")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_ydt1a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vhlj3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_5pbxq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ynp7w")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jjyqx")
+text = "continue"
+
+[node name="title" type="Button" parent="gameover" unique_id=1430314548]
+process_mode = 3
+custom_maximum_size = Vector2(132, 32)
+layout_mode = 0
+offset_left = 120.0
+offset_top = 104.0
+offset_right = 252.0
+offset_bottom = 136.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_focus_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_pressed_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_hover_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_fonts/font = ExtResource("3_a8rms")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_ydt1a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vhlj3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_5pbxq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ynp7w")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jjyqx")
+text = "back to title"

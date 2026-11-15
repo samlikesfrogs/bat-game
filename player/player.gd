@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @onready var inventory_ui: CanvasLayer = $inventory_ui
-@export var hp: int = 20
-@export var max_hp: int = 20
+@export var hp: int = 12
+@export var max_hp: int = 12
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 var inventory_ui_visible:bool = false
@@ -35,7 +35,6 @@ func _ready():
 	can_shoot = true
 	
 func _process(_delta):
-	print(direction)
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	if Input.is_action_just_pressed("attack") and can_shoot:
 		shoot.emit(position, cardinal_dir)
@@ -93,13 +92,12 @@ func _on_player_sprite_animation_finished() -> void:
 func _take_damage(hurt_box:HurtBox) -> void:
 	if invulnerable == true:
 		return
-	update_hp(-hurt_box.damage)
 	if hp>0:
+		update_hp(-hurt_box.damage)
 		player_damaged.emit(hurt_box)
 	else:
-#		player_destroyed.emit(hurt_box)	
-		player_damaged.emit(hurt_box)
-		update_hp(99)
+		pass
+		#player_destroyed.emit(hurt_box)	
 		
 func update_hp(delta:int):
 	hp=clampi(hp+delta, 0, max_hp)

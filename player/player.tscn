@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://b8uoft4rd624e" path="res://player/state_walk.gd" id="7_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://dcgvtmaibfn7c" path="res://aart/fox sprites/walk_up.png" id="7_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://0wqqjj6absrt" path="res://aart/fox sprites/shootwalk_up.png" id="7_tqiix"]
+[ext_resource type="Texture2D" uid="uid://6ekn4tg78imm" path="res://aart/fox sprites/death.png" id="9_1s1yo"]
 [ext_resource type="Texture2D" uid="uid://4wy2v8gvxwb5" path="res://aart/fox sprites/hit.png" id="11_x7c3f"]
 [ext_resource type="Texture2D" uid="uid://clbarb8rnxit4" path="res://aart/fox sprites/hit_side.png" id="12_s7qer"]
 [ext_resource type="Texture2D" uid="uid://brcmy5ic6qk5b" path="res://aart/fox sprites/hit_up.png" id="13_g4c7l"]
@@ -55,6 +56,14 @@ region = Rect2(69, 0, 22, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmwog"]
 atlas = ExtResource("7_tqiix")
 region = Rect2(69, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ejfk"]
+atlas = ExtResource("9_1s1yo")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q28gw"]
+atlas = ExtResource("9_1s1yo")
+region = Rect2(29, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
 atlas = ExtResource("2_8t03j")
@@ -192,6 +201,39 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5ejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q28gw")
+}],
+"loop": 0,
+"name": &"death_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q28gw")
+}],
+"loop": 0,
+"name": &"death_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q28gw")
+}],
+"loop": 0,
+"name": &"death_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tqiix")
 }, {
 "duration": 1.5,
@@ -321,7 +363,7 @@ script = ExtResource("2_r7pn3")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"attackwalk_up"
+animation = &"death_side"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
@@ -375,6 +417,9 @@ pitch_scale = 2.0
 
 [node name="death" type="Node" parent="PlayerStateMachine" unique_id=142709304]
 script = ExtResource("27_2uvqg")
+
+[node name="sfx_ouch" type="AudioStreamPlayer2D" parent="PlayerStateMachine/death" unique_id=1376003999]
+stream = ExtResource("25_knn7v")
 
 [node name="inventory_ui" type="CanvasLayer" parent="." unique_id=2009687029]
 process_mode = 3

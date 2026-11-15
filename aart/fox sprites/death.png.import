@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyeqj8g8dyc16"
-path="res://.godot/imported/TilesetDesert.png-704d56626aefb59c3262f2903eac1989.ctex"
+uid="uid://6ekn4tg78imm"
+path="res://.godot/imported/death.png-a163d2919ace5ae1e9bc4ec0ad38d25e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aart/Backgrounds/Tilesets/TilesetDesert.png"
-dest_files=["res://.godot/imported/TilesetDesert.png-704d56626aefb59c3262f2903eac1989.ctex"]
+source_file="res://aart/fox sprites/death.png"
+dest_files=["res://.godot/imported/death.png-a163d2919ace5ae1e9bc4ec0ad38d25e.ctex"]
 
 [params]
 
