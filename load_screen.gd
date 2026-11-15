@@ -2,7 +2,6 @@ extends Node2D
 @onready var new_game_button: Button = $CanvasLayer/Control/new_game
 @onready var continue_button: Button = $CanvasLayer/Control/continue
 const START_LEVEL:String = "res://rooms/room_town.tscn"
-@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,10 +16,12 @@ func _ready() -> void:
 	
 func _free_load_screen():
 	PlayerManager.unparent_player(self)
-	await (audio_stream_player.finished)
+	await ($sfx_click.finished)
 	queue_free()
 
 func setup_load_screen():
+	new_game_button.mouse_entered.connect(button_mouse_enter.bind(new_game_button))
+	continue_button.mouse_entered.connect(button_mouse_enter.bind(continue_button))
 	MusicManager.play_music(MusicManager.menu)
 	new_game_button.pressed.connect(new_game)
 	continue_button.pressed.connect(continue_game)
@@ -32,8 +33,7 @@ func setup_load_screen():
 	
 
 func new_game():
-	audio_stream_player.play()
-	print("menu", audio_stream_player.playing)
+	$sfx_click.play()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	RoomManager.load_level(START_LEVEL, "", Vector2.ZERO, false)
 	await RoomManager.room_load_start
@@ -42,10 +42,13 @@ func new_game():
 	pass
 
 func continue_game():
-	audio_stream_player.play()
+	$sfx_click.play()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	SaveManager.load_game()
 	await RoomManager.room_load_start
 	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	DifferentName.visible = true
 	pass
+	
+func button_mouse_enter(_b:Button):
+	$sfx_hover.play()
