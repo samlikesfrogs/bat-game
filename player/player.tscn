@@ -357,7 +357,7 @@ script = ExtResource("7_1jxqw")
 [node name="sfx_walk" type="AudioStreamPlayer2D" parent="PlayerStateMachine/walk" unique_id=1607859195]
 unique_name_in_owner = true
 stream = ExtResource("22_7pqkx")
-volume_db = -4.0
+volume_db = -6.0
 pitch_scale = 0.75
 
 [node name="attack" type="Node" parent="PlayerStateMachine" unique_id=1018443526]
@@ -369,7 +369,7 @@ next_state = NodePath("../idle")
 
 [node name="sfx_hurt" type="AudioStreamPlayer2D" parent="PlayerStateMachine/stun" unique_id=1984127702]
 stream = ExtResource("25_knn7v")
-volume_db = -7.0
+volume_db = -8.0
 pitch_scale = 2.0
 
 [node name="inventory_ui" type="CanvasLayer" parent="." unique_id=2009687029]

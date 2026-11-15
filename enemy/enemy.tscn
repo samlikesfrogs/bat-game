@@ -751,7 +751,7 @@ next_state = NodePath("../idle2")
 
 [node name="sfx_comeout_land" type="AudioStreamPlayer2D" parent="EnemyStateMachine/comeout" unique_id=262331936]
 stream = ExtResource("13_34gv7")
-volume_db = -7.0
+volume_db = -10.0
 pitch_scale = 0.79
 
 [node name="idle2" type="Node" parent="EnemyStateMachine" unique_id=1690054435 node_paths=PackedStringArray("next_state")]
@@ -764,7 +764,7 @@ next_state = NodePath("../chase")
 
 [node name="sfx_enemy_hurt" type="AudioStreamPlayer2D" parent="EnemyStateMachine/stun" unique_id=1769448985]
 stream = ExtResource("14_rovcg")
-volume_db = -6.0
+volume_db = -20.0
 pitch_scale = 2.0
 
 [node name="destroy" type="Node" parent="EnemyStateMachine" unique_id=454031519]
@@ -772,7 +772,7 @@ script = ExtResource("11_6yflr")
 
 [node name="sfx_enemy_die" type="AudioStreamPlayer2D" parent="EnemyStateMachine/destroy" unique_id=125053998]
 stream = ExtResource("16_n2hyd")
-volume_db = -5.0
+volume_db = -9.0
 pitch_scale = 2.0
 
 [node name="chase" type="Node" parent="EnemyStateMachine" unique_id=410512597 node_paths=PackedStringArray("next_state")]
@@ -790,7 +790,7 @@ next_state = NodePath("../chase")
 
 [node name="sfx_enemy_attack" type="AudioStreamPlayer2D" parent="EnemyStateMachine/attack" unique_id=641449160]
 stream = ExtResource("13_34gv7")
-volume_db = -7.0
+volume_db = -8.0
 pitch_scale = 0.79
 
 [node name="goin" type="Node" parent="EnemyStateMachine" unique_id=1380778986 node_paths=PackedStringArray("next_state")]

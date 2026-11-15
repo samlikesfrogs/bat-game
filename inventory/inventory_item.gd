@@ -7,6 +7,7 @@ class_name InventoryItem extends CharacterBody2D
 var item_scene:PackedScene = preload("res://inventory/inventory_item.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 var player_in_range = false
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
@@ -34,10 +35,14 @@ func pickup_item():
 		"scene":item_scene,
 		}
 	InventoryManager.add_item(item)
+	await (audio_stream_player_2d.finished)
+	await get_tree().create_timer(0.02).timeout
 	self.queue_free()
 		
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
+		audio_stream_player_2d.play()
+		print("playing", audio_stream_player_2d.playing)
 		player_in_range = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:

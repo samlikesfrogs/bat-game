@@ -4,8 +4,15 @@ extends Node
 
 var player:Player
 var player_in_scene:bool = false
+var using_controller: bool = false
+var connected_joypads = []
 
 func _ready() -> void:
+	connected_joypads = Input.get_connected_joypads()
+	if connected_joypads.size() > 0:
+		using_controller = true
+	else:
+		using_controller = false
 	add_player_instance()
 	await get_tree().create_timer(0.2).timeout
 

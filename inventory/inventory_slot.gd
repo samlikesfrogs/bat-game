@@ -13,7 +13,7 @@ signal drag_end()
 var item = null
 
 func _ready() -> void:
-	#if PlayerManager.player.using_controller == true:
+	#if PlayerManager.using_controller == true:
 	#	$ItemButton.grab_focus()
 	info_panel.visible = false
 	usage_panel.visible = false

@@ -28,7 +28,7 @@ func enter()-> void:
 	Engine.time_scale=1
 	enemy.velocity = Vector2.ZERO
 	enemy.invulnerable = true
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.4).timeout
 	sfx_enemy_die.play()
 	
 func exit()->void:

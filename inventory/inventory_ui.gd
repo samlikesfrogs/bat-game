@@ -13,7 +13,7 @@ func _ready() -> void:
 	_on_inventory_updated()
 
 func _process(delta: float) -> void:
-	if PlayerManager.player.using_controller and get_tree().paused == true:
+	if PlayerManager.using_controller and get_tree().paused == true:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		var input_vector := Input.get_vector(
 			"ui_left", "ui_right", "ui_up", "ui_down")

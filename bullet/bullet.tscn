@@ -172,5 +172,5 @@ texture = ExtResource("4_xvnxm")
 
 [node name="sfx_shoot" type="AudioStreamPlayer2D" parent="." unique_id=1422996402]
 stream = ExtResource("5_ynyjt")
-volume_db = -4.0
+volume_db = -10.0
 pitch_scale = 3.0

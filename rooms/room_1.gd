@@ -4,6 +4,10 @@ class_name Room extends Node2D
 func _ready() -> void:
 	PlayerManager.set_as_parent(self)
 	RoomManager.room_load_start.connect(_free_level)
+	if MusicManager.player.stream == MusicManager.cowboying:
+		pass
+	else:
+		MusicManager.play_music(MusicManager.cowboying)
 	
 func _free_level():
 	PlayerManager.unparent_player(self)
