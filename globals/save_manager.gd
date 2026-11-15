@@ -14,12 +14,8 @@ var current_save: Dictionary = {
 	},
 	items = [],
 	enemies_defeated = {},
-	rooms = [],
-	room_transitions = [],
-	prev_id = -1,
-	current_id = -1,
-	queued_trans_room = "",
-	id = 0,
+	rooms = {},
+	room_transitions = {},
 }
 
 func save_game():
@@ -27,8 +23,8 @@ func save_game():
 	update_scene()
 	update_inventory()
 	var file := FileAccess.open(SAVE_PATH+"save.sav", FileAccess.WRITE)
-	var save_json = JSON.stringify(current_save)
-	file.store_line(save_json)
+	var save_data:=var_to_str(current_save)
+	file.store_string(save_data)
 	game_saved.emit()
 	print("save pressed")
 	pass
@@ -39,9 +35,9 @@ func get_save_file()->FileAccess:
 func load_game():
 	print("load pressed")
 	var file := get_save_file()
-	var json :=JSON.new()
-	json.parse(file.get_line())
-	var save_dict : Dictionary = json.get_data() as Dictionary
+	if not file:
+		return
+	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
 	current_save = save_dict
 	RoomManager.rooms = current_save.rooms
 	RoomManager.room_transitions = current_save.room_transitions
@@ -71,14 +67,14 @@ func update_scene():
 	current_save.current_id = RoomManager.current_id
 	current_save.queued_trans_room = RoomManager.queued_trans_room
 	current_save.id = RoomManager.id
-	current_save.rooms = RoomManager.rooms
-	current_save.room_transitions = RoomManager.room_transitions
+	current_save.rooms = RoomManager.rooms.duplicate(true)
+	current_save.room_transitions = RoomManager.room_transitions.duplicate(true)
 	current_save.scene_path = get_tree().current_scene.scene_file_path
 	if current_save.scene_path == "res://rooms/room_town.tscn":
 		pass #reset all room door persistance
 
 func update_inventory():
-	current_save.items = InventoryManager.inventory
+	current_save.items = InventoryManager.inventory.duplicate(true)
 	
 func check_defeated_enemies(room_id: int, id: int) -> bool:
 	if room_id in current_save.enemies_defeated:
