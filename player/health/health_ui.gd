@@ -11,7 +11,7 @@ func _ready() -> void:
 		if child is HeartUI:
 			hearts.append(child)
 			child.visible = false
-	button_continue.pressed.connect(load_game)
+	button_continue.pressed.connect(on_load_pressed)
 	button_title.pressed.connect(title_screen)
 	self.visible = true
 	await get_tree().process_frame
@@ -58,7 +58,7 @@ func hide_game_over():
 	gameover.visible = false
 	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-func load_game():
+func on_load_pressed():
 	gameover.fade_out()
 	SaveManager.load_game()
 	pass

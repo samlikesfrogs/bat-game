@@ -16,6 +16,10 @@ var current_save: Dictionary = {
 	enemies_defeated = {},
 	rooms = {},
 	room_transitions = {},
+	prev_id = -1,
+	current_id = -1,
+	queued_trans_room = "",
+	id = 0,
 }
 
 func save_game():
@@ -34,11 +38,16 @@ func get_save_file()->FileAccess:
 	
 func load_game():
 	print("load pressed")
+	print("curren", current_save)
 	var file := get_save_file()
 	if not file:
 		return
 	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
 	current_save = save_dict
+	RoomManager.prev_id = current_save.prev_id
+	RoomManager.current_id = current_save.current_id
+	RoomManager.queued_trans_room = current_save.queued_trans_room
+	RoomManager.id = current_save.id 
 	RoomManager.rooms = current_save.rooms
 	RoomManager.room_transitions = current_save.room_transitions
 	print("passed in", RoomManager.room_transitions)
