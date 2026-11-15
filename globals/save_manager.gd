@@ -43,14 +43,12 @@ func load_game():
 	json.parse(file.get_line())
 	var save_dict : Dictionary = json.get_data() as Dictionary
 	current_save = save_dict
-	RoomManager.current_id = current_save.current_id
-	RoomManager.queued_trans_room = current_save.queued_trans_room 
-	RoomManager.id = current_save.id
 	RoomManager.rooms = current_save.rooms
 	RoomManager.room_transitions = current_save.room_transitions
 	print("passed in", RoomManager.room_transitions)
 	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false, RoomManager.current_id)
 	await RoomManager.room_load_start
+	print(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
 	await RoomManager.room_load_end

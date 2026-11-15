@@ -173,15 +173,15 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_dasdi")
 theme_override_styles/focus = SubResource("StyleBoxTexture_nkkl2")
 text = "continue"
 
-[node name="PlayerSpawner" parent="CanvasLayer/Control" unique_id=955133905 instance=ExtResource("6_0vmyo")]
-position = Vector2(160, 126)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1573737557]
 position = Vector2(160, 46)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7jgn8")
 autoplay = "default"
 frame_progress = 0.3608654
+
+[node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("6_0vmyo")]
+position = Vector2(160, 126)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=584438807]
 stream = ExtResource("7_php4a")

@@ -64,7 +64,7 @@ func process(_delta:float)->EnemyState:
 		enemy.move_and_slide()
 	if enemy.setDirection(_direction):
 		enemy.updateAnim(anim_name)
-	if enemy.global_position.distance_to(PlayerManager.player.global_position) > randi_range(30, 38):
+	if enemy.global_position.distance_to(PlayerManager.player.global_position) > 50:
 		player_in = true
 	else: 
 		player_in = false

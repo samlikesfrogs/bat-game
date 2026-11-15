@@ -14,7 +14,8 @@ func _ready() -> void:
 	button_continue.pressed.connect(load_game)
 	button_title.pressed.connect(title_screen)
 	self.visible = true
-
+	await get_tree().process_frame
+	
 func update_hp(_hp: int, _max_hp: int):
 	for i in _max_hp:
 		update_heart(i, _hp)
@@ -53,14 +54,17 @@ func show_game_over():
 		
 func hide_game_over():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	gameover.fade_out()
 	gameover.visible = false
 	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 func load_game():
-	print("pressed")
+	gameover.fade_out()
+	PlayerManager.player.revive_player()
+	SaveManager.load_game()
 	pass
 	
 func title_screen():
-	print("pressed")
+	gameover.fade_out()
+	PlayerManager.player.revive_player()
+	RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false)
 	pass
