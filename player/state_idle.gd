@@ -22,6 +22,8 @@ func Physics(_delta:float)  -> State:
 func HandleInput(_event:InputEvent)  -> State:
 	if _event.is_action_pressed("attack"):
 		return attack
+	if player.direction != Vector2.ZERO:
+		return walk
 	return null
 
 func _on_player_player_damaged(_hurt_box:HurtBox) -> void:

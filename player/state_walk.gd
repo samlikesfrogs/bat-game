@@ -9,6 +9,8 @@ var i:int=0
 
 func Enter() -> void:
 	player.updateAnim("walk")
+	if player.setDirection():
+		player.updateAnim("walk")
 	pass
 	
 func Exit() -> void:
@@ -19,8 +21,7 @@ func Process(_delta:float)  -> State:
 		return
 	if player.direction == Vector2.ZERO:
 		return idle
-	player.velocity = player.direction * move_speed
-		
+	player.velocity = player.direction * move_speed	
 	if player.setDirection():
 		player.updateAnim("walk")
 	return null

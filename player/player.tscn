@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://cbxo7tcxlo6xs" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/GRAVEL/GRAVEL_FOOTSTEP_1.wav" id="22_7pqkx"]
 [ext_resource type="AudioStream" uid="uid://cynjbdas47ruv" path="res://sound/11_human_damage_3.wav" id="25_knn7v"]
 [ext_resource type="Script" uid="uid://qju7jxxbdgkf" path="res://player/player_inventory.gd" id="26_uw77l"]
+[ext_resource type="Script" uid="uid://bcmf6p0wmgtug" path="res://player/death.gd" id="27_2uvqg"]
 [ext_resource type="Texture2D" uid="uid://bhs2bffoomyul" path="res://aart/Theme/Theme Wood/nine_path_panel.png" id="27_rptt4"]
 [ext_resource type="PackedScene" uid="uid://dcfq6rdhx3frq" path="res://inventory/inventory_ui.tscn" id="29_r7pn3"]
 [ext_resource type="PackedScene" uid="uid://ne23y3xlqy3a" path="res://save_load.tscn" id="30_b8hi5"]
@@ -371,6 +372,9 @@ next_state = NodePath("../idle")
 stream = ExtResource("25_knn7v")
 volume_db = -8.0
 pitch_scale = 2.0
+
+[node name="death" type="Node" parent="PlayerStateMachine" unique_id=142709304]
+script = ExtResource("27_2uvqg")
 
 [node name="inventory_ui" type="CanvasLayer" parent="." unique_id=2009687029]
 process_mode = 3

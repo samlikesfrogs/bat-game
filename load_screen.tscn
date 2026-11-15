@@ -5,7 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://b4f5g8alvwl4q" path="res://Sprite-0002.png" id="2_7c1vj"]
 [ext_resource type="Texture2D" uid="uid://obyba16p18ol" path="res://aart/tiles/tileset_Grass cliff to grass.png" id="2_60kav"]
 [ext_resource type="Script" uid="uid://boj4xjemfd6c4" path="res://rooms/base.gd" id="3_60kav"]
+[ext_resource type="Texture2D" uid="uid://cyoloekfd77hw" path="res://menu_button.png" id="5_i7t6u"]
 [ext_resource type="PackedScene" uid="uid://csmi717a3mp8p" path="res://rooms/player_spawner.tscn" id="6_0vmyo"]
+[ext_resource type="Texture2D" uid="uid://3vevrp11ajcm" path="res://menu_button_select.png" id="6_i7t6u"]
+[ext_resource type="Texture2D" uid="uid://u3cl0b36knif" path="res://menu_button_hover.png" id="7_c6exi"]
 [ext_resource type="AudioStream" uid="uid://c2ruqip117k4q" path="res://sound/Cozy SFX Volume 1/UI/MENU_CLICK_3.mp3" id="7_php4a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7c1vj"]
@@ -29,8 +32,67 @@ texture = ExtResource("2_60kav")
 [sub_resource type="TileSet" id="TileSet_wqxq1"]
 sources/0 = SubResource("TileSetAtlasSource_7c1vj")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqxq1"]
-bg_color = Color(0.9019608, 0.4509804, 0.29803923, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_php4a"]
+texture = ExtResource("5_i7t6u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ypxw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvw4f"]
+texture = ExtResource("6_i7t6u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c6exi"]
+texture = ExtResource("7_c6exi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lsimw"]
+texture = ExtResource("7_c6exi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n4qgs"]
+texture = ExtResource("5_i7t6u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7t6u"]
+texture = ExtResource("6_i7t6u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dasdi"]
+texture = ExtResource("7_c6exi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nkkl2"]
+texture = ExtResource("7_c6exi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_php4a"]
+atlas = ExtResource("2_7c1vj")
+region = Rect2(0, 0, 160, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ypxw"]
+atlas = ExtResource("2_7c1vj")
+region = Rect2(160, 0, 160, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4qgs"]
+atlas = ExtResource("2_7c1vj")
+region = Rect2(320, 0, 160, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7t6u"]
+atlas = ExtResource("2_7c1vj")
+region = Rect2(480, 0, 160, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jgn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_php4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ypxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4qgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7t6u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="load_screen" type="Node2D" unique_id=1444161695]
 script = ExtResource("1_am2fi")
@@ -64,11 +126,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.99215686, 0.8627451, 0.5921569, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control" unique_id=546828752]
-position = Vector2(160, 46)
-scale = Vector2(2.025, 1.8125)
-texture = ExtResource("2_7c1vj")
-
 [node name="new_game" type="Button" parent="CanvasLayer/Control" unique_id=1652795084]
 z_index = 4
 layout_mode = 1
@@ -81,9 +138,15 @@ offset_right = 196.0
 offset_bottom = 128.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_focus_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_hover_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
 theme_override_fonts/font = ExtResource("1_cjlmp")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_wqxq1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_php4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6ypxw")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_hvw4f")
+theme_override_styles/hover = SubResource("StyleBoxTexture_c6exi")
+theme_override_styles/focus = SubResource("StyleBoxTexture_lsimw")
 text = "new game"
 
 [node name="continue" type="Button" parent="CanvasLayer/Control" unique_id=1909050485]
@@ -98,13 +161,25 @@ offset_right = 196.0
 offset_bottom = 168.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_focus_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
+theme_override_colors/font_hover_color = Color(0.99215686, 0.8627451, 0.5921569, 1)
 theme_override_fonts/font = ExtResource("1_cjlmp")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_wqxq1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n4qgs")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i7t6u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dasdi")
+theme_override_styles/focus = SubResource("StyleBoxTexture_nkkl2")
 text = "continue"
 
 [node name="PlayerSpawner" parent="CanvasLayer/Control" unique_id=955133905 instance=ExtResource("6_0vmyo")]
 position = Vector2(160, 126)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1573737557]
+position = Vector2(160, 46)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7jgn8")
+autoplay = "default"
+frame_progress = 0.3608654
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=584438807]
 stream = ExtResource("7_php4a")

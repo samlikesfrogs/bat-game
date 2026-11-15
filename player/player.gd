@@ -35,6 +35,7 @@ func _ready():
 	can_shoot = true
 	
 func _process(_delta):
+	print(direction)
 	direction = Input.get_vector("left", "right", "up", "down").normalized()
 	if Input.is_action_just_pressed("attack") and can_shoot:
 		shoot.emit(position, cardinal_dir)
