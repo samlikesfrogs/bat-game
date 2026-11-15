@@ -6,6 +6,7 @@ extends CanvasLayer
 
 var hearts:Array[HeartUI]=[]
 func _ready() -> void:
+	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for child in container.get_children():
 		if child is HeartUI:
 			hearts.append(child)
@@ -35,7 +36,7 @@ func update_max(_max_hp:int):
 			hearts[i].visible=false
 
 func show_game_over():
-	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	gameover.mouse_filter = Control.MOUSE_FILTER_STOP
 	await get_tree().create_timer(0.7).timeout
 	get_tree().paused = true
 	gameover.visible = true
@@ -54,7 +55,7 @@ func hide_game_over():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	gameover.fade_out()
 	gameover.visible = false
-	gameover.process_mode = Node.PROCESS_MODE_DISABLED
+	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 func load_game():
 	print("pressed")

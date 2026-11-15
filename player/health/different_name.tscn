@@ -69,6 +69,7 @@ layout_mode = 2
 
 [node name="gameover" type="Control" parent="." unique_id=1926836495]
 process_mode = 3
+modulate = Color(1, 1, 1, 0)
 custom_maximum_size = Vector2(960, 540)
 layout_mode = 3
 anchors_preset = 15
