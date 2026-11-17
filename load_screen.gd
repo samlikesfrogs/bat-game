@@ -20,6 +20,7 @@ func _free_load_screen():
 	queue_free()
 
 func setup_load_screen():
+	PlayerManager.set_as_parent(self)
 	new_game_button.mouse_entered.connect(button_mouse_enter.bind(new_game_button))
 	continue_button.mouse_entered.connect(button_mouse_enter.bind(continue_button))
 	MusicManager.play_music(MusicManager.menu)

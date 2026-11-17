@@ -50,9 +50,7 @@ func _ready() -> void:
 
 	if RoomManager.current_id != -1:
 		# init dict if not present
-		print("id", RoomManager.current_id)
 		if RoomManager.current_id not in RoomManager.room_transitions.keys():
-			print("going here....")
 			RoomManager.room_transitions[RoomManager.current_id] = {}
 		if side not in RoomManager.room_transitions[RoomManager.current_id].keys():
 			RoomManager.room_transitions[RoomManager.current_id][side] = {}

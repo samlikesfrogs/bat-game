@@ -25,8 +25,10 @@ func set_health(hp:int, max_hp:int):
 	player.hp = hp
 	player.update_hp(0)
 	
-func player_spawn_point(_new_position:Vector2)->void:
+func player_spawn_point(_new_position:Vector2):
+	print("doing this", _new_position)
 	player.global_position= _new_position
+	print("pos", player.global_position)
 
 func set_as_parent(_p:Node2D):
 		if player.get_parent():
@@ -35,4 +37,5 @@ func set_as_parent(_p:Node2D):
 	
 func unparent_player(_p:Node2D):
 	_p.remove_child(player)
+	player_in_scene = false
 	

@@ -30,15 +30,12 @@ func save_game():
 	var save_data:=var_to_str(current_save)
 	file.store_string(save_data)
 	game_saved.emit()
-	print("save pressed")
 	pass
 	
 func get_save_file()->FileAccess:
 	return FileAccess.open(SAVE_PATH+"save.sav", FileAccess.READ)
 	
 func load_game():
-	print("load pressed")
-	print("curren", current_save)
 	var file := get_save_file()
 	if not file:
 		return
@@ -50,17 +47,14 @@ func load_game():
 	RoomManager.id = current_save.id 
 	RoomManager.rooms = current_save.rooms
 	RoomManager.room_transitions = current_save.room_transitions
-	print("passed in", RoomManager.room_transitions)
 	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false, RoomManager.current_id)
 	await RoomManager.room_load_start
-	print(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
 	await RoomManager.room_load_end
 	for i in range(current_save.items.size()):
 		if current_save.items[i]!=null:
 			InventoryManager.inventory[i] = current_save.items[i]
-			print(InventoryManager.inventory)
 		else:
 			InventoryManager.inventory[i] = null
 	InventoryManager.inventory_updated.emit()
