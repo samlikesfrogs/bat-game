@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="3_cerri"]
 [ext_resource type="Texture2D" uid="uid://dm5100cb4nryh" path="res://aart/save_select.png" id="4_cerri"]
 [ext_resource type="Texture2D" uid="uid://qlqgox62kqn4" path="res://aart/save_hover.png" id="5_h7dwu"]
+[ext_resource type="AudioStream" uid="uid://dlpp787yhydl1" path="res://sound/Cozy SFX Volume 1/UI/MENU_HOVER_2.wav" id="6_2rg3e"]
+[ext_resource type="AudioStream" uid="uid://db3ow1e3psb8t" path="res://sound/Cozy SFX Volume 1/UI/MENU_CLICK_2.wav" id="7_3ghkq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3blse"]
 
@@ -102,6 +104,17 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_3ghkq")
 action_mode = 0
 text = "load
 "
+
+[node name="sfx_hover" type="AudioStreamPlayer2D" parent="panel/InfoPanel3" unique_id=961524330]
+process_mode = 3
+stream = ExtResource("6_2rg3e")
+volume_db = -4.0
+
+[node name="sfx_click" type="AudioStreamPlayer2D" parent="panel/InfoPanel3" unique_id=1390732156]
+process_mode = 3
+stream = ExtResource("7_3ghkq")
+volume_db = 4.0
+playback_type = 1
 
 [connection signal="pressed" from="panel/InfoPanel2/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="panel/InfoPanel3/Load" to="." method="_on_load_pressed"]

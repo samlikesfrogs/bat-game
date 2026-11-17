@@ -9,7 +9,8 @@ func play_music(bgm) -> void:
 		pass
 	player.stream = bgm
 	await get_tree().process_frame
-	get_tree().root.add_child(player)
+	if not get_tree().root.has_node("/root/@AudioStreamPlayer@28"):
+		get_tree().root.add_child(player)
 	player.process_mode=Node.PROCESS_MODE_ALWAYS
 	player.volume_db=-28.0
 	player.play()

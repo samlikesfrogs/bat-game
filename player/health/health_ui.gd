@@ -37,6 +37,8 @@ func update_max(_max_hp:int):
 			hearts[i].visible=false
 
 func show_game_over():
+	button_continue.mouse_entered.connect(button_mouse_enter.bind(button_continue))
+	button_title.mouse_entered.connect(button_mouse_enter.bind(button_title))
 	gameover.mouse_filter = Control.MOUSE_FILTER_STOP
 	await get_tree().create_timer(0.7).timeout
 	get_tree().paused = true
@@ -59,11 +61,16 @@ func hide_game_over():
 	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 func on_load_pressed():
+	$gameover/sfx_click.play()
 	gameover.fade_out()
 	SaveManager.load_game()
 	pass
 	
 func title_screen():
+	$gameover/sfx_click.play()
 	gameover.fade_out()
 	RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false)
 	pass
+	
+func button_mouse_enter(_b):
+	$gameover/sfx_hover.play()

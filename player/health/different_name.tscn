@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cyoloekfd77hw" path="res://menu_button.png" id="4_uvawp"]
 [ext_resource type="Texture2D" uid="uid://3vevrp11ajcm" path="res://menu_button_select.png" id="5_1kiys"]
 [ext_resource type="Texture2D" uid="uid://u3cl0b36knif" path="res://menu_button_hover.png" id="6_h7hnc"]
+[ext_resource type="AudioStream" uid="uid://db3ow1e3psb8t" path="res://sound/Cozy SFX Volume 1/UI/MENU_CLICK_2.wav" id="8_h7hnc"]
+[ext_resource type="AudioStream" uid="uid://dlpp787yhydl1" path="res://sound/Cozy SFX Volume 1/UI/MENU_HOVER_2.wav" id="9_ydt1a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ydt1a"]
 texture = ExtResource("4_uvawp")
@@ -158,3 +160,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="sfx_click" type="AudioStreamPlayer2D" parent="gameover" unique_id=490681813]
+process_mode = 3
+stream = ExtResource("8_h7hnc")
+volume_db = 4.0
+playback_type = 1
+
+[node name="sfx_hover" type="AudioStreamPlayer2D" parent="gameover" unique_id=38340811]
+process_mode = 3
+stream = ExtResource("9_ydt1a")
+volume_db = -4.0

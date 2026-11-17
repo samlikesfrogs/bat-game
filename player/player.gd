@@ -8,7 +8,7 @@ class_name Player
 @onready var state_machine : PlayerStateMachine = $PlayerStateMachine
 var inventory_ui_visible:bool = false
 
-var last_angle: float = 0.0
+var last_angle: float = PI/2
 var cardinal_dir: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 var view
@@ -57,8 +57,9 @@ func setDirection() -> bool:
 		return false
 		
 	var current_angle = direction.angle()
-	if cardinal_dir != Vector2.ZERO and abs(angle_difference(current_angle, last_angle)) < 0.2:
-		return false
+	if PlayerManager.using_controller:
+		if cardinal_dir != Vector2.ZERO and abs(angle_difference(current_angle, last_angle)) < 0.05:
+			return false
 	
 	var direction_id:int=int(round(
 		(direction).angle()
