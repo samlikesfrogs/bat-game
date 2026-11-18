@@ -1,5 +1,5 @@
 extends CanvasLayer
-@onready var inventory_ui: Control = $ColorRect/NinePatchRect/inventory_ui
+@onready var inventory_ui: Control = $NinePatchRect/inventory_ui
 @onready var save_load: Control = $Save_Load
 
 

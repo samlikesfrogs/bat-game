@@ -10,8 +10,7 @@ func _ready() -> void:
 	_on_inventory_updated()
 
 func _process(delta: float) -> void:
-	if get_tree().paused:
-		print("Focused node: ", get_viewport().gui_get_focus_owner())
+		#print("Focused node: ", get_viewport().gui_get_focus_owner())
 	if get_tree().paused and not PlayerManager.using_controller:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:

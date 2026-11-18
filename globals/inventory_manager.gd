@@ -36,6 +36,8 @@ func drop_to_world(slot_index:int, drop_position:Vector2):
 	inventory_updated.emit()
 	
 func add_item(item):
+	print(inventory)
+	var has_item:bool = false
 	if not get_tree().paused:
 		var audio = AudioStreamPlayer.new()
 		await get_tree().process_frame
@@ -43,13 +45,19 @@ func add_item(item):
 		audio.stream = preload("res://sound/Cozy SFX Volume 1/UI/ITEM_PICKUP_3.wav")
 		audio.play()
 	for i in range(inventory.size()):
-		if inventory[i]!=null and inventory[i]["name"]==item["name"]:
-			inventory[i]["quantity"]+=item["quantity"]
-			inventory_updated.emit()
-			return true
+		if inventory[i]!=null:
+			if inventory[i]["name"]==item["name"]:
+				has_item = true
+	for i in range(inventory.size()):
+		if has_item:
+			if inventory[i]!=null:
+				if inventory[i]["name"]==item["name"]:
+					inventory[i]["quantity"]+=item["quantity"]
+					return true
 		elif inventory[i]==null:
 			inventory[i] = item
 			return true
+	inventory_updated.emit()
 	return false
 		
 func remove_item(item_name):
