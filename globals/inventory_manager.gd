@@ -1,29 +1,54 @@
 extends Node
 var inventory:Array = []
-var inventory_size:int
+@export var inventory_size:int = 27
 @onready var player = PlayerManager.player
 signal inventory_updated
-var hotbar_inventory = []
+signal held_item_changed(new_item)
+var dragged_index:int = -1
 
 func _ready():
-	inventory.resize(27)
-	hotbar_inventory.resize(5)
+	inventory.resize(inventory_size)
+	
+func interact_with_slot(slot_index:int):
+	if dragged_index == -1:
+		if inventory[slot_index] != null:
+			dragged_index = slot_index
+			held_item_changed.emit(inventory[slot_index])
+			inventory_updated.emit()
+	else:
+		if dragged_index != slot_index:
+			swap_inventory_items(dragged_index, slot_index)
+		dragged_index = -1
+		held_item_changed.emit(null)
+		inventory_updated.emit()
+		
+func drop_to_world(slot_index:int, drop_position:Vector2):
+	if slot_index<0 or slot_index>= inventory.size():
+		return
+	var item_data = inventory[slot_index]
+	if item_data == null:
+		return
+	drop_item(item_data.duplicate(), drop_position)
+	inventory[slot_index] = null
+	if dragged_index == slot_index:
+		dragged_index = -1
+		held_item_changed.emit(null)
+	inventory_updated.emit()
 	
 func add_item(item):
-	if get_tree().paused != true:
-		player = AudioStreamPlayer.new()
+	if not get_tree().paused:
+		var audio = AudioStreamPlayer.new()
 		await get_tree().process_frame
-		get_tree().root.add_child(player)
-		player.stream = preload("res://sound/Cozy SFX Volume 1/UI/ITEM_PICKUP_3.wav")
-		player.play()
+		get_tree().root.add_child(audio)
+		audio.stream = preload("res://sound/Cozy SFX Volume 1/UI/ITEM_PICKUP_3.wav")
+		audio.play()
 	for i in range(inventory.size()):
 		if inventory[i]!=null and inventory[i]["name"]==item["name"]:
 			inventory[i]["quantity"]+=item["quantity"]
-			#inventory_updated.emit()
+			inventory_updated.emit()
 			return true
 		elif inventory[i]==null:
 			inventory[i] = item
-			#inventory_updated.emit()
 			return true
 	return false
 		
@@ -41,7 +66,7 @@ func remove_item(item_name):
 	#inventory_updated.emit()
 	
 func swap_inventory_items(index1, index2):
-	if (index1 < 0 or index1 > inventory.size()) or (index2 < 0 or index2 > inventory.size()):
+	if (index1 < 0 or index1 >= inventory.size()) or (index2 < 0 or index2 >= inventory.size()):
 		return false
 	var temp = inventory[index1]
 	inventory[index1]=inventory[index2]
@@ -65,3 +90,9 @@ func drop_item(item_data, drop_position):
 	drop_position = adjust_drop(drop_position)
 	get_tree().current_scene.add_child(item_instance)
 	item_instance.global_position = drop_position
+
+func cancel_drag():
+	if dragged_index!=-1:
+		dragged_index = -1
+		held_item_changed.emit(null)
+		inventory_updated.emit()

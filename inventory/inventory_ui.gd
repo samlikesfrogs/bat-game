@@ -1,72 +1,63 @@
 extends Control
 @onready var grid_container: GridContainer = $GridContainer
 @onready var inventory_slot_scene = load("res://inventory/inventory_slot.tscn")
-var dragged_slot = null
-@export var joystick_sensitivity: float = 400.0
+var dragged_slot:Control = null
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	get_viewport().warp_mouse(Vector2(9,7))
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode=Input.MOUSE_MODE_HIDDEN
 	InventoryManager.inventory_updated.connect(_on_inventory_updated)
 	PlayerManager.player.inventory_opened.connect(_on_inventory_updated)
 	_on_inventory_updated()
 
 func _process(delta: float) -> void:
-	if PlayerManager.using_controller and get_tree().paused == true:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		var input_vector := Input.get_vector(
-			"ui_left", "ui_right", "ui_up", "ui_down")
-		if input_vector != Vector2.ZERO:
-			var new_pos = get_viewport().get_mouse_position() + (input_vector * joystick_sensitivity * delta)
-			get_viewport().warp_mouse(new_pos)
-	elif get_tree().paused == true:
+	if get_tree().paused:
+		print("Focused node: ", get_viewport().gui_get_focus_owner())
+	if get_tree().paused and not PlayerManager.using_controller:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _on_inventory_updated():
+	var previous_focus_index := 0
+	var current_focused = _get_focused_slot()
+	if current_focused !=null:
+		previous_focus_index = current_focused.get_index()
+	dragged_slot = null
 	clear_grid()
-	for item in InventoryManager.inventory:
+	for i in range(InventoryManager.inventory.size()):
+		var item = InventoryManager.inventory[i]
 		var slot = inventory_slot_scene.instantiate()
 		grid_container.add_child(slot)
-		slot.drag_start.connect(on_drag_start)
-		slot.drag_end.connect(on_drag_end)
+		slot.slot_clicked.connect(_on_slot_clicked)
+		slot.slot_released.connect(_on_slot_released)
 		if item != null:
 			slot.set_item(item)
 		else:
 			slot.set_empty()
-	get_child(0).grab_focus()
-		#get_tree().get_root().get_node("ItemButton").grab_focus()
+		if is_visible_in_tree():
+			if grid_container.get_child_count()>previous_focus_index:
+				grid_container.get_child(previous_focus_index).grab_focus()
 
 func clear_grid():
 	while grid_container.get_child_count()>0:
 		var child = grid_container.get_child(0)
 		grid_container.remove_child(child)
 		child.queue_free()
-		
-func on_drag_start(slot_control:Control):
-	if slot_control.item != null:
-		dragged_slot = slot_control
-	
-func on_drag_end():
-	if dragged_slot != null:
-		var target_slot = get_hovered_slot()
-		if target_slot and dragged_slot != target_slot:
-			drop_slot(dragged_slot, target_slot)
-		elif dragged_slot != target_slot:
-			var drop_position = PlayerManager.player.global_position
-			var drop_offset = Vector2(25,0)
-			drop_offset = drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
-			InventoryManager.drop_item(dragged_slot.item, drop_position + drop_offset)
-			InventoryManager.remove_item(dragged_slot.item["name"])
-	dragged_slot = null
 	
 func get_hovered_slot() ->Control:
 	var mouse_position = get_global_mouse_position()
 	for slot in grid_container.get_children():
 		var slot_rect = Rect2(slot.global_position, slot.size)
 		if slot_rect.has_point(mouse_position):
+			return slot
+	return null
+	
+func _get_focused_slot()->Control:
+	var focused = get_viewport().gui_get_focus_owner()
+	if focused == null:
+		return null
+	for slot in grid_container.get_children():
+		if slot == focused or slot.is_ancestor_of(focused):
 			return slot
 	return null
 	
@@ -79,9 +70,50 @@ func get_slot_index(slot:Control)->int:
 func drop_slot(slot1:Control, slot2:Control):
 	var slot1_index = get_slot_index(slot1)
 	var slot2_index = get_slot_index(slot2)
-	if slot1_index == -1:
-		return
-	else:
+	if slot1_index != -1 and slot2_index != -1:
 		if InventoryManager.swap_inventory_items(slot1_index, slot2_index) == true:
 			_on_inventory_updated()
+			
+func _on_slot_clicked(slot:Control):
+	if dragged_slot == null:
+		if slot.item != null:
+			dragged_slot = slot
+			dragged_slot.modulate.a = 1.0
+	else:
+		if dragged_slot!=slot:
+			InventoryManager.swap_inventory_items(dragged_slot.get_index(), slot.get_index())
+		else:
+			dragged_slot.modulate.a = 1.0
+			dragged_slot = null
+				
+func _on_slot_released(slot:Control):
+	if dragged_slot == null:
+		return
+	var target_slot = get_hovered_slot()
+	if target_slot != null and target_slot != dragged_slot:
+		InventoryManager.swap_inventory_items(dragged_slot.get_index(), target_slot.get_index())
+	elif target_slot == null:
+		drop_outside(dragged_slot)
+		dragged_slot = null
+		
+func drop_outside(slot_to_drop:Control):
+	if slot_to_drop.item == null:
+		return
+	var drop_position = PlayerManager.player.global_position
+	var drop_offset = Vector2(25, 0).rotated(PlayerManager.player.cardinal_dir.angle())
+	InventoryManager.drop_to_world(slot_to_drop.get_index(), drop_position+drop_offset)
 	
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible or not get_tree().paused:
+		return
+	if event.is_action_pressed("drop item"):
+		var target = dragged_slot if dragged_slot != null else _get_focused_slot()
+		if target != null and target.item != null:
+			drop_outside(target)
+			dragged_slot = null
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("ui_cancel") or event is InputEventMouseButton and (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
+		if dragged_slot!=null:
+			dragged_slot.modulate.a = 1.0
+			dragged_slot = null
+			get_viewport().set_input_as_handled()

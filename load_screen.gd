@@ -15,6 +15,7 @@ func _ready() -> void:
 	setup_load_screen()
 	
 func _free_load_screen():
+	InventoryManager.process_mode = Node.PROCESS_MODE_ALWAYS
 	PlayerManager.unparent_player(self)
 	await ($sfx_click.finished)
 	queue_free()
@@ -31,6 +32,7 @@ func setup_load_screen():
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_DISABLED
+	InventoryManager.process_mode = Node.PROCESS_MODE_DISABLED
 	
 
 func new_game():

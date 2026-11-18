@@ -6,25 +6,25 @@ extends Control
 @onready var item_type: Label = $InfoPanel/type
 @onready var item_name: Label = $InfoPanel/name
 @onready var item_function: Label = $InfoPanel/function
-@onready var usage_panel: ColorRect = $UsagePanel
-signal drag_start(slot)
-signal drag_end()
+@onready var item_button: Button = $NinePatchRect/ItemButton
+
+signal slot_clicked(slot:Control)
+signal slot_released(slot:Control)
 
 var item = null
 
 func _ready() -> void:
-	#if PlayerManager.using_controller == true:
-	#	$ItemButton.grab_focus()
 	info_panel.visible = false
-	usage_panel.visible = false
-
-func _on_item_button_mouse_entered() -> void:
-	if item != null and usage_panel.visible == false:
+	item_button.mouse_entered.connect(item_button.grab_focus)
+	item_button.focus_entered.connect(_on_focus_entered)
+	item_button.focus_exited.connect(_on_focus_exited)
+	
+func _on_focus_entered():
+	if item != null and not info_panel.visible:
 		info_panel.visible = true
 
-func _on_item_button_mouse_exited() -> void:
-	if item != null:
-		info_panel.visible = false
+func _on_focus_exited():
+	info_panel.visible=false	
 
 func set_empty():
 	item_icon.texture=null
@@ -32,7 +32,7 @@ func set_empty():
 	
 func set_item(new_item):
 	item = new_item
-	item_icon.texture = new_item["texture"] #only this is broken... Invalid assignment of property or key 'texture' with value of type 'String' on a base object of type 'Sprite2D'.
+	item_icon.texture = new_item["texture"] 
 	item_quantity.text = str(int((item["quantity"]))) 
 	item_name.text = str(item["name"])
 	item_type.text = str(item["type"])
@@ -42,30 +42,9 @@ func set_item(new_item):
 		item_function.text = ""
 
 func _on_item_button_gui_input(event: InputEvent) -> void:	
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.is_pressed():
-				drag_start.emit(self)
-			else:
-				drag_end.emit()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventJoypadButton:
-			if event.button_index == JOY_BUTTON_B:
-				if Rect2($NinePatchRect/ItemButton.global_position, $NinePatchRect/ItemButton.size).has_point(get_global_mouse_position()):
-					$NinePatchRect/ItemButton.toggle_mode = true
-					$NinePatchRect/ItemButton.button_pressed = true
-				if event.is_pressed() and $NinePatchRect/ItemButton.button_pressed:
-						drag_start.emit(self)
-				elif not event.is_pressed():
-					$NinePatchRect/ItemButton.toggle_mode = false
-					drag_end.emit()
-				
-func _on_drop_pressed() -> void:
-	if item != null:
-		var drop_position = PlayerManager.player.global_position
-		var drop_offset = Vector2(0, 10)
-		drop_offset=drop_offset.rotated((PlayerManager.player.cardinal_dir).angle())
-		InventoryManager.drop_item(item, drop_position+drop_offset)
-		InventoryManager.remove_item(item["name"])
-		usage_panel.visible=false
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed) or event.is_action_pressed("ui_accept"):
+		slot_clicked.emit(self)
+		get_viewport().set_input_as_handled()
+	elif (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
+		slot_released.emit(self)
+		#get_viewport().set_input_as_handled()

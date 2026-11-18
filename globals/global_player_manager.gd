@@ -16,6 +16,13 @@ func _ready() -> void:
 	add_player_instance()
 	await get_tree().create_timer(0.2).timeout
 
+func _input(event: InputEvent) -> void:
+	connected_joypads = Input.get_connected_joypads()
+	if connected_joypads.size() > 0:
+		using_controller = true
+	else:
+		using_controller = false
+
 func add_player_instance()->void:
 	player = PLAYER.instantiate()
 	get_tree().current_scene.add_child(player)

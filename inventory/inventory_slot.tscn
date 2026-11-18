@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dbuqmp03hxstd" path="res://aart/inventory_select.png" id="4_75pi0"]
 [ext_resource type="FontFile" uid="uid://c1tpdh11d0q75" path="res://3x5-Microfont.ttf" id="5_kiat1"]
 [ext_resource type="Texture2D" uid="uid://p3orce7xom2b" path="res://aart/inventory_hover.png" id="5_rhcms"]
+[ext_resource type="Texture2D" uid="uid://dgxs8r2h4mr41" path="res://aart/hover.png" id="5_ry1ev"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jgn8"]
 
@@ -14,14 +15,15 @@ texture = ExtResource("4_75pi0")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rhcms"]
 texture = ExtResource("5_rhcms")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rptt4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lelqj"]
+texture = ExtResource("5_ry1ev")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7pn3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfyh4"]
-bg_color = Color(0.105882354, 0.105882354, 0.105882354, 0.5176471)
-
-[node name="inventory_slot" type="Control" unique_id=1488793917]
+[node name="inventory_slot" type="Control" unique_id=1488793917 groups=["slot"]]
+process_mode = 3
 custom_minimum_size = Vector2(16, 16)
 custom_maximum_size = Vector2(150, -1)
 layout_mode = 3
@@ -30,10 +32,11 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 26.0
 offset_bottom = 26.0
-focus_mode = 2
 script = ExtResource("1_42eed")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1409232665]
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
@@ -45,6 +48,8 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="ItemButton" type="Button" parent="NinePatchRect" unique_id=105416547]
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(18, 18)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,7 +59,7 @@ grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7jgn8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_75pi0")
 theme_override_styles/hover = SubResource("StyleBoxTexture_rhcms")
-toggle_mode = true
+theme_override_styles/focus = SubResource("StyleBoxTexture_lelqj")
 action_mode = 0
 keep_pressed_outside = true
 
@@ -137,72 +142,7 @@ theme_override_fonts/font = ExtResource("5_kiat1")
 theme_override_font_sizes/font_size = 8
 text = "function"
 
-[node name="UsagePanel" type="ColorRect" parent="." unique_id=1608723833]
-z_index = 2
-layout_mode = 0
-offset_top = -22.0
-offset_right = 22.0
-offset_bottom = -1.0
-color = Color(1, 1, 1, 0)
-
-[node name="InfoPanel2" type="NinePatchRect" parent="UsagePanel" unique_id=242928203]
-layout_mode = 0
-offset_right = 22.0
-offset_bottom = 10.0
-texture = ExtResource("2_75pi0")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="use" type="Button" parent="UsagePanel" unique_id=150546255]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -11.0
-offset_right = 11.0
-offset_bottom = 10.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rptt4")
-text = "Use
-"
-
-[node name="InfoPanel3" type="NinePatchRect" parent="UsagePanel" unique_id=623825877]
-layout_mode = 0
-offset_top = 11.0
-offset_right = 22.0
-offset_bottom = 21.0
-texture = ExtResource("2_75pi0")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="drop" type="Button" parent="UsagePanel" unique_id=2075506677]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 11.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_r7pn3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bfyh4")
-action_mode = 0
-text = "Drop
-"
-
 [connection signal="gui_input" from="NinePatchRect/ItemButton" to="." method="_on_item_button_gui_input"]
 [connection signal="mouse_entered" from="NinePatchRect/ItemButton" to="." method="_on_item_button_mouse_entered"]
 [connection signal="mouse_exited" from="NinePatchRect/ItemButton" to="." method="_on_item_button_mouse_exited"]
 [connection signal="pressed" from="NinePatchRect/ItemButton" to="." method="_on_item_button_pressed"]
-[connection signal="pressed" from="UsagePanel/drop" to="." method="_on_drop_pressed"]

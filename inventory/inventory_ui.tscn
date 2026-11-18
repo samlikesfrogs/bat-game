@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cfh3ol1q61ite" path="res://inventory/inventory_ui.gd" id="1_5v8q7"]
 
 [node name="inventory_ui" type="Control" unique_id=2137149539]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
