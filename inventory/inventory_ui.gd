@@ -34,15 +34,15 @@ func _on_inventory_updated():
 			slot.set_item(item)
 		else:
 			slot.set_empty()
-		if is_visible_in_tree():
-			if grid_container.get_child_count()>previous_focus_index:
-				grid_container.get_child(previous_focus_index).grab_focus()
+	if grid_container.get_child_count()>0:
+		grid_container.get_child(previous_focus_index).grab_focus()
 
 func clear_grid():
-	while grid_container.get_child_count()>0:
-		var child = grid_container.get_child(0)
-		grid_container.remove_child(child)
-		child.queue_free()
+		while grid_container.get_child_count()>0:
+			var child = grid_container.get_child(0)
+			grid_container.remove_child(child)
+			child.queue_free()
+		pass
 	
 func get_hovered_slot() ->Control:
 	var mouse_position = get_global_mouse_position()
@@ -78,7 +78,7 @@ func _on_slot_clicked(slot:Control):
 	if dragged_slot == null:
 		if slot.item != null:
 			dragged_slot = slot
-			dragged_slot.modulate.a = 1.0
+			dragged_slot.modulate.a = 0.4
 	else:
 		if dragged_slot!=slot:
 			InventoryManager.swap_inventory_items(dragged_slot.get_index(), slot.get_index())
