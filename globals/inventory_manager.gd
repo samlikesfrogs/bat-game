@@ -36,7 +36,6 @@ func drop_to_world(slot_index:int, drop_position:Vector2):
 	inventory_updated.emit()
 	
 func add_item(item):
-	print(inventory)
 	var has_item:bool = false
 	if not get_tree().paused:
 		var audio = AudioStreamPlayer.new()

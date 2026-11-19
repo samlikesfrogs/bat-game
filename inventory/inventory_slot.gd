@@ -47,5 +47,7 @@ func _on_pressed():
 	slot_clicked.emit(self)
 	
 func _on_item_button_gui_input(event: InputEvent) -> void:	
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
+		slot_clicked.emit(self)
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 		slot_released.emit(self)
