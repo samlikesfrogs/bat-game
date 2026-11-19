@@ -1,5 +1,4 @@
 class_name Room extends Node2D
-@export var opendoors: PackedStringArray
 
 func _ready() -> void:
 	PlayerManager.set_as_parent(self)

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://boj4xjemfd6c4" path="res://rooms/base.gd" id="7_kmpqj"]
 [ext_resource type="PackedScene" uid="uid://csmi717a3mp8p" path="res://rooms/player_spawner.tscn" id="8_8e11m"]
 [ext_resource type="Texture2D" uid="uid://p6myp74eqqri" path="res://aart/tiles/tileset_Dirt path.png" id="8_qauyb"]
-[ext_resource type="PackedScene" uid="uid://b7qhtqla3hxv8" path="res://rooms/level_trans.tscn" id="9_3kkxr"]
+[ext_resource type="PackedScene" uid="uid://b53lwqv5llq20" path="res://rooms/fixed_trans.tscn" id="10_qauyb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wbpbn"]
 
@@ -1055,11 +1055,9 @@ shape = SubResource("RectangleShape2D_wqxq1")
 [node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("8_8e11m")]
 position = Vector2(237, 239)
 
-[node name="ExitBottom" parent="." unique_id=1130782072 instance=ExtResource("9_3kkxr")]
-z_index = 4
-position = Vector2(232, 272)
-possible_rooms_bottom = ["res://rooms/room_4.tscn"]
-level = "uid://cc0lnqg70ahtp"
+[node name="ExitBottom" parent="." unique_id=1130782072 instance=ExtResource("10_qauyb")]
+position = Vector2(232, 270)
+level = "uid://vk10xo86tfdg"
 target_transition_area = "EnterTop"
 size = 1
 side = 3

@@ -1,7 +1,5 @@
 class_name RoomBase extends TileMapLayer
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	RoomManager.update_map_limits(get_limits())
 

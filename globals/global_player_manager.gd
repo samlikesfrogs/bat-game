@@ -16,7 +16,7 @@ func _ready() -> void:
 	add_player_instance()
 	await get_tree().create_timer(0.2).timeout
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	connected_joypads = Input.get_connected_joypads()
 	if connected_joypads.size() > 0:
 		using_controller = true
@@ -33,9 +33,7 @@ func set_health(hp:int, max_hp:int):
 	player.update_hp(0)
 	
 func player_spawn_point(_new_position:Vector2):
-	print("doing this", _new_position)
 	player.global_position= _new_position
-	print("pos", player.global_position)
 
 func set_as_parent(_p:Node2D):
 		if player.get_parent():
@@ -44,5 +42,4 @@ func set_as_parent(_p:Node2D):
 	
 func unparent_player(_p:Node2D):
 	_p.remove_child(player)
-	player_in_scene = false
 	

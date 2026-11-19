@@ -43,7 +43,6 @@ func set_item(new_item):
 		item_function.text = ""
 
 func _on_pressed():
-	print("pressed")
 	slot_clicked.emit(self)
 	
 func _on_item_button_gui_input(event: InputEvent) -> void:	

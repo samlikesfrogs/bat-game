@@ -2,10 +2,10 @@
 class_name LvlTrans extends Area2D
 enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
-@export var possible_rooms_right:Array=["res://rooms/room_2.tscn"]
-@export var possible_rooms_left:Array=["res://rooms/room_3.tscn"]
-@export var possible_rooms_bottom:Array=["res://rooms/room_5.tscn", "res://rooms/room_4.tscn"]
-@export var possible_rooms_top:Array=["res://rooms/room_1.tscn"]
+@export var possible_rooms_right:Array=["res://rooms/room_l_0.tscn"]
+@export var possible_rooms_left:Array=["res://rooms/room_r_0.tscn"]
+@export var possible_rooms_bottom:Array=["res://rooms/room_u_0.tscn", "res://rooms/room_ud_0.tscn"]
+@export var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_d_0.tscn"]
 @export var is_return_door:bool = false
 @export_file("*.tscn") var level
 @export var target_transition_area :String
@@ -22,6 +22,7 @@ var position_offset:Vector2 = Vector2.ZERO
 var i:int = 0
 
 func _ready() -> void:
+	self.level = null
 	match self.name:
 		"EnterLeft":
 			target_transition_area = "ExitRight"
@@ -37,17 +38,13 @@ func _ready() -> void:
 	if self.level == null and not is_return_door:
 		match side:
 			SIDE.LEFT:
-				#if counter > 4: generate end room left, if boss room picked update roommanager boss_room_exists
-				#if boss room exists: generate end room left
-				self.level = possible_rooms_left.pick_random()
-				#update counter
+					self.level = possible_rooms_left.pick_random()
 			SIDE.RIGHT:
 				self.level = possible_rooms_right.pick_random()
 			SIDE.TOP:
 				self.level = possible_rooms_top.pick_random()
 			SIDE.BOTTOM:
 				self.level = possible_rooms_bottom.pick_random()
-
 	if RoomManager.current_id != -1:
 		# init dict if not present
 		if RoomManager.current_id not in RoomManager.room_transitions.keys():
@@ -64,10 +61,6 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	monitoring = true
 	body_entered.connect(on_player_entered)
-	#var scene = get_tree().current_scene
-	#var packed = PackedScene.new()
-	#packed.pack(scene)
-	#ResourceSaver.save(packed, scene.scene_file_path)
 	update_area()
 	
 func on_player_entered(_player:Node2D):
@@ -102,7 +95,7 @@ func player_pos():
 	
 	if not self.is_return_door:
 		self.is_return_door = true
-		#RoomManager.room_transitions[RoomManager.current_id][side]["return"] = true
+		RoomManager.room_transitions[RoomManager.current_id][side]["return"] = true
 	PlayerManager.player_spawn_point(global_position + RoomManager.position_offset)
 	
 func get_offset()->Vector2:

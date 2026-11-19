@@ -9,8 +9,7 @@ func _ready() -> void:
 	PlayerManager.player.inventory_opened.connect(_on_inventory_updated)
 	_on_inventory_updated()
 
-func _process(delta: float) -> void:
-		#print("Focused node: ", get_viewport().gui_get_focus_owner())
+func _process(_delta: float) -> void:
 	if get_tree().paused and not PlayerManager.using_controller:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
@@ -85,7 +84,7 @@ func _on_slot_clicked(slot:Control):
 			dragged_slot.modulate.a = 1.0
 			dragged_slot = null
 				
-func _on_slot_released(slot:Control):
+func _on_slot_released(_slot:Control):
 	if dragged_slot == null:
 		return
 	var target_slot = get_hovered_slot()

@@ -12,6 +12,10 @@ var prev_id: int = -1
 var current_id: int = -1
 var queued_trans_room := ""
 var id: int = 0
+var leftcount:int
+var rightcount:int
+var upcount:int
+var downcount:int
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -22,6 +26,7 @@ func update_map_limits(limits:Array[Vector2]) -> void:
 	map_limits_update.emit(limits)
 
 func load_level(level_path, _target_transition_area:String, _position_offset:Vector2, _go_back_called:bool, room_id := -1, trans_dir := -1):
+	print(leftcount)
 	prev_id = current_id
 	current_id = room_id if room_id != -1 else id
 	

@@ -58,6 +58,7 @@ func load_game():
 		else:
 			InventoryManager.inventory[i] = null
 	InventoryManager.inventory_updated.emit()
+	game_loaded.emit()
 
 func update_player_data():
 	current_save.player.hp = PlayerManager.player.hp
@@ -66,6 +67,8 @@ func update_player_data():
 	current_save.player.pos_y = PlayerManager.player.global_position.y
 
 func update_scene():
+	if current_save.scene_path == "res://rooms/room_town.tscn":
+		current_save.room_transitions.clear()
 	current_save.prev_id = RoomManager.prev_id
 	current_save.current_id = RoomManager.current_id
 	current_save.queued_trans_room = RoomManager.queued_trans_room
@@ -73,8 +76,6 @@ func update_scene():
 	current_save.rooms = RoomManager.rooms.duplicate(true)
 	current_save.room_transitions = RoomManager.room_transitions.duplicate(true)
 	current_save.scene_path = get_tree().current_scene.scene_file_path
-	if current_save.scene_path == "res://rooms/room_town.tscn":
-		pass #reset all room door persistance
 
 func update_inventory():
 	current_save.items = InventoryManager.inventory.duplicate(true)
