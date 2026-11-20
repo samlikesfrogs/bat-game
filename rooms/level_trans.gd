@@ -22,7 +22,8 @@ var position_offset:Vector2 = Vector2.ZERO
 var i:int = 0
 
 func _ready() -> void:
-	self.level = null
+#	if not RoomManager.room_transitions.has(RoomManager.current_id):
+#		self.level = null
 	match self.name:
 		"EnterLeft":
 			target_transition_area = "ExitRight"
@@ -38,7 +39,9 @@ func _ready() -> void:
 	if self.level == null and not is_return_door:
 		match side:
 			SIDE.LEFT:
-					self.level = possible_rooms_left.pick_random()
+				if RoomManager.rooms.size() >= 9:
+					print("end room gen now")
+				self.level = possible_rooms_left.pick_random()
 			SIDE.RIGHT:
 				self.level = possible_rooms_right.pick_random()
 			SIDE.TOP:
