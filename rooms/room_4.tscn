@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cbnlx6amihn4r"]
+[gd_scene format=4 uid="uid://dlp8or2ksy1co"]
 
 [ext_resource type="Script" uid="uid://13w1wl4g6m5v" path="res://rooms/room_1.gd" id="1_rgx3f"]
 [ext_resource type="Texture2D" uid="uid://jo85n1ng082y" path="res://aart/tiles/tileset_Dirt to grass - dirt path.png" id="2_251q2"]
