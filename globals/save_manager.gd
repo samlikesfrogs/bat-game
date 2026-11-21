@@ -42,7 +42,6 @@ func load_game():
 		return
 	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
 	current_save = save_dict
-	RoomManager.prev_id = current_save.prev_id
 	RoomManager.current_id = current_save.current_id
 	RoomManager.queued_trans_room = current_save.queued_trans_room
 	RoomManager.id = current_save.id 
@@ -54,6 +53,7 @@ func load_game():
 	await RoomManager.room_load_start
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
+	RoomManager.prev_id = current_save.prev_id
 	await RoomManager.room_load_end
 	for i in range(current_save.items.size()):
 		if current_save.items[i]!=null:
@@ -70,9 +70,6 @@ func update_player_data():
 	current_save.player.pos_y = PlayerManager.player.global_position.y
 
 func update_scene():
-	if current_save.scene_path == "res://rooms/room_town.tscn":
-		print("happening???")
-		current_save.room_transitions.clear()
 	current_save.prev_id = RoomManager.prev_id
 	current_save.current_id = RoomManager.current_id
 	current_save.queued_trans_room = RoomManager.queued_trans_room
@@ -80,6 +77,8 @@ func update_scene():
 	current_save.rooms = RoomManager.rooms.duplicate(true)
 	current_save.room_transitions = RoomManager.room_transitions.duplicate(true)
 	current_save.scene_path = get_tree().current_scene.scene_file_path
+	if current_save.scene_path == "res://rooms/room_town.tscn":
+		current_save.room_transitions.clear()
 
 func update_inventory():
 	current_save.items = InventoryManager.inventory.duplicate(true)

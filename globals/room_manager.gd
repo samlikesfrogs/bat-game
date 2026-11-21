@@ -22,7 +22,8 @@ func update_map_limits(limits:Array[Vector2]) -> void:
 	map_limits_update.emit(limits)
 
 func load_level(level_path, _target_transition_area:String, _position_offset:Vector2, _go_back_called:bool, room_id := -1, trans_dir := -1):
-	print(rooms)
+	print("before: ", rooms)
+	print("before: ", room_transitions)
 	prev_id = current_id
 	current_id = room_id if room_id != -1 else id
 	
@@ -40,7 +41,7 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	# when generating new room
 	if room_id == -1:
 		rooms[id] = get_tree().current_scene.scene_file_path
-		if prev_id != -1 and trans_dir != -1:
+		if (prev_id != -1 and trans_dir != -1):
 			if queued_trans_room != "":
 				room_transitions[id][trans_dir]["level"] = queued_trans_room
 				queued_trans_room = ""

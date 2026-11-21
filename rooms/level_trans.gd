@@ -79,6 +79,7 @@ func on_player_entered(_player:Node2D):
 		self.is_return_door = true
 		if RoomManager.current_id != -1:
 			RoomManager.queued_trans_room = get_tree().current_scene.scene_file_path
+			print("queued", RoomManager.queued_trans_room)
 		
 		var opp_side: SIDE
 		match side:
