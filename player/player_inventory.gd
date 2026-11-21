@@ -1,8 +1,8 @@
 extends CanvasLayer
-@onready var inventory_ui: Control = $NinePatchRect/inventory_ui
+@onready var inventory_ui: Control = $inventory/inventory_ui
 @onready var save_load: Control = $Save_Load
-@onready var inventory_button: Button = $NinePatchRect2/inventory
-@onready var settings_button: Button = $NinePatchRect3/settings
+@onready var inventory_button: Button = $inv_button/inventory
+@onready var settings_button: Button = $set_button/settings
 
 
 

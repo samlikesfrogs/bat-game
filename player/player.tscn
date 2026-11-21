@@ -433,7 +433,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.17254902, 0, 0, 0.6745098)
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="inventory_ui" unique_id=980538141]
+[node name="inv_button" type="NinePatchRect" parent="inventory_ui" unique_id=980538141]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -451,12 +451,12 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="inventory" type="Button" parent="inventory_ui/NinePatchRect2" unique_id=1800149165]
+[node name="inventory" type="Button" parent="inventory_ui/inv_button" unique_id=1800149165]
 layout_mode = 0
 offset_right = 20.0
 offset_bottom = 8.0
 
-[node name="NinePatchRect3" type="NinePatchRect" parent="inventory_ui" unique_id=1973417981]
+[node name="set_button" type="NinePatchRect" parent="inventory_ui" unique_id=1973417981]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -474,12 +474,12 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="settings" type="Button" parent="inventory_ui/NinePatchRect3" unique_id=1430252583]
+[node name="settings" type="Button" parent="inventory_ui/set_button" unique_id=1430252583]
 layout_mode = 0
 offset_right = 20.0
 offset_bottom = 8.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="inventory_ui" unique_id=196551689]
+[node name="inventory" type="NinePatchRect" parent="inventory_ui" unique_id=196551689]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -497,7 +497,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="inventory_ui" parent="inventory_ui/NinePatchRect" unique_id=2137149539 instance=ExtResource("29_r7pn3")]
+[node name="inventory_ui" parent="inventory_ui/inventory" unique_id=2137149539 instance=ExtResource("29_r7pn3")]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 7.0
@@ -519,5 +519,5 @@ offset_bottom = 5.0
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/stun" method="_on_player_sprite_animation_finished"]
 [connection signal="frame_changed" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_frame_changed"]
 [connection signal="sprite_frames_changed" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_sprite_frames_changed"]
-[connection signal="pressed" from="inventory_ui/NinePatchRect2/inventory" to="inventory_ui" method="_on_inventory_pressed"]
-[connection signal="pressed" from="inventory_ui/NinePatchRect3/settings" to="inventory_ui" method="_on_settings_pressed"]
+[connection signal="pressed" from="inventory_ui/inv_button/inventory" to="inventory_ui" method="_on_inventory_pressed"]
+[connection signal="pressed" from="inventory_ui/set_button/settings" to="inventory_ui" method="_on_settings_pressed"]

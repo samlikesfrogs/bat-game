@@ -22,8 +22,6 @@ func update_map_limits(limits:Array[Vector2]) -> void:
 	map_limits_update.emit(limits)
 
 func load_level(level_path, _target_transition_area:String, _position_offset:Vector2, _go_back_called:bool, room_id := -1, trans_dir := -1):
-	print("before: ", rooms)
-	print("before: ", room_transitions)
 	prev_id = current_id
 	current_id = room_id if room_id != -1 else id
 	

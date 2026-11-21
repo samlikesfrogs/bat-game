@@ -2,10 +2,10 @@
 class_name LvlTrans extends Area2D
 enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
-@export var possible_rooms_right:Array=["res://rooms/room_l_0.tscn"]
-@export var possible_rooms_left:Array=["res://rooms/room_r_0.tscn"]
-@export var possible_rooms_bottom:Array=["res://rooms/room_u_0.tscn", "res://rooms/room_ud_0.tscn"]
-@export var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_d_0.tscn"]
+var possible_rooms_right:Array=["res://rooms/room_ld_0.tscn", "res://rooms/room_lr_0.tscn", "res://rooms/room_ldu_0.tscn", "res://rooms/room_lu_0.tscn"]
+var possible_rooms_left:Array=["res://rooms/room_lr_0.tscn", "res://rooms/room_rd_0.tscn", "res://rooms/room_ru_0.tscn"]
+var possible_rooms_bottom:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_ldu_0.tscn", "res://rooms/room_ru_0.tscn", "res://rooms/room_lu_0.tscn"]
+var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn","res://rooms/room_ld_0.tscn", "res://rooms/room_ldu_0.tscn", "res://rooms/room_rd_0.tscn"]
 @export var is_return_door:bool = false
 @export_file("*.tscn") var level
 @export var target_transition_area :String
@@ -20,10 +20,15 @@ enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 var position_offset:Vector2 = Vector2.ZERO
 var i:int = 0
+var end:bool =  false
+var leftcount:int = 0
+var rightcount:int = 0
+var upcount:int = 0
+var downcount:int = 0
 
 func _ready() -> void:
-#	if not RoomManager.room_transitions.has(RoomManager.current_id):
-#		self.level = null
+	if not RoomManager.room_transitions.has(RoomManager.current_id):
+		self.level = null
 	match self.name:
 		"EnterLeft":
 			target_transition_area = "ExitRight"
@@ -35,19 +40,47 @@ func _ready() -> void:
 			target_transition_area = "EnterTop"
 		_:
 			print("shit fuck what the hell")
-	
 	if self.level == null and not is_return_door:
+		print("rooms:", RoomManager.rooms)
 		match side:
 			SIDE.LEFT:
-				if RoomManager.rooms.size() >= 9:
-					print("end room gen now")
-				self.level = possible_rooms_left.pick_random()
+				print("went through left door")
+				for i in RoomManager.rooms.size():
+					if RoomManager.rooms[i] in possible_rooms_left:
+						leftcount +=1
+				if leftcount >= 1:
+					print("gen should end ", leftcount)
+					self.level = "res://rooms/room_r_0.tscn"
+				else:
+					self.level = possible_rooms_left.pick_random()
 			SIDE.RIGHT:
-				self.level = possible_rooms_right.pick_random()
+				print("went through right door")
+				for i in RoomManager.rooms.size():
+					if RoomManager.rooms[i] in possible_rooms_right:
+						rightcount +=1
+				if leftcount >= 1:
+					print("gen should end ", rightcount)
+					self.level = "res://rooms/room_l_0.tscn"
+				else:
+					self.level = possible_rooms_right.pick_random()
 			SIDE.TOP:
-				self.level = possible_rooms_top.pick_random()
+				for i in RoomManager.rooms.size():
+					if RoomManager.rooms[i] in possible_rooms_top:
+						upcount +=1
+				if upcount >= 1:
+					print("gen should end ", upcount)
+					self.level = "res://rooms/room_d_0.tscn"
+				else:
+					self.level = possible_rooms_top.pick_random()
 			SIDE.BOTTOM:
-				self.level = possible_rooms_bottom.pick_random()
+				for i in RoomManager.rooms.size():
+					if RoomManager.rooms[i] in possible_rooms_bottom:
+						downcount +=1
+				if downcount >= 1:
+					print("gen should end ", downcount)
+					self.level = "res://rooms/room_u_0.tscn"
+				else:
+					self.level = possible_rooms_bottom.pick_random()
 	if RoomManager.current_id != -1:
 		# init dict if not present
 		if RoomManager.current_id not in RoomManager.room_transitions.keys():
@@ -67,31 +100,28 @@ func _ready() -> void:
 	update_area()
 	
 func on_player_entered(_player:Node2D):
+	print("entered, level: ", self.level)
 	if RoomManager.current_id != -1:
 		if "id" in RoomManager.room_transitions[RoomManager.current_id][side]:
 			var id = RoomManager.room_transitions[RoomManager.current_id][side]["id"]
 			RoomManager.load_level(RoomManager.rooms[id], target_transition_area, get_offset(), false, id)
 			return
+		else:
+			self.is_return_door = true
+			if RoomManager.current_id != -1:
+				RoomManager.queued_trans_room = get_tree().current_scene.scene_file_path
 			
-	if self.is_return_door:
-		RoomManager.go_back(target_transition_area,get_offset())
-	else:
-		self.is_return_door = true
-		if RoomManager.current_id != -1:
-			RoomManager.queued_trans_room = get_tree().current_scene.scene_file_path
-			print("queued", RoomManager.queued_trans_room)
-		
-		var opp_side: SIDE
-		match side:
-			SIDE.LEFT:
-				opp_side = SIDE.RIGHT
-			SIDE.RIGHT:
-				opp_side = SIDE.LEFT
-			SIDE.TOP:
-				opp_side = SIDE.BOTTOM
-			SIDE.BOTTOM:
-				opp_side = SIDE.TOP
-		RoomManager.load_level(level, target_transition_area, get_offset(), false, -1, opp_side)
+			var opp_side: SIDE
+			match side:
+				SIDE.LEFT:
+					opp_side = SIDE.RIGHT
+				SIDE.RIGHT:
+					opp_side = SIDE.LEFT
+				SIDE.TOP:
+					opp_side = SIDE.BOTTOM
+				SIDE.BOTTOM:
+					opp_side = SIDE.TOP
+			RoomManager.load_level(level, target_transition_area, get_offset(), false, -1, opp_side)
 
 func player_pos():
 	if self.name != RoomManager.target_transition_area:
