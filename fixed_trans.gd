@@ -1,7 +1,7 @@
 @tool
 extends LvlTrans
 
-func _ready() -> void:		
+func _ready() -> void:	
 	if RoomManager.current_id != -1:
 		# init dict if not present
 		if RoomManager.current_id not in RoomManager.room_transitions.keys():

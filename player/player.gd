@@ -27,6 +27,7 @@ signal player_damaged(hurt_box:HurtBox)
 var connected_joypads
 
 func _ready():
+	print("doing ready")
 	update_hp(99)
 	hit_box.Damaged.connect(_take_damage)
 	PlayerManager.player = self
@@ -94,6 +95,7 @@ func _take_damage(hurt_box:HurtBox) -> void:
 	if invulnerable == true:
 		return
 	if hp>0:
+		print("doing take damage")
 		update_hp(-hurt_box.damage)
 		player_damaged.emit(hurt_box)
 	else:
@@ -101,6 +103,7 @@ func _take_damage(hurt_box:HurtBox) -> void:
 		#player_destroyed.emit(hurt_box)	
 		
 func update_hp(delta:int):
+	print("updating hp in player gd")
 	hp=clampi(hp+delta, 0, max_hp)
 	DifferentName.update_hp(hp, max_hp)
 	
@@ -114,5 +117,6 @@ func make_invulnerable( _duration) -> void:
 	$HitBox/CollisionShape2D.set_deferred("disabled", false)
 
 func revive_player():
+	print("doing revive")
 	update_hp(99)
 	state_machine.ChangeState($PlayerStateMachine/idle)	

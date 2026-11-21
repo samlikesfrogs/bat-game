@@ -733,6 +733,7 @@ disabled = true
 [node name="HurtBox" type="Area2D" parent="." unique_id=1386511006]
 monitorable = false
 script = ExtResource("8_wjonb")
+damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=10290253]
 position = Vector2(0, 6)

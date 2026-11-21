@@ -42,6 +42,9 @@ func load_game():
 		return
 	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
 	current_save = save_dict
+	if current_save.player.hp <= 0:
+		die_to_town()
+		return
 	RoomManager.current_id = current_save.current_id
 	RoomManager.queued_trans_room = current_save.queued_trans_room
 	RoomManager.id = current_save.id 
@@ -49,7 +52,7 @@ func load_game():
 	#print("rooms", RoomManager.rooms)
 	RoomManager.room_transitions = current_save.room_transitions
 	#print("transitions", RoomManager.room_transitions)
-	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false, RoomManager.current_id) #use goback
+	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false, RoomManager.current_id)
 	await RoomManager.room_load_start
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
 	PlayerManager.set_health(current_save.player.hp, current_save.player.max_hp)
@@ -93,3 +96,26 @@ func insert_defeated_enemy(room_id: int, id: int) -> void:
 		current_save.enemies_defeated[room_id] = []
 	if not id in current_save.enemies_defeated[room_id]:
 		current_save.enemies_defeated[room_id].append(id)
+		
+func die_to_town():
+	var file := get_save_file()
+	if not file:
+		return
+	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
+	current_save = save_dict
+	RoomManager.current_id = -1
+	RoomManager.load_level("res://rooms/room_town.tscn", "", Vector2.ZERO, false) 
+	await RoomManager.room_load_start
+	PlayerManager.player_spawn_point(Vector2(283.0, -25.0))
+	PlayerManager.set_health(current_save.player.max_hp, current_save.player.max_hp)
+	PlayerManager.player.revive_player()
+	await RoomManager.room_load_end
+	for i in range(current_save.items.size()):
+		if current_save.items[i]!=null:
+			current_save.items[i]["quantity"] = round(current_save.items[i]["quantity"]/2)
+			if not current_save.items[i]["quantity"] == 0:
+				InventoryManager.inventory[i] = current_save.items[i]
+		else:
+			InventoryManager.inventory[i] = null
+	InventoryManager.inventory_updated.emit()
+	game_loaded.emit()

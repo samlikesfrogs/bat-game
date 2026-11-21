@@ -17,6 +17,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 func update_hp(_hp: int, _max_hp: int):
+	print("updating hp in health ui")
 	for i in _max_hp:
 		update_heart(i, _hp)
 	update_max(_max_hp)
@@ -55,7 +56,6 @@ func show_game_over():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 func hide_game_over():
-	PlayerManager.player.revive_player()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	gameover.visible = false
 	gameover.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -63,12 +63,13 @@ func hide_game_over():
 func on_load_pressed():
 	$gameover/sfx_click.play()
 	gameover.fade_out()
-	SaveManager.load_game()
+	SaveManager.die_to_town()
 	pass
 	
 func title_screen():
 	$gameover/sfx_click.play()
 	gameover.fade_out()
+	PlayerManager.player.revive_player()
 	RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false)
 	pass
 	

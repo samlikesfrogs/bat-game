@@ -2,10 +2,10 @@
 class_name LvlTrans extends Area2D
 enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
-var possible_rooms_right:Array=["res://rooms/room_ld_0.tscn", "res://rooms/room_lr_0.tscn", "res://rooms/room_ldu_0.tscn", "res://rooms/room_lu_0.tscn"]
+var possible_rooms_right:Array=["res://rooms/room_ld_0.tscn", "res://rooms/room_lr_0.tscn", "res://rooms/room_lu_0.tscn"]
 var possible_rooms_left:Array=["res://rooms/room_lr_0.tscn", "res://rooms/room_rd_0.tscn", "res://rooms/room_ru_0.tscn"]
-var possible_rooms_bottom:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_ldu_0.tscn", "res://rooms/room_ru_0.tscn", "res://rooms/room_lu_0.tscn"]
-var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn","res://rooms/room_ld_0.tscn", "res://rooms/room_ldu_0.tscn", "res://rooms/room_rd_0.tscn"]
+var possible_rooms_bottom:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_ru_0.tscn", "res://rooms/room_lu_0.tscn"]
+var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn","res://rooms/room_ld_0.tscn", "res://rooms/room_rd_0.tscn"]
 @export var is_return_door:bool = false
 @export_file("*.tscn") var level
 @export var target_transition_area :String
@@ -44,22 +44,18 @@ func _ready() -> void:
 		print("rooms:", RoomManager.rooms)
 		match side:
 			SIDE.LEFT:
-				print("went through left door")
 				for i in RoomManager.rooms.size():
 					if RoomManager.rooms[i] in possible_rooms_left:
 						leftcount +=1
-				if leftcount >= 1:
-					print("gen should end ", leftcount)
+				if leftcount >= 3:
 					self.level = "res://rooms/room_r_0.tscn"
 				else:
 					self.level = possible_rooms_left.pick_random()
 			SIDE.RIGHT:
-				print("went through right door")
 				for i in RoomManager.rooms.size():
 					if RoomManager.rooms[i] in possible_rooms_right:
 						rightcount +=1
-				if leftcount >= 1:
-					print("gen should end ", rightcount)
+				if leftcount >= 3:
 					self.level = "res://rooms/room_l_0.tscn"
 				else:
 					self.level = possible_rooms_right.pick_random()
@@ -67,8 +63,7 @@ func _ready() -> void:
 				for i in RoomManager.rooms.size():
 					if RoomManager.rooms[i] in possible_rooms_top:
 						upcount +=1
-				if upcount >= 1:
-					print("gen should end ", upcount)
+				if upcount >= 3:
 					self.level = "res://rooms/room_d_0.tscn"
 				else:
 					self.level = possible_rooms_top.pick_random()
@@ -76,8 +71,7 @@ func _ready() -> void:
 				for i in RoomManager.rooms.size():
 					if RoomManager.rooms[i] in possible_rooms_bottom:
 						downcount +=1
-				if downcount >= 1:
-					print("gen should end ", downcount)
+				if downcount >= 3:
 					self.level = "res://rooms/room_u_0.tscn"
 				else:
 					self.level = possible_rooms_bottom.pick_random()
