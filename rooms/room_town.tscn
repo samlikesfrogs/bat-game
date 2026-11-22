@@ -3292,7 +3292,6 @@ tile_set = SubResource("TileSet_ujn84")
 
 [node name="grass" type="TileMapLayer" parent="on top of base" unique_id=433607412]
 position = Vector2(-260, -515)
-tile_map_data = PackedByteArray("AAAiAB0AAQAAAAQAAAAiAB4AAQAKAAAAAAA=")
 tile_set = SubResource("TileSet_afqhc")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="on top of base" unique_id=533105981]
@@ -3302,9 +3301,9 @@ tile_set = SubResource("TileSet_wqxq1")
 tile_map_data = PackedByteArray("AAAPAP3/AAAFAAIAAAAPAPz/AAAFAAEAAAAPAPv/AAAFAAAAAAAQAPv/AAAGAAAAAAARAPv/AAAHAAAAAAATAPv/AAAIAAAAAAAUAPv/AAAJAAAAAAAUAPz/AAAJAAEAAAAUAP3/AAAJAAIAAAASAPv/AAAGAAIAAAAoAAsAAQAAACQAAAAAAAAAAQABABUAAAAHAAAAAQAJABUAAAAMAAAAAQAAAD8AAAA=")
 tile_set = SubResource("TileSet_7jgn8")
 
-[node name="EnterTop" parent="." unique_id=1130782072 instance=ExtResource("20_op6xp")]
-position = Vector2(288, -77)
+[node name="TownEnter" parent="." unique_id=1130782072 instance=ExtResource("20_op6xp")]
+position = Vector2(288, -80)
 level = "uid://k3si0mtpyif8"
-target_transition_area = "ExitBottom"
+target_transition_area = "TownExit"
 size = 6
 side = 2

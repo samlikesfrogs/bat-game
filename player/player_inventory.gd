@@ -31,7 +31,7 @@ func on_room_load_end():
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton:
 		if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
-			_on_inventory_pressed()
+			_on_inventory_pressed() #connect signals to re-add focus or smth
 		elif event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
 			_on_settings_pressed()
 

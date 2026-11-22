@@ -33,18 +33,7 @@ func on_player_entered(_player:Node2D):
 		self.is_return_door = true
 		if RoomManager.current_id != -1:
 			RoomManager.queued_trans_room = get_tree().current_scene.scene_file_path
-		
-		var opp_side: SIDE
-		match side:
-			SIDE.LEFT:
-				opp_side = SIDE.RIGHT
-			SIDE.RIGHT:
-				opp_side = SIDE.LEFT
-			SIDE.TOP:
-				opp_side = SIDE.BOTTOM
-			SIDE.BOTTOM:
-				opp_side = SIDE.TOP
-		RoomManager.load_level(level, target_transition_area, get_offset(), false, -1, opp_side)
+		RoomManager.load_level(level, target_transition_area, get_offset(), false, -1)
 
 func player_pos():
 	if self.name != RoomManager.target_transition_area:
@@ -67,7 +56,7 @@ func get_offset()->Vector2:
 			offset.x = 8
 		SIDE.TOP:
 			offset.x = _player_pos.x - global_position.x
-			offset.y = -8
+			offset.y = -48
 		SIDE.BOTTOM:
 			offset.x = _player_pos.x - global_position.x
 			offset.y = 8

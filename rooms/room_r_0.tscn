@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://0d7fchf2prrl" path="res://aart/tiles/tileset_Pit to dirt.png" id="6_f0gl2"]
 [ext_resource type="Script" uid="uid://boj4xjemfd6c4" path="res://rooms/base.gd" id="7_8d0cy"]
 [ext_resource type="PackedScene" uid="uid://c3hxsrvwjy7wi" path="res://enemy/enemy.tscn" id="8_lq5sm"]
-[ext_resource type="PackedScene" uid="uid://csmi717a3mp8p" path="res://rooms/player_spawner.tscn" id="9_m8iyb"]
 [ext_resource type="Texture2D" uid="uid://obyba16p18ol" path="res://aart/tiles/tileset_Grass cliff to grass.png" id="10_6ubcc"]
 [ext_resource type="Texture2D" uid="uid://d1ttvx0ibe1s5" path="res://aart/tiles/tileset_Dirt cliff to dirt.png" id="11_1ukgi"]
 [ext_resource type="Texture2D" uid="uid://wx4yol2f6een" path="res://aart/tiles/tileset_Dirt cliff to grass.png" id="12_muiid"]
@@ -1251,10 +1250,6 @@ position = Vector2(-34, -393)
 [node name="Enemy4" parent="." unique_id=2097557634 instance=ExtResource("8_lq5sm")]
 y_sort_enabled = true
 position = Vector2(103, -256)
-
-[node name="PlayerSpawner" parent="." unique_id=955133905 instance=ExtResource("9_m8iyb")]
-z_index = 4
-position = Vector2(282, -325)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1236602183]
 visible = false

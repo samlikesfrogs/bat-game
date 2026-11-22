@@ -1,6 +1,8 @@
 extends Node2D
 @onready var new_game_button: Button = $CanvasLayer/Control/new_game
 @onready var continue_button: Button = $CanvasLayer/Control/continue
+@onready var options_button: Button = $CanvasLayer/Control/options
+@onready var quit_button: Button = $CanvasLayer/Control/quit
 const START_LEVEL:String = "res://rooms/room_town.tscn"
 
 # Called when the node enters the scene tree for the first time.
@@ -24,9 +26,13 @@ func setup_load_screen():
 	PlayerManager.set_as_parent(self)
 	new_game_button.mouse_entered.connect(button_mouse_enter.bind(new_game_button))
 	continue_button.mouse_entered.connect(button_mouse_enter.bind(continue_button))
+	options_button.mouse_entered.connect(button_mouse_enter.bind(options_button))
+	quit_button.mouse_entered.connect(button_mouse_enter.bind(quit_button))
 	MusicManager.play_music(MusicManager.menu)
 	new_game_button.pressed.connect(new_game)
 	continue_button.pressed.connect(continue_game)
+	options_button.pressed.connect(show_options)
+	quit_button.pressed.connect(quit_game)
 	if PlayerManager.using_controller:
 		new_game_button.grab_focus()
 	else:
@@ -52,6 +58,13 @@ func continue_game():
 	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	DifferentName.visible = true
 	pass
+
+func show_options():
+	print("options pressed")
+	$sfx_click.play()
+
+func quit_game():
+	get_tree().quit()
 	
 func button_mouse_enter(_b:Button):
 	$sfx_hover.play()

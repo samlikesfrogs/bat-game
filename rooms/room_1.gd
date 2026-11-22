@@ -1,4 +1,6 @@
 class_name Room extends Node2D
+@export var enemy:PackedScene
+@export var enemy_count:int = randi_range(2, 6)
 
 func _ready() -> void:
 	PlayerManager.set_as_parent(self)

@@ -60,6 +60,7 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 	await get_tree().process_frame
 	room_load_end.emit()
 	await SceneTransUi.fade_out()
+	print(rooms)
 	
 
 func go_back(_target_transition_area:String, _position_offset:Vector2):
