@@ -2,10 +2,10 @@
 class_name LvlTrans extends Area2D
 enum SIDE{LEFT, RIGHT, TOP, BOTTOM}
 
-var possible_rooms_right:Array=["res://rooms/room_ld_0.tscn", "res://rooms/room_lr_0.tscn", "res://rooms/room_lu_0.tscn"]
+var possible_rooms_right:Array=["res://rooms/room_ld_0.tscn", "res://rooms/room_lr_0.tscn", "res://rooms/room_lu_0.tscn","res://rooms/room_ldu_0.tscn"]
 var possible_rooms_left:Array=["res://rooms/room_lr_0.tscn", "res://rooms/room_rd_0.tscn", "res://rooms/room_ru_0.tscn"]
-var possible_rooms_bottom:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_ru_0.tscn", "res://rooms/room_lu_0.tscn"]
-var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn","res://rooms/room_ld_0.tscn", "res://rooms/room_rd_0.tscn"]
+var possible_rooms_bottom:Array=["res://rooms/room_ud_0.tscn", "res://rooms/room_ru_0.tscn", "res://rooms/room_lu_0.tscn","res://rooms/room_ldu_0.tscn"]
+var possible_rooms_top:Array=["res://rooms/room_ud_0.tscn","res://rooms/room_ld_0.tscn", "res://rooms/room_rd_0.tscn","res://rooms/room_ldu_0.tscn"]
 @export var is_return_door:bool = false
 @export_file("*.tscn") var level
 @export var target_transition_area :String
@@ -40,51 +40,56 @@ func _ready() -> void:
 			target_transition_area = "EnterTop"
 		_:
 			print("shit fuck what the hell")
-	if self.level == null and not is_return_door:
-		print("rooms:", RoomManager.rooms)
-		match side:
-			SIDE.LEFT:
-				for i in RoomManager.rooms.size():
-					if RoomManager.rooms[i] in possible_rooms_left:
-						leftcount +=1
-				if leftcount >= 3:
-					self.level = "res://rooms/room_r_0.tscn"
-				else:
-					self.level = possible_rooms_left.pick_random()
-			SIDE.RIGHT:
-				for i in RoomManager.rooms.size():
-					if RoomManager.rooms[i] in possible_rooms_right:
-						rightcount +=1
-				if leftcount >= 3:
-					self.level = "res://rooms/room_l_0.tscn"
-				else:
-					self.level = possible_rooms_right.pick_random()
-			SIDE.TOP:
-				for i in RoomManager.rooms.size():
-					if RoomManager.rooms[i] in possible_rooms_top:
-						upcount +=1
-				if upcount >= 3:
-					self.level = "res://rooms/room_d_0.tscn"
-				else:
-					self.level = possible_rooms_top.pick_random()
-			SIDE.BOTTOM:
-				for i in RoomManager.rooms.size():
-					if RoomManager.rooms[i] in possible_rooms_bottom:
-						downcount +=1
-				if downcount >= 3:
-					self.level = "res://rooms/room_u_0.tscn"
-				else:
-					self.level = possible_rooms_bottom.pick_random()
-	if RoomManager.current_id != -1:
-		# init dict if not present
-		if RoomManager.current_id not in RoomManager.room_transitions.keys():
-			RoomManager.room_transitions[RoomManager.current_id] = {}
-		if side not in RoomManager.room_transitions[RoomManager.current_id].keys():
-			RoomManager.room_transitions[RoomManager.current_id][side] = {}
-
+			
 	if Engine.is_editor_hint():
 		return
 		
+	if RoomManager.current_id == -1:
+		await get_tree().process_frame
+	if RoomManager.current_id != -1:
+		if not RoomManager.room_transitions.has(RoomManager.current_id):
+			RoomManager.room_transitions[RoomManager.current_id] = {}
+		if not RoomManager.room_transitions[RoomManager.current_id].has(side):
+			RoomManager.room_transitions[RoomManager.current_id][side] =  {}
+		if RoomManager.room_transitions[RoomManager.current_id][side].has("level"):
+			self.level = RoomManager.room_transitions[RoomManager.current_id][side]["level"]
+			self.is_return_door = true
+			
+		elif (self.level == null or self.level == "") and not is_return_door:
+			match side:
+				SIDE.LEFT:
+					for i in RoomManager.rooms.size():
+						if RoomManager.rooms[i] in possible_rooms_left:
+							leftcount +=1
+					if leftcount >= 3:
+						self.level = "res://rooms/room_r_0.tscn"
+					else:
+						self.level = possible_rooms_left.pick_random()
+				SIDE.RIGHT:
+					for i in RoomManager.rooms.size():
+						if RoomManager.rooms[i] in possible_rooms_right:
+							rightcount +=1
+					if leftcount >= 3:
+						self.level = "res://rooms/room_l_0.tscn"
+					else:
+						self.level = possible_rooms_right.pick_random()
+				SIDE.TOP:
+					for i in RoomManager.rooms.size():
+						if RoomManager.rooms[i] in possible_rooms_top:
+							upcount +=1
+					if upcount >= 3:
+						self.level = "res://rooms/room_d_0.tscn"
+					else:
+						self.level = possible_rooms_top.pick_random()
+				SIDE.BOTTOM:
+					for i in RoomManager.rooms.size():
+						if RoomManager.rooms[i] in possible_rooms_bottom:
+							downcount +=1
+					if downcount >= 3:
+						self.level = "res://rooms/room_u_0.tscn"
+					else:
+						self.level = possible_rooms_bottom.pick_random()
+
 	monitoring = false
 	player_pos()
 	await RoomManager.room_load_end
@@ -100,22 +105,22 @@ func on_player_entered(_player:Node2D):
 			var id = RoomManager.room_transitions[RoomManager.current_id][side]["id"]
 			RoomManager.load_level(RoomManager.rooms[id], target_transition_area, get_offset(), false, id)
 			return
-		else:
-			self.is_return_door = true
-			if RoomManager.current_id != -1:
-				RoomManager.queued_trans_room = get_tree().current_scene.scene_file_path
-			
-			var opp_side: SIDE
-			match side:
-				SIDE.LEFT:
-					opp_side = SIDE.RIGHT
-				SIDE.RIGHT:
-					opp_side = SIDE.LEFT
-				SIDE.TOP:
-					opp_side = SIDE.BOTTOM
-				SIDE.BOTTOM:
-					opp_side = SIDE.TOP
-			RoomManager.load_level(level, target_transition_area, get_offset(), false, -1, opp_side)
+	
+	if self.is_return_door:
+		RoomManager.go_back(target_transition_area, get_offset())
+	else:
+		self.is_return_door = true
+		var opp_side: SIDE
+		match side:
+			SIDE.LEFT:
+				opp_side = SIDE.RIGHT
+			SIDE.RIGHT:
+				opp_side = SIDE.LEFT
+			SIDE.TOP:
+				opp_side = SIDE.BOTTOM
+			SIDE.BOTTOM:
+				opp_side = SIDE.TOP
+		RoomManager.load_level(level, target_transition_area, get_offset(), false, -1, opp_side, side)
 
 func player_pos():
 	if self.name != RoomManager.target_transition_area:
