@@ -28,6 +28,12 @@ func on_room_load_end():
 	if self.visible == true:
 		self.visible=false
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton:
+		if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			_on_inventory_pressed()
+		elif event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+			_on_settings_pressed()
 
 func _on_inventory_pressed() -> void:
 	inventory_button.modulate.a = 0.4

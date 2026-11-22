@@ -33,7 +33,7 @@ func _on_inventory_updated():
 		else:
 			slot.set_empty()
 	if grid_container.get_child_count()>0:
-		grid_container.get_child(previous_focus_index).grab_focus()
+		grid_container.get_child(0).grab_focus()
 
 func clear_grid():
 		while grid_container.get_child_count()>0:
