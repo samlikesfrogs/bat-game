@@ -47,51 +47,54 @@ func _ready() -> void:
 	if RoomManager.current_id == -1:
 		await get_tree().process_frame
 	if RoomManager.current_id != -1:
-		print("happening")
 		if not RoomManager.room_transitions.has(RoomManager.current_id):
 			RoomManager.room_transitions[RoomManager.current_id] = {}
 		if not RoomManager.room_transitions[RoomManager.current_id].has(side):
 			RoomManager.room_transitions[RoomManager.current_id][side] =  {}
 		if RoomManager.room_transitions[RoomManager.current_id][side].has("level"):
 			self.level = RoomManager.room_transitions[RoomManager.current_id][side]["level"]
-			self.is_return_door = true
-			print("I am a return door", self.name)
+			#self.is_return_door = true
 			
 		elif (self.level == null) and not self.is_return_door:
+			var possible_rooms:Array = []
+			var boss_room:String = ""
+			var dead_end:String = ""
+			var count:int = 0
+			
 			match side:
 				SIDE.LEFT:
-					for i in RoomManager.rooms.size():
-						if RoomManager.rooms[i] in possible_rooms_left:
-							leftcount +=1
-					if leftcount >= 2:
-						self.level = "res://rooms/room_r_end.tscn"
-					else:
-						self.level = possible_rooms_left.pick_random()
+					possible_rooms = possible_rooms_left
+					boss_room = "res://rooms/room_r_end.tscn"
+					dead_end = "res://rooms/room_r_0.tscn"
 				SIDE.RIGHT:
-					for i in RoomManager.rooms.size():
-						if RoomManager.rooms[i] in possible_rooms_right:
-							rightcount +=1
-					if rightcount >= 2:
-						self.level = "res://rooms/room_l_end.tscn"
-					else:
-						self.level = possible_rooms_right.pick_random()
+					possible_rooms = possible_rooms_right
+					boss_room = "res://rooms/room_l_end.tscn"
+					dead_end = "res://rooms/room_l_0.tscn"
 				SIDE.TOP:
-					for i in RoomManager.rooms.size():
-						if RoomManager.rooms[i] in possible_rooms_top:
-							upcount +=1
-					if upcount >= 2:
-						self.level = "res://rooms/room_d_end.tscn"
-					else:
-						self.level = possible_rooms_top.pick_random()
+					possible_rooms = possible_rooms_top
+					boss_room = "res://rooms/room_d_end.tscn"
+					dead_end = "res://rooms/room_d_0.tscn"
 				SIDE.BOTTOM:
-					for i in RoomManager.rooms.size():
-						if RoomManager.rooms[i] in possible_rooms_bottom:
-							downcount +=1
-					if downcount >= 2:
-						self.level = "res://rooms/room_u_end.tscn"
-					else:
-						self.level = possible_rooms_bottom.pick_random()
-			print("boss", RoomManager.boss_room_exists)
+					possible_rooms = possible_rooms_bottom
+					boss_room = "res://rooms/room_u_end.tscn"
+					dead_end = "res://rooms/room_u_0.tscn"
+			print("possible rooms" , possible_rooms)
+			for i in RoomManager.rooms.size():
+				print("i", RoomManager.rooms[i])
+				print("true? ", RoomManager.rooms[i] in possible_rooms)
+				if RoomManager.rooms[i] in possible_rooms:
+					print("goes here")
+					count += 1
+					print("count", count)
+			if count >= 2:
+				if not RoomManager.boss_room_exists:
+					self.level = boss_room
+					RoomManager.boss_room_exists = true
+				else:
+					self.level = dead_end
+			else:
+				self.level = possible_rooms.pick_random()
+			RoomManager.room_transitions[RoomManager.current_id][side]["level"] = self.level	
 
 	monitoring = false
 	player_pos()
