@@ -6,6 +6,7 @@ class_name State_Walk extends State
 @onready var sfx_walk: AudioStreamPlayer2D = $sfx_walk
 var anim_name = "walk"
 var i:int=0
+@onready var dash: StateDash = $"../dash"
 
 func Enter() -> void:
 	player.updateAnim("walk")
@@ -30,6 +31,8 @@ func Process(_delta:float)  -> State:
 func HandleInput(_event:InputEvent)  -> State:
 	if _event.is_action_pressed("attack"):
 		return attack
+	elif _event.is_action_pressed("dash"):
+		return dash
 	return null
 
 #this right here is absolute bullshit

@@ -7,9 +7,9 @@ const START_LEVEL:String = "res://rooms/room_town.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PlayerManager.set_as_parent(self)
 	get_tree().paused = true
 	DifferentName.visible = false
-	PlayerManager.set_as_parent(self)
 	if SaveManager.get_save_file() == null:
 		continue_button.disabled = true
 		continue_button.visible = false
@@ -23,6 +23,9 @@ func _free_load_screen():
 	queue_free()
 
 func setup_load_screen():
+	if get_tree().current_scene.scene_file_path != "res://load_screen.tscn":
+		get_tree().change_scene_to_file("res://load_screen.tscn")
+	DifferentName.visible = false
 	PlayerManager.set_as_parent(self)
 	new_game_button.mouse_entered.connect(button_mouse_enter.bind(new_game_button))
 	continue_button.mouse_entered.connect(button_mouse_enter.bind(continue_button))
@@ -43,6 +46,8 @@ func setup_load_screen():
 
 func new_game():
 	$sfx_click.play()
+	RoomManager.rooms.clear()
+	RoomManager.room_transitions.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	RoomManager.load_level(START_LEVEL, "", Vector2.ZERO, false)
 	await RoomManager.room_load_start

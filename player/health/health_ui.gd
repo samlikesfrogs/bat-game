@@ -69,8 +69,7 @@ func on_load_pressed():
 func title_screen():
 	$gameover/sfx_click.play()
 	gameover.fade_out()
-	PlayerManager.player.revive_player()
-	RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false)
+	RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false, -2)
 	pass
 	
 func button_mouse_enter(_b):

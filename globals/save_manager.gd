@@ -104,10 +104,9 @@ func die_to_town():
 	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
 	current_save = save_dict
 	RoomManager.current_id = -1
-	RoomManager.load_level("res://rooms/room_town.tscn", "", Vector2.ZERO, false) 
+	RoomManager.load_level("res://rooms/room_town.tscn", "", Vector2.ZERO, false, 0) 
 	await RoomManager.room_load_start
 	PlayerManager.player_spawn_point(Vector2(283.0, -25.0))
-	PlayerManager.set_health(current_save.player.max_hp, current_save.player.max_hp)
 	PlayerManager.player.revive_player()
 	await RoomManager.room_load_end
 	for i in range(current_save.items.size()):

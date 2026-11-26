@@ -16,6 +16,7 @@ var invulnerable:bool=false
 var can_shoot:bool
 @export var shoot_cooldown:float 
 var _timer:float
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
@@ -32,7 +33,7 @@ func _ready():
 	hit_box.Damaged.connect(_take_damage)
 	PlayerManager.player = self
 	state_machine.Initialize(self)
-	$PlayerSprite.flip_h = false
+	player_sprite.flip_h = false
 	can_shoot = true
 	
 func _process(_delta):
@@ -72,8 +73,8 @@ func setDirection() -> bool:
 		
 	cardinal_dir = new_dir
 	last_angle = current_angle
-	$PlayerSprite.flip_h = true if cardinal_dir == Vector2.RIGHT else false
-	$PlayerSprite.offset.x = 3 if cardinal_dir == Vector2.RIGHT else 0
+	player_sprite.flip_h = true if cardinal_dir == Vector2.RIGHT else false
+	player_sprite.offset.x = 3 if cardinal_dir == Vector2.RIGHT else 0
 	return true
 
 func AnimDirection() -> String:
@@ -85,7 +86,7 @@ func AnimDirection() -> String:
 		return "side"
 		
 func updateAnim(state:String):
-	$PlayerSprite.play (state + "_" + AnimDirection())
+	player_sprite.play (state + "_" + AnimDirection())
 	
 func _on_player_sprite_animation_finished() -> void:
 	can_shoot = true

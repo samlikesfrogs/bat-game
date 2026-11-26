@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://qju7jxxbdgkf" path="res://player/player_inventory.gd" id="26_uw77l"]
 [ext_resource type="Script" uid="uid://bcmf6p0wmgtug" path="res://player/death.gd" id="27_2uvqg"]
 [ext_resource type="Texture2D" uid="uid://bhs2bffoomyul" path="res://aart/Theme/Theme Wood/nine_path_panel.png" id="27_rptt4"]
+[ext_resource type="Script" uid="uid://b0g1fdifmfgxp" path="res://player/dash.gd" id="29_5ejfk"]
 [ext_resource type="PackedScene" uid="uid://dcfq6rdhx3frq" path="res://inventory/inventory_ui.tscn" id="29_r7pn3"]
 [ext_resource type="PackedScene" uid="uid://ne23y3xlqy3a" path="res://save_load.tscn" id="30_b8hi5"]
 
@@ -56,6 +57,18 @@ region = Rect2(69, 0, 22, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mmwog"]
 atlas = ExtResource("7_tqiix")
 region = Rect2(69, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnw6m"]
+atlas = ExtResource("4_boad6")
+region = Rect2(23, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1so5t"]
+atlas = ExtResource("6_8t03j")
+region = Rect2(23, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55jnj"]
+atlas = ExtResource("7_2ieo8")
+region = Rect2(23, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ejfk"]
 atlas = ExtResource("9_1s1yo")
@@ -198,6 +211,30 @@ animations = [{
 "loop": 0,
 "name": &"attackwalk_up",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnw6m")
+}],
+"loop": 0,
+"name": &"dash_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1so5t")
+}],
+"loop": 0,
+"name": &"dash_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55jnj")
+}],
+"loop": 0,
+"name": &"dash_up",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -365,7 +402,7 @@ script = ExtResource("2_r7pn3")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1379615556]
 sprite_frames = SubResource("SpriteFrames_7jgn8")
-animation = &"death_side"
+animation = &"dash_down"
 autoplay = "idle_down"
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
@@ -422,6 +459,9 @@ script = ExtResource("27_2uvqg")
 
 [node name="sfx_ouch" type="AudioStreamPlayer2D" parent="PlayerStateMachine/death" unique_id=1376003999]
 stream = ExtResource("25_knn7v")
+
+[node name="dash" type="Node" parent="PlayerStateMachine" unique_id=642173537]
+script = ExtResource("29_5ejfk")
 
 [node name="inventory_ui" type="CanvasLayer" parent="." unique_id=2009687029]
 process_mode = 3
@@ -511,6 +551,7 @@ offset_left = -47.0
 offset_top = 5.0
 offset_right = -47.0
 offset_bottom = 5.0
+focus_mode = 2
 
 [connection signal="player_damaged" from="." to="PlayerStateMachine/idle" method="_on_player_player_damaged"]
 [connection signal="player_damaged" from="." to="PlayerStateMachine/stun" method="_on_player_player_damaged"]
@@ -519,6 +560,7 @@ offset_bottom = 5.0
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_animation_finished"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/attack" method="EndAttack"]
 [connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/stun" method="_on_player_sprite_animation_finished"]
+[connection signal="animation_finished" from="PlayerSprite" to="PlayerStateMachine/dash" method="_on_player_sprite_animation_finished"]
 [connection signal="frame_changed" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_frame_changed"]
 [connection signal="sprite_frames_changed" from="PlayerSprite" to="PlayerStateMachine/walk" method="_on_player_sprite_sprite_frames_changed"]
 [connection signal="pressed" from="inventory_ui/inv_button/inventory" to="inventory_ui" method="_on_inventory_pressed"]
