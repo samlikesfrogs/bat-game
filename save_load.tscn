@@ -3,26 +3,83 @@
 [ext_resource type="Script" uid="uid://dkd3yoopri5qy" path="res://save_load.gd" id="1_6ywai"]
 [ext_resource type="FontFile" uid="uid://c1tpdh11d0q75" path="res://3x5-Microfont.ttf" id="2_dsm26"]
 [ext_resource type="Texture2D" uid="uid://bwglwe4bc5myh" path="res://aart/Theme/Theme Wood/inventory_cell.png" id="3_cerri"]
-[ext_resource type="Texture2D" uid="uid://dm5100cb4nryh" path="res://aart/save_select.png" id="4_cerri"]
-[ext_resource type="Texture2D" uid="uid://qlqgox62kqn4" path="res://aart/save_hover.png" id="5_h7dwu"]
+[ext_resource type="Texture2D" uid="uid://dbuqmp03hxstd" path="res://aart/inventory_select.png" id="4_2rg3e"]
+[ext_resource type="Texture2D" uid="uid://p3orce7xom2b" path="res://aart/inventory_hover.png" id="5_3ghkq"]
 [ext_resource type="AudioStream" uid="uid://dlpp787yhydl1" path="res://sound/Cozy SFX Volume 1/UI/MENU_HOVER_2.wav" id="6_2rg3e"]
 [ext_resource type="AudioStream" uid="uid://db3ow1e3psb8t" path="res://sound/Cozy SFX Volume 1/UI/MENU_CLICK_2.wav" id="7_3ghkq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3blse"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7jgn8"]
+texture = ExtResource("3_cerri")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ywai"]
-texture = ExtResource("4_cerri")
+texture = ExtResource("4_2rg3e")
+texture_margin_left = 3.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cerri"]
-texture = ExtResource("5_h7dwu")
+texture = ExtResource("5_3ghkq")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ywai"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7tn5f"]
+texture = ExtResource("5_3ghkq")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqxq1"]
+texture = ExtResource("3_cerri")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2rg3e"]
-texture = ExtResource("4_cerri")
+texture = ExtResource("4_2rg3e")
+texture_margin_left = 3.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ghkq"]
-texture = ExtResource("5_h7dwu")
+texture = ExtResource("5_3ghkq")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2rg3e"]
+load_path = "res://.godot/imported/inventory_hover.png-ed925e09cc305b36f30664141b078c5c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hht4s"]
+texture = SubResource("CompressedTexture2D_2rg3e")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7niv"]
+texture = ExtResource("3_cerri")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0su3t"]
+texture = ExtResource("5_3ghkq")
+texture_margin_left = 3.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
 [node name="Save_Load" type="Control" unique_id=688554000]
 process_mode = 3
@@ -36,115 +93,74 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6ywai")
 
-[node name="panel" type="ColorRect" parent="." unique_id=1419040271]
-z_index = 2
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1575931242]
+custom_minimum_size = Vector2(106, 16)
+custom_maximum_size = Vector2(500, 500)
 layout_mode = 0
 offset_left = -17.0
-offset_top = -28.0
+offset_top = -27.0
 offset_right = 89.0
-offset_bottom = 2.0
-color = Color(1, 1, 1, 0)
+offset_bottom = 17.0
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
 
-[node name="InfoPanel2" type="NinePatchRect" parent="panel" unique_id=401204150]
-layout_mode = 0
-offset_right = 34.0
-offset_bottom = 14.0
-texture = ExtResource("3_cerri")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="Save" type="Button" parent="panel/InfoPanel2" unique_id=383997379]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -17.0
-offset_right = 17.0
-offset_bottom = 14.0
-grow_horizontal = 2
+[node name="Save" type="Button" parent="GridContainer" unique_id=383997379]
+custom_minimum_size = Vector2(35, 14)
+custom_maximum_size = Vector2(35, 14)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Load")
 theme_override_fonts/font = ExtResource("2_dsm26")
 theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_3blse")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7jgn8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6ywai")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cerri")
+theme_override_styles/focus = SubResource("StyleBoxTexture_7tn5f")
 text = "save"
 
-[node name="InfoPanel3" type="NinePatchRect" parent="panel" unique_id=279911254]
-layout_mode = 0
-offset_left = 36.0
-offset_right = 70.0
-offset_bottom = 14.0
-texture = ExtResource("3_cerri")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="Load" type="Button" parent="panel/InfoPanel3" unique_id=1880560556]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -17.0
-offset_top = -14.0
-offset_right = 17.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Load" type="Button" parent="GridContainer" unique_id=1880560556]
+custom_minimum_size = Vector2(35, 14)
+custom_maximum_size = Vector2(35, 14)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Save")
+focus_neighbor_bottom = NodePath("../Options")
 theme_override_fonts/font = ExtResource("2_dsm26")
 theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6ywai")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wqxq1")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_2rg3e")
 theme_override_styles/hover = SubResource("StyleBoxTexture_3ghkq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_hht4s")
 action_mode = 0
 text = "title"
 
-[node name="sfx_hover" type="AudioStreamPlayer2D" parent="panel/InfoPanel3" unique_id=961524330]
-process_mode = 3
-stream = ExtResource("6_2rg3e")
-volume_db = -4.0
+[node name="Options" type="Button" parent="GridContainer" unique_id=349610531]
+custom_minimum_size = Vector2(35, 14)
+custom_maximum_size = Vector2(35, 14)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Load")
+focus_neighbor_bottom = NodePath("../Save")
+theme_override_fonts/font = ExtResource("2_dsm26")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_v7niv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6ywai")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cerri")
+theme_override_styles/focus = SubResource("StyleBoxTexture_0su3t")
+text = " options"
 
-[node name="sfx_click" type="AudioStreamPlayer2D" parent="panel/InfoPanel3" unique_id=1390732156]
+[node name="sfx_click" type="AudioStreamPlayer2D" parent="." unique_id=1390732156]
 process_mode = 3
+position = Vector2(19, -28)
 stream = ExtResource("7_3ghkq")
 volume_db = 4.0
 playback_type = 1
 
-[node name="InfoPanel4" type="NinePatchRect" parent="panel" unique_id=1399631709]
-visible = false
-layout_mode = 0
-offset_left = 72.0
-offset_right = 106.0
-offset_bottom = 14.0
-texture = ExtResource("3_cerri")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+[node name="sfx_hover" type="AudioStreamPlayer2D" parent="." unique_id=961524330]
+process_mode = 3
+position = Vector2(19, -28)
+stream = ExtResource("6_2rg3e")
+volume_db = -4.0
 
-[node name="Options" type="Button" parent="panel/InfoPanel4" unique_id=349610531]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -17.0
-offset_right = 17.0
-offset_bottom = 14.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_dsm26")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxEmpty_3blse")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6ywai")
-theme_override_styles/hover = SubResource("StyleBoxTexture_cerri")
-text = " options"
-
-[connection signal="pressed" from="panel/InfoPanel2/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="panel/InfoPanel3/Load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="panel/InfoPanel4/Options" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="panel/InfoPanel4/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="GridContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="GridContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="GridContainer/Options" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="GridContainer/Options" to="." method="_on_options_pressed"]
