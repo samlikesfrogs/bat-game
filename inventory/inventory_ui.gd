@@ -32,8 +32,10 @@ func _on_inventory_updated():
 			slot.set_item(item)
 		else:
 			slot.set_empty()
-	if grid_container.get_child_count()>0:
-		grid_container.get_child(0).grab_focus()
+	var child_count = grid_container.get_child_count()
+	if child_count > 0:
+		var target_index = clampi(previous_focus_index, 0, child_count -1)
+		grid_container.get_child(target_index).grab_focus.call_deferred()
 
 func clear_grid():
 		while grid_container.get_child_count()>0:

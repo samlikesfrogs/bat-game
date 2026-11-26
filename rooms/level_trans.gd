@@ -78,14 +78,9 @@ func _ready() -> void:
 					possible_rooms = possible_rooms_bottom
 					boss_room = "res://rooms/room_u_end.tscn"
 					dead_end = "res://rooms/room_u_0.tscn"
-			print("possible rooms" , possible_rooms)
 			for i in RoomManager.rooms.size():
-				print("i", RoomManager.rooms[i])
-				print("true? ", RoomManager.rooms[i] in possible_rooms)
 				if RoomManager.rooms[i] in possible_rooms:
-					print("goes here")
 					count += 1
-					print("count", count)
 			if count >= 2:
 				if not RoomManager.boss_room_exists:
 					self.level = boss_room

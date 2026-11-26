@@ -36,7 +36,7 @@ func _ready():
 	can_shoot = true
 	
 func _process(_delta):
-	direction = Input.get_vector("left", "right", "up", "down").normalized()
+	direction = Input.get_vector("left", "right", "up", "down")
 	if Input.is_action_just_pressed("attack") and can_shoot:
 		shoot.emit(position, cardinal_dir)
 		can_shoot = false
@@ -50,7 +50,6 @@ func _process(_delta):
 		inventory_opened.emit()
 	
 func _physics_process(_delta):
-	$Camera2D.global_position = PlayerManager.player.global_position.round()
 	move_and_slide()
 	
 func setDirection() -> bool:

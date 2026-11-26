@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_inventory_pressed() -> void:
 	inventory_button.modulate.a = 0.4
 	settings_button.modulate.a = 1.0
+	InventoryManager.inventory_updated.emit()
 	inventory_ui.visible = true
 	inventory_ui.mouse_filter = Control.MOUSE_FILTER_PASS
 	save_load.visible = false
