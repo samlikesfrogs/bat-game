@@ -6,12 +6,14 @@ var direction:Vector2 = Vector2.ZERO
 var next_state:State = null
 
 func Enter() -> void:
+	player.invulnerable = true
 	player.updateAnim("dash")
 	direction = player.direction
 	if direction == Vector2.ZERO:
 		direction = player.cardinal_dir
 	
 func Exit() -> void:
+	player.invulnerable = false
 	next_state = null
 	pass
 	
