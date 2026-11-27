@@ -9,8 +9,8 @@ var current_limits:Array[Vector2]
 var target_transition_area:String
 var position_offset: Vector2
 var prev_id: int = -1
-var current_id: int = -1
 var queued_trans_room := ""
+var current_id: int = -1
 var id: int = 0
 var boss_room_exists:bool = false
 
@@ -58,6 +58,7 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 		id += 1
 	await get_tree().process_frame
 	room_load_end.emit()
+	print(RoomManager.rooms)
 	await SceneTransUi.fade_out()
 	
 

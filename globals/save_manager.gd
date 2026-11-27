@@ -21,23 +21,6 @@ var current_save: Dictionary = {
 	id = 0,
 }
 
-var DEFAULT_DATA: Dictionary = {
-	scene_path = "res://rooms/room_town.tscn",
-	player = {
-		hp = 12,
-		max_hp = 12,
-		pos_x = 0,
-		pos_y = 0
-	},
-	items = [],
-	enemies_defeated = {},
-	rooms = {},
-	room_transitions = {},
-	prev_id = -1,
-	current_id = -1,
-	id = 0,
-}
-
 func save_game():
 	update_player_data()
 	update_scene()

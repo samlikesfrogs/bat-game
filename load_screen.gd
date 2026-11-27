@@ -46,10 +46,19 @@ func setup_load_screen():
 
 func new_game():
 	$sfx_click.play()
-	RoomManager.rooms.clear()
-	RoomManager.room_transitions.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	RoomManager.prev_id = -1
+	RoomManager.current_id = -1
+	RoomManager.id = 0
+	RoomManager.rooms = {}
+	RoomManager.room_transitions = {}
+	PlayerManager.player_spawn_point(Vector2(283.0, -25.0))
+	SaveManager.current_save["enemies_defeated"] = {}
+	for i in InventoryManager.inventory.size():
+		InventoryManager.inventory[i] = null
+	print("before save", InventoryManager.inventory)
 	SaveManager.save_game()
+	print("after save", InventoryManager.inventory)
 	RoomManager.load_level(START_LEVEL, "", Vector2.ZERO, false)
 	await RoomManager.room_load_start
 	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_ALWAYS
