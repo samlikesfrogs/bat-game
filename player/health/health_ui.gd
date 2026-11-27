@@ -17,7 +17,6 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 func update_hp(_hp: int, _max_hp: int):
-	print("updating hp in health ui")
 	for i in _max_hp:
 		update_heart(i, _hp)
 	update_max(_max_hp)

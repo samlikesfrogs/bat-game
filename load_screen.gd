@@ -49,6 +49,7 @@ func new_game():
 	RoomManager.rooms.clear()
 	RoomManager.room_transitions.clear()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	SaveManager.save_game()
 	RoomManager.load_level(START_LEVEL, "", Vector2.ZERO, false)
 	await RoomManager.room_load_start
 	PlayerManager.player.inventory_ui.process_mode = Node.PROCESS_MODE_ALWAYS

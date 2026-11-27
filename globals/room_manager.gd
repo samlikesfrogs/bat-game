@@ -56,11 +56,9 @@ func load_level(level_path, _target_transition_area:String, _position_offset:Vec
 			room_transitions[prev_id][from_dir]["level"] = scene_path
 			room_transitions[prev_id][from_dir]["id"] = id
 		id += 1
-	print(current_id)
 	await get_tree().process_frame
 	room_load_end.emit()
 	await SceneTransUi.fade_out()
-	print(rooms)
 	
 
 func go_back(_target_transition_area:String, _position_offset:Vector2):

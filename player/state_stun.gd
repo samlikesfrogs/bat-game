@@ -17,7 +17,6 @@ func init():
 	pass
 
 func Enter() -> void:
-	print("taking damage", player.hp, "state", state_machine.current_state)
 	sfx_hurt.play()
 	_animation_finished = false
 	direction = player.global_position.direction_to(_damage_position)
@@ -52,7 +51,6 @@ func _on_player_player_damaged(_hurt_box:HurtBox) -> void:
 	hurt_box = _hurt_box
 	_damage_position = hurt_box.global_position
 	if state_machine.current_state != death:
-		print("I think death is happenign rn", player.hp, "state", state_machine.current_state)
 		state_machine.ChangeState(self)
 
 func _on_player_sprite_animation_finished() -> void:

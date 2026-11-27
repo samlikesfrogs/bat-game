@@ -100,7 +100,6 @@ func _ready() -> void:
 	update_area()
 	
 func on_player_entered(_player:Node2D):
-	print("entered, level: ", self.level)
 	if RoomManager.current_id != -1:
 		if "id" in RoomManager.room_transitions[RoomManager.current_id][side]:
 			var id = RoomManager.room_transitions[RoomManager.current_id][side]["id"]

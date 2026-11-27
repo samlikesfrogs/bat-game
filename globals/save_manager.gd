@@ -7,8 +7,8 @@ signal game_saved
 var current_save: Dictionary = {
 	scene_path = "",
 	player = {
-		hp = 1,
-		max_hp = 1,
+		hp = 12,
+		max_hp = 12,
 		pos_x = 0,
 		pos_y = 0
 	},
@@ -18,7 +18,23 @@ var current_save: Dictionary = {
 	room_transitions = {},
 	prev_id = -1,
 	current_id = -1,
-	queued_trans_room = "",
+	id = 0,
+}
+
+var DEFAULT_DATA: Dictionary = {
+	scene_path = "res://rooms/room_town.tscn",
+	player = {
+		hp = 12,
+		max_hp = 12,
+		pos_x = 0,
+		pos_y = 0
+	},
+	items = [],
+	enemies_defeated = {},
+	rooms = {},
+	room_transitions = {},
+	prev_id = -1,
+	current_id = -1,
 	id = 0,
 }
 
@@ -36,7 +52,6 @@ func get_save_file()->FileAccess:
 	return FileAccess.open(SAVE_PATH+"save.sav", FileAccess.READ)
 	
 func load_game():
-	#print("load happened")
 	var file := get_save_file()
 	if not file:
 		return
@@ -49,9 +64,7 @@ func load_game():
 	RoomManager.queued_trans_room = current_save.queued_trans_room
 	RoomManager.id = current_save.id 
 	RoomManager.rooms = current_save.rooms
-	#print("rooms", RoomManager.rooms)
 	RoomManager.room_transitions = current_save.room_transitions
-	#print("transitions", RoomManager.room_transitions)
 	RoomManager.load_level(current_save.scene_path, "", Vector2.ZERO, false, RoomManager.current_id)
 	await RoomManager.room_load_start
 	PlayerManager.player_spawn_point(Vector2(current_save.player.pos_x, current_save.player.pos_y))
@@ -114,5 +127,4 @@ func die_to_town():
 		else:
 			InventoryManager.inventory[i] = null
 	InventoryManager.inventory_updated.emit()
-	print("player health on die to town", PlayerManager.player.hp)
 	game_loaded.emit()
