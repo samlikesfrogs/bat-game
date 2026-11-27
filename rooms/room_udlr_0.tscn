@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://0l8ixxfrf27j" path="res://aart/tiles/shadowtile.png" id="17_5cdnq"]
 [ext_resource type="Texture2D" uid="uid://c24e4s7wwdth1" path="res://aart/decorations/minecarts.png" id="18_67mwa"]
 [ext_resource type="PackedScene" uid="uid://b7qhtqla3hxv8" path="res://rooms/level_trans.tscn" id="19_u4kf5"]
+[ext_resource type="PackedScene" uid="uid://bi3m5e41vfkwp" path="res://tree.tscn" id="20_jv7te"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a6rn7"]
 
@@ -1739,3 +1740,6 @@ position = Vector2(16, 286)
 target_transition_area = "TownEnter"
 size = 6
 side = 3
+
+[node name="Sprite2D" parent="TownExit" unique_id=1018156118 instance=ExtResource("20_jv7te")]
+position = Vector2(-92, -410)

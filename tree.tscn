@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bi3m5e41vfkwp"]
+
+[ext_resource type="Texture2D" uid="uid://b7duvpyxig3uo" path="res://aart/decorations/tree.png" id="1_brfkd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jgn8"]
+radius = 5.0
+height = 14.0
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1018156118]
+texture = ExtResource("1_brfkd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1243323087]
+collision_layer = 16
+collision_mask = 258
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1051459328]
+position = Vector2(-3.5, 16)
+shape = SubResource("CapsuleShape2D_7jgn8")
