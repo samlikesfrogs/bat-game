@@ -4,7 +4,7 @@ class_name StateStun extends State
 @export var decelerate_speed:float=10.0
 @export var move_speed : float = 250.0
 @export var invulnerable_duration:float=1.0
-
+@onready var idle: State_Idle = $"../idle"
 var _animation_finished:bool=false
 var hurt_box:HurtBox
 var direction: Vector2
@@ -17,6 +17,7 @@ func init():
 	pass
 
 func Enter() -> void:
+	print("taking damage", player.hp, "state", state_machine.current_state)
 	sfx_hurt.play()
 	_animation_finished = false
 	direction = player.global_position.direction_to(_damage_position)
@@ -33,8 +34,10 @@ func Exit() -> void:
 	
 func Process(_delta:float)  -> State:
 	if _animation_finished ==true:
-		if player.hp <= 0:
+		if player.hp == 0:
 			next_state=death
+		else:
+			next_state = idle
 		return next_state
 	player.velocity -= player.velocity * decelerate_speed * _delta
 	return null
@@ -49,6 +52,7 @@ func _on_player_player_damaged(_hurt_box:HurtBox) -> void:
 	hurt_box = _hurt_box
 	_damage_position = hurt_box.global_position
 	if state_machine.current_state != death:
+		print("I think death is happenign rn", player.hp, "state", state_machine.current_state)
 		state_machine.ChangeState(self)
 
 func _on_player_sprite_animation_finished() -> void:

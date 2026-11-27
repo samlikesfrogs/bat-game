@@ -117,6 +117,6 @@ func make_invulnerable( _duration) -> void:
 	$HitBox/CollisionShape2D.set_deferred("disabled", false)
 
 func revive_player():
-	print("doing revive")
 	update_hp(99)
+	print("doing revive", self.hp)
 	state_machine.ChangeState($PlayerStateMachine/idle)	

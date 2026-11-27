@@ -101,7 +101,11 @@ func drop_outside(slot_to_drop:Control):
 		return
 	var drop_position = PlayerManager.player.global_position
 	var drop_offset = Vector2(25, 0).rotated(PlayerManager.player.cardinal_dir.angle())
-	InventoryManager.drop_to_world(slot_to_drop.get_index(), drop_position+drop_offset)
+	var target_position = drop_position+drop_offset
+	if not InventoryManager.is_position_accessible(drop_position, target_position):
+		target_position = drop_position
+		return
+	InventoryManager.drop_to_world(slot_to_drop.get_index(), target_position)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or not get_tree().paused:

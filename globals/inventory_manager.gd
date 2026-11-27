@@ -103,3 +103,11 @@ func cancel_drag():
 		dragged_index = -1
 		held_item_changed.emit(null)
 		inventory_updated.emit()
+		
+func is_position_accessible(player_pos:Vector2, target_pos:Vector2):
+	var space_state = PlayerManager.player.get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(player_pos, target_pos)
+	query.collision_mask = 5
+	query.exclude=[PlayerManager.player.get_rid()]
+	var result = space_state.intersect_ray(query)
+	return result.is_empty()

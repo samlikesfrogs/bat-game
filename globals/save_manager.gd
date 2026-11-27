@@ -98,14 +98,11 @@ func insert_defeated_enemy(room_id: int, id: int) -> void:
 		current_save.enemies_defeated[room_id].append(id)
 		
 func die_to_town():
-	var file := get_save_file()
-	if not file:
-		return
-	var save_dict : Dictionary = str_to_var(file.get_as_text()) as Dictionary
-	current_save = save_dict
 	RoomManager.current_id = -1
 	RoomManager.load_level("res://rooms/room_town.tscn", "", Vector2.ZERO, false, 0) 
 	await RoomManager.room_load_start
+	current_save.player.hp = PlayerManager.player.max_hp
+	current_save.player.max_hp = PlayerManager.player.max_hp
 	PlayerManager.player_spawn_point(Vector2(283.0, -25.0))
 	PlayerManager.player.revive_player()
 	await RoomManager.room_load_end
@@ -117,4 +114,5 @@ func die_to_town():
 		else:
 			InventoryManager.inventory[i] = null
 	InventoryManager.inventory_updated.emit()
+	print("player health on die to town", PlayerManager.player.hp)
 	game_loaded.emit()
