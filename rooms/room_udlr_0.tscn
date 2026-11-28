@@ -1691,6 +1691,10 @@ position = Vector2(-260, -515)
 tile_map_data = PackedByteArray("AAATACAAAAADAAAAAAAOACIAAAACAAIAAAAOAB0AAAAFAAEAAAATACcAAAAEAAEAAAA=")
 tile_set = SubResource("TileSet_e1wd7")
 
+[node name="Sprite2D" parent="." unique_id=1018156118 instance=ExtResource("20_jv7te")]
+z_index = 2
+position = Vector2(-76, -124)
+
 [node name="invis walls" type="StaticBody2D" parent="." unique_id=296719435]
 collision_layer = 16
 collision_mask = 0
@@ -1740,6 +1744,3 @@ position = Vector2(16, 286)
 target_transition_area = "TownEnter"
 size = 6
 side = 3
-
-[node name="Sprite2D" parent="TownExit" unique_id=1018156118 instance=ExtResource("20_jv7te")]
-position = Vector2(-92, -410)
