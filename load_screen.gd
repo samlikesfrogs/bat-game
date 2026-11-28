@@ -23,6 +23,7 @@ func _free_load_screen():
 	queue_free()
 
 func setup_load_screen():
+	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_PASS
 	if get_tree().current_scene.scene_file_path != "res://load_screen.tscn":
 		get_tree().change_scene_to_file("res://load_screen.tscn")
 	DifferentName.visible = false
@@ -46,6 +47,7 @@ func setup_load_screen():
 
 func new_game():
 	$sfx_click.play()
+	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	RoomManager.prev_id = -1
 	RoomManager.current_id = -1
@@ -66,6 +68,7 @@ func new_game():
 
 func continue_game():
 	$sfx_click.play()
+	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	SaveManager.load_game()
 	await RoomManager.room_load_start
@@ -74,10 +77,12 @@ func continue_game():
 	pass
 
 func show_options():
+	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	print("options pressed")
 	$sfx_click.play()
 
 func quit_game():
+	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	get_tree().quit()
 	
 func button_mouse_enter(_b:Button):
