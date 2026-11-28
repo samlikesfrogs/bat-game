@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c24e4s7wwdth1" path="res://aart/decorations/minecarts.png" id="18_67mwa"]
 [ext_resource type="PackedScene" uid="uid://b7qhtqla3hxv8" path="res://rooms/level_trans.tscn" id="19_u4kf5"]
 [ext_resource type="PackedScene" uid="uid://bi3m5e41vfkwp" path="res://tree.tscn" id="20_jv7te"]
+[ext_resource type="PackedScene" uid="uid://kxy4xmjfivi1" path="res://rock.tscn" id="20_lwaw3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a6rn7"]
 
@@ -1694,6 +1695,10 @@ tile_set = SubResource("TileSet_e1wd7")
 [node name="Sprite2D" parent="." unique_id=1018156118 instance=ExtResource("20_jv7te")]
 z_index = 2
 position = Vector2(-76, -124)
+
+[node name="Sprite2D2" parent="." unique_id=1457453278 instance=ExtResource("20_lwaw3")]
+z_index = 2
+position = Vector2(26, -92)
 
 [node name="invis walls" type="StaticBody2D" parent="." unique_id=296719435]
 collision_layer = 16

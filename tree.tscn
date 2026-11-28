@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://dhq0nm3i8lcie" path="res://tree_shake.gdshader" id="1_d2g23"]
 [ext_resource type="Script" uid="uid://7tn7217puji5" path="res://tree.gd" id="2_gvmkm"]
 [ext_resource type="Script" uid="uid://cmxygikxcer18" path="res://tree_hit_box.gd" id="2_nnvrw"]
+[ext_resource type="AudioStream" uid="uid://bt7gffgmvcqmd" path="res://sound/Cozy SFX Volume 1/FOOTSTEPS/WOOD/WOOD_FOOTSTEP_3.wav" id="5_44ud8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gvmkm"]
 shader = ExtResource("1_d2g23")
@@ -19,20 +20,24 @@ radius = 9.0
 height = 20.0
 
 [node name="Sprite2D" type="Sprite2D" unique_id=1018156118]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_gvmkm")
 texture = ExtResource("1_brfkd")
 script = ExtResource("2_gvmkm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1243323087]
+y_sort_enabled = true
 position = Vector2(-3, 18)
 collision_layer = 16
 collision_mask = 258
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1051459328]
+y_sort_enabled = true
 rotation = 0.13962634
 shape = SubResource("CapsuleShape2D_7jgn8")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=229933550]
+y_sort_enabled = true
 position = Vector2(-3, 18)
 collision_layer = 256
 collision_mask = 0
@@ -40,4 +45,10 @@ monitoring = false
 script = ExtResource("2_nnvrw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2062535392]
+y_sort_enabled = true
 shape = SubResource("CapsuleShape2D_gvmkm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=216327249]
+y_sort_enabled = true
+stream = ExtResource("5_44ud8")
+volume_db = 4.0

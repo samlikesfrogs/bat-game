@@ -765,7 +765,7 @@ next_state = NodePath("../chase")
 
 [node name="sfx_enemy_hurt" type="AudioStreamPlayer2D" parent="EnemyStateMachine/stun" unique_id=1769448985]
 stream = ExtResource("14_rovcg")
-volume_db = -20.0
+volume_db = -16.0
 pitch_scale = 2.0
 
 [node name="destroy" type="Node" parent="EnemyStateMachine" unique_id=454031519]

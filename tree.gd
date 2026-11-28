@@ -5,15 +5,17 @@ var hp := 3
 @export var spawnable_items:Array = [{"type":"wood", "name":"small log", "function":"", "texture":preload("res://aart/decorations/log.png")}]
 var dead:bool = false
 var _direction:Vector2
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	_hit_box.Damaged.connect(_take_damage)
 
 func _take_damage(hurt_box:HurtBox):
+	audio_stream_player_2d.play()
 	hp -= hurt_box.damage
 	var _damage_position = hurt_box.global_position
 	_direction = (self.global_position).direction_to(_damage_position)
-	material.set_shader_parameter("shake_intensity", 0.7)
+	material.set_shader_parameter("shake_intensity", 0.3)
 	await get_tree().create_timer(0.5).timeout
 	material.set_shader_parameter("shake_intensity", 0.0)
 	print("tree hp: ", hp)
@@ -29,7 +31,7 @@ func drop_rand_items(count):
 	print("dropping items")
 	var dropped = 0
 	while dropped < count:
-		drop_item(spawnable_items[randi()% spawnable_items.size()], Vector2(self.global_position.x, self.global_position.y + 26))
+		drop_item(spawnable_items[randi()% spawnable_items.size()], Vector2(self.global_position.x, self.global_position.y))
 		print(dropped)
 		dropped += 1
 		
