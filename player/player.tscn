@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dcgvtmaibfn7c" path="res://aart/fox sprites/walk_up.png" id="7_2ieo8"]
 [ext_resource type="Texture2D" uid="uid://0wqqjj6absrt" path="res://aart/fox sprites/shootwalk_up.png" id="7_tqiix"]
 [ext_resource type="Texture2D" uid="uid://6ekn4tg78imm" path="res://aart/fox sprites/death.png" id="9_1s1yo"]
+[ext_resource type="Texture2D" uid="uid://dsq3cpj5ndwan" path="res://aart/fox sprites/dash_down.png" id="9_jd2rm"]
 [ext_resource type="Texture2D" uid="uid://4wy2v8gvxwb5" path="res://aart/fox sprites/hit.png" id="11_x7c3f"]
 [ext_resource type="Texture2D" uid="uid://clbarb8rnxit4" path="res://aart/fox sprites/hit_side.png" id="12_s7qer"]
 [ext_resource type="Texture2D" uid="uid://brcmy5ic6qk5b" path="res://aart/fox sprites/hit_up.png" id="13_g4c7l"]
@@ -59,8 +60,36 @@ atlas = ExtResource("7_tqiix")
 region = Rect2(69, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnw6m"]
-atlas = ExtResource("4_boad6")
-region = Rect2(23, 0, 22, 24)
+atlas = ExtResource("9_jd2rm")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2xo5"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_art4l"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gswnw"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcnuv"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j55il"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjies"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1u5o"]
+atlas = ExtResource("9_jd2rm")
+region = Rect2(112, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1so5t"]
 atlas = ExtResource("6_8t03j")
@@ -215,10 +244,34 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pnw6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2xo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_art4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gswnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcnuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j55il")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjies")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1u5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnw6m")
 }],
 "loop": 0,
 "name": &"dash_down",
-"speed": 5.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -404,6 +457,7 @@ script = ExtResource("2_r7pn3")
 sprite_frames = SubResource("SpriteFrames_7jgn8")
 animation = &"dash_down"
 autoplay = "idle_down"
+frame_progress = 1.0
 
 [node name="shadow" type="Sprite2D" parent="PlayerSprite" unique_id=199682176]
 modulate = Color(0, 0, 0, 1)

@@ -1,5 +1,5 @@
 class_name StateDash extends State
-@export var move_speed:float = 350.0
+@export var move_speed:float = 230.0
 @export var dash_audio:AudioStream
 @onready var idle: State_Idle = $"../idle"
 var direction:Vector2 = Vector2.ZERO
