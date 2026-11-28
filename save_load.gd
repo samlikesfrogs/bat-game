@@ -35,7 +35,7 @@ func _on_load_pressed() -> void:
 		return
 	else:
 		SaveManager.save_game()
-		RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false)
+		RoomManager.load_level("res://load_screen.tscn", "", Vector2.ZERO, false, -2)
 		await RoomManager.room_load_start
 		PlayerManager.player.revive_player()
 		

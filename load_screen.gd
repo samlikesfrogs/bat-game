@@ -46,8 +46,8 @@ func setup_load_screen():
 	
 
 func new_game():
+	new_game_button.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	$sfx_click.play()
-	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	RoomManager.prev_id = -1
 	RoomManager.current_id = -1
@@ -67,8 +67,8 @@ func new_game():
 	pass
 
 func continue_game():
+	continue_button.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	$sfx_click.play()
-	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	SaveManager.load_game()
 	await RoomManager.room_load_start
@@ -77,7 +77,7 @@ func continue_game():
 	pass
 
 func show_options():
-	$CanvasLayer/Control.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	options_button.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	print("options pressed")
 	$sfx_click.play()
 
