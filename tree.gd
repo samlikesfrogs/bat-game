@@ -18,7 +18,6 @@ func _take_damage(hurt_box:HurtBox):
 	material.set_shader_parameter("shake_intensity", 0.3)
 	await get_tree().create_timer(0.5).timeout
 	material.set_shader_parameter("shake_intensity", 0.0)
-	print("tree hp: ", hp)
 	if hp <= 0:
 		$StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
 		$HitBox.set_deferred("disabled", true)
@@ -28,17 +27,14 @@ func _take_damage(hurt_box:HurtBox):
 		tween.finished.connect($".".queue_free)
 
 func drop_rand_items(count):
-	print("dropping items")
 	var dropped = 0
 	while dropped < count:
 		drop_item(spawnable_items[randi()% spawnable_items.size()], Vector2(self.global_position.x, self.global_position.y))
-		print(dropped)
 		dropped += 1
 		
 func drop_item(data, position):
 	var item_instance = preload("res://inventory/inventory_item.tscn").instantiate()
 	item_instance.instance_item(data["type"], data["name"], data["function"], data["texture"])
-	print(self.get_parent())
 	self.get_parent().call_deferred("add_child", item_instance)
 	item_instance.global_position = position
 	item_instance.velocity = (_direction * -20).rotated(randf_range(-0.8,0.8))*randf_range(0.9, 1.2)

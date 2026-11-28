@@ -11,7 +11,6 @@ func _process(_delta: float) -> void:
 	
 func AreaEntered(a:Area2D)->void:
 	if a is HitBox:
-		print("entered a hitbox")
 		a.TakeDamage(self)
 		await get_tree().create_timer(go_through).timeout
 		$"..".queue_free()
